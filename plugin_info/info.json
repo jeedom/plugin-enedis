@@ -1,0 +1,16 @@
+{
+	"id" : "enedis",
+	"name" : "Enedis Linky",
+	"description" : "Récupérer les informations du compteur communiquant Linky à partir du compte client Enedis.",
+	"licence" : "AGPL",
+	"author" : "Jeedom SAS",
+	"require" : "3.3.39",
+	"category" : "energy",
+	"hasDependency" : false,
+	"hasOwnDeamon" : false,
+	"maxDependancyInstallTime" : 0,
+	"changelog" : "https:\/\/doc.jeedom.com\/#language#\/plugins\/enedis\/pjlink\/changelog",
+	"documentation" : "https:\/\/doc.jeedom.com\/#language#\/plugins\/enedis\/enedis\/",
+	"language" : ["fr_FR"],
+	"compatibility" : ["miniplus","smart","rpi","docker","diy","v4"]
+}
