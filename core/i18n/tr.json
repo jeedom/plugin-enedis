@@ -1,0 +1,49 @@
+{
+    "plugins\/enedis\/desktop\/php\/enedis.php": {
+        "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "Gestion": "Idare",
+        "Ajouter": "Ekle",
+        "Configuration": "Ayar",
+        "Mes comptes Enedis": "",
+        "Rechercher": "Arayın",
+        "Configuration avancée": "Gelişmiş ayarlar",
+        "Dupliquer": "Kopyala",
+        "Sauvegarder": "Kaydet",
+        "Supprimer": "Sil",
+        "Equipement": "Cihaz",
+        "Commandes": "Komutalar",
+        "Nom de l'équipement Enedis": "",
+        "Objet parent": "Üst nesne",
+        "Aucun": "Hiçbir",
+        "Catégorie": "Kategori",
+        "Options": "Opsiyonlar",
+        "Activer": "Etkinleştir",
+        "Visible": "Görülebilir",
+        "Identifiant Enedis": "",
+        "Mot de passe Enedis": "",
+        "Id": "Kimlik",
+        "Nom": "İsim",
+        "Type": "Çeşit",
+        "Paramètres": "Ayarlar ( Séçenekler )",
+        "Action": "Eylem"
+    },
+    "plugins\/enedis\/desktop\/js\/enedis.js": {
+        "Nom": "İsim",
+        "Icône": "Icon",
+        "Min": "Minimum",
+        "Max": "Maximum",
+        "Unité": "Ünite",
+        "Afficher": "Göster",
+        "Historiser": "Tarihe göre sırala",
+        "Inverser": "Ters çevir",
+        "Tester": "Test et"
+    },
+    "plugins\/enedis\/core\/class\/enedis.class.php": {
+        "Erreur d\\'authentification : vérifier la validité de l\\'identifiant et du mot de passe": "",
+        "L\\'identifiant du compte Enedis doit être renseigné": "",
+        "Le mot de passe du compte Enedis doit être renseigné": ""
+    },
+    "info.json": {
+        "Récupérer les informations du compteur communiquant Linky à partir du compte client Enedis.": ""
+    }
+}

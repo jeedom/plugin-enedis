@@ -1,0 +1,49 @@
+{
+    "plugins\/enedis\/desktop\/php\/enedis.php": {
+        "401 - Accès non autorisé": "401 - Accesso non autorizzato",
+        "Gestion": "Gestione",
+        "Ajouter": "Aggiungi",
+        "Configuration": "Configurazione",
+        "Mes comptes Enedis": "",
+        "Rechercher": "Ricercare",
+        "Configuration avancée": "Configurazione avanzata",
+        "Dupliquer": "Duplicato",
+        "Sauvegarder": "Salva",
+        "Supprimer": "Rimuovere",
+        "Equipement": "Dispositivo",
+        "Commandes": "Comandi",
+        "Nom de l'équipement Enedis": "",
+        "Objet parent": "Oggetto padre",
+        "Aucun": "Nessuno",
+        "Catégorie": "Categoria",
+        "Options": "Opzioni",
+        "Activer": "Attivare",
+        "Visible": "Visibile",
+        "Identifiant Enedis": "",
+        "Mot de passe Enedis": "",
+        "Id": "",
+        "Nom": "Nome",
+        "Type": "Tipo",
+        "Paramètres": "Impostazioni",
+        "Action": "Azione"
+    },
+    "plugins\/enedis\/desktop\/js\/enedis.js": {
+        "Nom": "Nome",
+        "Icône": "Icona",
+        "Min": "",
+        "Max": "",
+        "Unité": "Unità",
+        "Afficher": "Mostra",
+        "Historiser": "Storicizza",
+        "Inverser": "Inverti",
+        "Tester": "Prova"
+    },
+    "plugins\/enedis\/core\/class\/enedis.class.php": {
+        "Erreur d\\'authentification : vérifier la validité de l\\'identifiant et du mot de passe": "",
+        "L\\'identifiant du compte Enedis doit être renseigné": "",
+        "Le mot de passe du compte Enedis doit être renseigné": ""
+    },
+    "info.json": {
+        "Récupérer les informations du compteur communiquant Linky à partir du compte client Enedis.": ""
+    }
+}

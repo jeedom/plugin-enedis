@@ -1,0 +1,49 @@
+{
+    "plugins\/enedis\/desktop\/php\/enedis.php": {
+        "401 - Accès non autorisé": "401-不正アクセス",
+        "Gestion": "管理",
+        "Ajouter": "加えます",
+        "Configuration": "コンフィギュレーション",
+        "Mes comptes Enedis": "",
+        "Rechercher": "検索",
+        "Configuration avancée": "高度な構成",
+        "Dupliquer": "重複",
+        "Sauvegarder": "セーブ",
+        "Supprimer": "取り除きます",
+        "Equipement": "設備",
+        "Commandes": "コマンド",
+        "Nom de l'équipement Enedis": "",
+        "Objet parent": "親オブジェクト",
+        "Aucun": "何でもありません",
+        "Catégorie": "カテゴリ",
+        "Options": "オプション",
+        "Activer": "アクティブ",
+        "Visible": "目に見えます",
+        "Identifiant Enedis": "",
+        "Mot de passe Enedis": "",
+        "Id": "",
+        "Nom": "表題",
+        "Type": "タイプ",
+        "Paramètres": "設定",
+        "Action": "アクション"
+    },
+    "plugins\/enedis\/desktop\/js\/enedis.js": {
+        "Nom": "表題",
+        "Icône": "アイコン",
+        "Min": "低いです",
+        "Max": "マックス",
+        "Unité": "団結",
+        "Afficher": "ディスプレイ",
+        "Historiser": "Historicize",
+        "Inverser": "逆",
+        "Tester": "テスト"
+    },
+    "plugins\/enedis\/core\/class\/enedis.class.php": {
+        "Erreur d\\'authentification : vérifier la validité de l\\'identifiant et du mot de passe": "",
+        "L\\'identifiant du compte Enedis doit être renseigné": "",
+        "Le mot de passe du compte Enedis doit être renseigné": ""
+    },
+    "info.json": {
+        "Récupérer les informations du compteur communiquant Linky à partir du compte client Enedis.": ""
+    }
+}

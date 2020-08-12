@@ -1,0 +1,49 @@
+{
+    "plugins\/enedis\/desktop\/php\/enedis.php": {
+        "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "Gestion": "Manajemen",
+        "Ajouter": "Tambahan",
+        "Configuration": "Konfigurasi",
+        "Mes comptes Enedis": "",
+        "Rechercher": "Pencarian",
+        "Configuration avancée": "Konfigurasi lanjutan",
+        "Dupliquer": "Duplikat",
+        "Sauvegarder": "Menyimpan",
+        "Supprimer": "Menghapus",
+        "Equipement": "Peralatan",
+        "Commandes": "Perintah",
+        "Nom de l'équipement Enedis": "",
+        "Objet parent": "Objek induk",
+        "Aucun": "Tak ada",
+        "Catégorie": "Kategori",
+        "Options": "Pilihan",
+        "Activer": "Mengaktifkan",
+        "Visible": "Terlihat",
+        "Identifiant Enedis": "",
+        "Mot de passe Enedis": "",
+        "Id": "",
+        "Nom": "Nama",
+        "Type": "Jenis",
+        "Paramètres": "Parameter²",
+        "Action": "Tindakan"
+    },
+    "plugins\/enedis\/desktop\/js\/enedis.js": {
+        "Nom": "Nama",
+        "Icône": "Icon",
+        "Min": "",
+        "Max": "",
+        "Unité": "Satuan",
+        "Afficher": "Memenitikan",
+        "Historiser": "Historicize",
+        "Inverser": "Membalikkan",
+        "Tester": "Coba"
+    },
+    "plugins\/enedis\/core\/class\/enedis.class.php": {
+        "Erreur d\\'authentification : vérifier la validité de l\\'identifiant et du mot de passe": "",
+        "L\\'identifiant du compte Enedis doit être renseigné": "",
+        "Le mot de passe du compte Enedis doit être renseigné": ""
+    },
+    "info.json": {
+        "Récupérer les informations du compteur communiquant Linky à partir du compte client Enedis.": ""
+    }
+}

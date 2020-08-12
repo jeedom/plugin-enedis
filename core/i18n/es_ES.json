@@ -1,0 +1,49 @@
+{
+    "plugins\/enedis\/desktop\/php\/enedis.php": {
+        "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Gestion": "Gestión",
+        "Ajouter": "Añadir",
+        "Configuration": "Configuración",
+        "Mes comptes Enedis": "Mis cuentas de Enedis",
+        "Rechercher": "Buscar",
+        "Configuration avancée": "Configuración avanzada",
+        "Dupliquer": "Duplicar",
+        "Sauvegarder": "Guardar",
+        "Supprimer": "Borrar",
+        "Equipement": "Dispositivos",
+        "Commandes": "Comandos",
+        "Nom de l'équipement Enedis": "Nombre del equipo Enedis",
+        "Objet parent": "Objeto padre",
+        "Aucun": "Ninguna",
+        "Catégorie": "Categoría",
+        "Options": "Opciones",
+        "Activer": "Activar",
+        "Visible": "Visible",
+        "Identifiant Enedis": "ID de Enedis",
+        "Mot de passe Enedis": "Contraseña de Enedis",
+        "Id": "Identificación",
+        "Nom": "Nombre",
+        "Type": "Tipo",
+        "Paramètres": "Configuraciones",
+        "Action": "Acción"
+    },
+    "plugins\/enedis\/desktop\/js\/enedis.js": {
+        "Nom": "Nombre",
+        "Icône": "Icono",
+        "Min": "Min",
+        "Max": "Max",
+        "Unité": "Unidad",
+        "Afficher": "Mostrar",
+        "Historiser": "Guardar historial",
+        "Inverser": "Invertir",
+        "Tester": "Probar"
+    },
+    "plugins\/enedis\/core\/class\/enedis.class.php": {
+        "Erreur d\\'authentification : vérifier la validité de l\\'identifiant et du mot de passe": "Error de autenticación: compruebe la validez del nombre de usuario y la contraseña",
+        "L\\'identifiant du compte Enedis doit être renseigné": "Se debe ingresar el identificador de la cuenta Enedis",
+        "Le mot de passe du compte Enedis doit être renseigné": "Se debe ingresar la contraseña de la cuenta de Enedis"
+    },
+    "info.json": {
+        "Récupérer les informations du compteur communiquant Linky à partir du compte client Enedis.": "Recupere la información del medidor que comunica a Linky de la cuenta de cliente de Enedis"
+    }
+}
