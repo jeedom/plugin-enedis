@@ -15,7 +15,7 @@
     "hasDependency": false,
     "hasOwnDeamon": false,
     "maxDependancyInstallTime": 0,
-    "changelog": "https:\/\/doc.jeedom.com\/#language#\/plugins\/enedis\/pjlink\/changelog",
+    "changelog": "https:\/\/doc.jeedom.com\/#language#\/plugins\/enedis\/enedis\/changelog",
     "documentation": "https:\/\/doc.jeedom.com\/#language#\/plugins\/enedis\/enedis\/",
     "language": [
         "fr_FR",
@@ -35,4 +35,3 @@
         "diy",
         "v4"
     ]
-}
