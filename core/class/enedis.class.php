@@ -30,32 +30,46 @@ class enedis extends eqLogic {
 
     /*     * ***********************Methode static*************************** */
 
-    public static function cronHourly() {
-      if (date('G') >= 4 || date('G') <= 22)
-		  {
+    public static function cronHourly()
+    {
+      static $done = false;
+      if (date('G') < 4 || date('G') >= 22)
+  		{
+  			if(date('Gi') == 115)
+  			{
+  				$done = false;
+  			}
+  			return;
+  		}
+      if ($done == false)
+      {
         $eqLogics = self::byType(__CLASS__, true);
 
         foreach ($eqLogics as $eqLogic)
         {
+          $need_refresh = false;
           $eqLogicCmds = $eqLogic->getCmd();
-          $need_refresh = true;
-          
+
           foreach ($eqLogicCmds as $eqLogicCmd) {
             $eqLogicCmd->execCmd();
-
             if ($eqLogicCmd->getCollectDate() == date('Y-m-d 23:55:00', strtotime('-1 day')))
             {
-              $need_refresh = false;
               log::add(__CLASS__, 'info', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : données déjà présentes pour la commande ' . $eqLogicCmd->getName());
             }
             else
             {
-              log::add(__CLASS__, 'info', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' absence de données pour la commande ' . $eqLogicCmd->getName());
+              $need_refresh = true;
+              log::add(__CLASS__, 'info', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : absence de données pour la commande ' . $eqLogicCmd->getName());
             }
           }
           if ($need_refresh == true)
           {
             $eqLogic->pullEnedis();
+          }
+          else
+          {
+            $done = true;
+            log::add(__CLASS__, 'info', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : toutes les données sont à jour - désactivation de la vérification automatique pour aujourd\'hui');
           }
         }
       }
@@ -185,7 +199,6 @@ class enedis extends eqLogic {
         ));
       $response = curl_exec($curl);
       curl_close($curl);
-      log::add(__CLASS__, 'debug', print_r($response, true));
 
       preg_match_all('/^Set-Cookie:\s*([^;]*)/mi', $response, $matches);
       $cookies = array();
@@ -251,27 +264,26 @@ class enedis extends eqLogic {
        {
          case 'urlCdcHeure':
             $cmd = $this->getCmd(null, 'charge');
-            $date_end = date('Y-d-m 23:55:00', strtotime($start));
-            $date = date('Y-d-m 00:30:00', strtotime($start));
+            $date_end = date('Y-m-d 23:55:00', strtotime('-1 day'));
+            $date = date('Y-m-d 00:30:00', strtotime('-1 day'));
             $next = ' +30 minutes';
             break;
          case 'urlCdcJour':
             $cmd = $this->getCmd(null, 'consod');
-            $date_end = date('Y-d-m 23:55:00', strtotime($end));
-            $date = date('Y-d-m 23:55:00', strtotime($start));
+            $date_end = date('Y-m-d 23:55:00', strtotime('-1 day'));
+            $date = date('Y-m-d 23:55:00', strtotime('-31 days'));
             $next = ' +1 day';
             break;
          case 'urlCdcMois':
             $cmd = $this->getCmd(null, 'consom');
-            $date_end = date('Y-d-m 23:55:00', strtotime($end));
-            $date_start = date('Y-d-m', strtotime($start));
-            $date = date("Y-m-t 23:55:00", strtotime($date_start));
+            $date_end = date('Y-m-d 23:55:00', strtotime('-1 day'));
+            $date = date("Y-m-t 23:55:00", strtotime('first day of this month -11 months'));
             $next = ' last day of next month';
             break;
          case 'urlCdcAn':
             $cmd = $this->getCmd(null, 'consoy');
-            $date_end = date('Y-d-m 23:55:00', strtotime($end));
-            $date = date('Y-12-31 23:55:00', strtotime($start));
+            $date_end = date('Y-m-d 23:55:00', strtotime('-1 day'));
+            $date = date('Y-12-31 23:55:00', strtotime('-3 years'));
             $next = ' +1 year';
             break;
         }
@@ -298,6 +310,10 @@ class enedis extends eqLogic {
          $date = date('Y-m-d H:i:s', strtotime($date . $next));
        }
      }
+     else if ($data['etat']['valeur'] == 'nonActive')
+     {
+       log::add(__CLASS__, 'info', $this->getHumanName() . ' La collecte et l\'enregistrement de la consommation horaire doivent être activé dans votre compte Enedis');
+     }
 
    }
 
@@ -305,6 +321,7 @@ class enedis extends eqLogic {
     public function preInsert() {
       $this->setDisplay('height','152px');
       $this->setDisplay('width', '552px');
+      $this->setCategory('energy', 1);
     }
 
  // Fonction exécutée automatiquement avant la mise à jour de l'équipement
