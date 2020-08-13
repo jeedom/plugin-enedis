@@ -38,7 +38,7 @@ class enedis extends eqLogic {
       {
         if (date('G') < 4 || date('G') >= 22)
         {
-          if(date('G') == 1)
+          if ($eqLogic->getCache('getEnedisData') == 'done')
     			{
             $eqLogic->setCache('getEnedisData', null);
           }
