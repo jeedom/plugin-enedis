@@ -24,12 +24,9 @@
         "Id": "",
         "Nom": "Nama",
         "Type": "Jenis",
-        "Paramètres": "Parameter²",
         "Action": "Tindakan"
     },
     "plugins\/enedis\/desktop\/js\/enedis.js": {
-        "Nom": "Nama",
-        "Icône": "Icon",
         "Min": "",
         "Max": "",
         "Unité": "Satuan",
@@ -44,6 +41,6 @@
         "Le mot de passe du compte Enedis doit être renseigné": ""
     },
     "info.json": {
-        "Récupérer les informations du compteur communiquant Linky à partir du compte client Enedis.": ""
+        "Récupérer les informations du compteur communicant Linky à partir de son compte-client Enedis.": ""
     }
 }

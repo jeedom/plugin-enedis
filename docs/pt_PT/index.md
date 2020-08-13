@@ -1,6 +1,6 @@
 # Plug-in Enedis Linky
 
-Plugin permitindo a recuperação do consumo do medidor *linky* consultando a conta do cliente *Enedis*. Como os dados não são disponibilizados em tempo real, o plugin recupera os dados de consumo de eletricidade da véspera de cada dia.
+Plugin permitindo a recuperação do consumo do medidor de comunicação *linky* consultando a conta do cliente *Enedis*. Como os dados não são disponibilizados em tempo real, o plugin recupera os dados de consumo de eletricidade da véspera de cada dia.
 
 4 tipos de dados de consumo estão acessíveis :
 - o **poder desenhado** por meia hora *(em kW)*.

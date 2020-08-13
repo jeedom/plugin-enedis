@@ -1,6 +1,6 @@
 # Enedis Linky plugin
 
-Plugin allowing the recovery of consumption of the meter *linky* by querying the customer account *Enedis*. As the data is not made available in real time, the plugin retrieves the electricity consumption data from the day before each day.
+Plugin allowing the recovery of consumption of the communicating meter *linky* by querying the customer account *Enedis*. As the data is not made available in real time, the plugin retrieves the electricity consumption data from the day before each day.
 
 4 types of consumption data are accessible :
 - the **drawn power** per half hour *(in kW)*.

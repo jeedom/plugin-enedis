@@ -24,12 +24,9 @@
         "Id": "Kimlik",
         "Nom": "İsim",
         "Type": "Çeşit",
-        "Paramètres": "Ayarlar ( Séçenekler )",
         "Action": "Eylem"
     },
     "plugins\/enedis\/desktop\/js\/enedis.js": {
-        "Nom": "İsim",
-        "Icône": "Icon",
         "Min": "Minimum",
         "Max": "Maximum",
         "Unité": "Ünite",
@@ -44,6 +41,6 @@
         "Le mot de passe du compte Enedis doit être renseigné": ""
     },
     "info.json": {
-        "Récupérer les informations du compteur communiquant Linky à partir du compte client Enedis.": ""
+        "Récupérer les informations du compteur communicant Linky à partir de son compte-client Enedis.": ""
     }
 }

@@ -11,7 +11,7 @@
         "Plugin Enedis Linky": "Plugin Enedis Linky",
         "linky": "linky",
         "Enedis": "Enedis",
-        "Plugin permettant la récupération des consommations du compteur": "Plugin permettant la récupération des consommations du compteur",
+        "Plugin permettant la récupération des consommations du compteur communicant": "Plugin permettant la récupération des consommations du compteur communicant",
         "par l'interrogation du compte-client": "par l'interrogation du compte-client",
         "Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille": "Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille",
         "4 types de données de consommation sont accessibles": "4 types de données de consommation sont accessibles",

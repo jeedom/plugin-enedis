@@ -24,12 +24,9 @@
         "Id": "Id",
         "Nom": "Nom",
         "Type": "Type",
-        "Paramètres": "Paramètres",
         "Action": "Action"
     },
     "plugins\/enedis\/desktop\/js\/enedis.js": {
-        "Nom": "Nom",
-        "Icône": "Icône",
         "Min": "Min",
         "Max": "Max",
         "Unité": "Unité",
@@ -44,6 +41,6 @@
         "Le mot de passe du compte Enedis doit être renseigné": "Le mot de passe du compte Enedis doit être renseigné"
     },
     "info.json": {
-        "Récupérer les informations du compteur communiquant Linky à partir du compte client Enedis.": "Récupérer les informations du compteur communiquant Linky à partir du compte client Enedis."
+        "Récupérer les informations du compteur communicant Linky à partir de son compte-client Enedis.": "Récupérer les informations du compteur communicant Linky à partir de son compte-client Enedis."
     }
 }

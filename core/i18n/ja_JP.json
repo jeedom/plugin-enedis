@@ -24,12 +24,9 @@
         "Id": "",
         "Nom": "表題",
         "Type": "タイプ",
-        "Paramètres": "設定",
         "Action": "アクション"
     },
     "plugins\/enedis\/desktop\/js\/enedis.js": {
-        "Nom": "表題",
-        "Icône": "アイコン",
         "Min": "低いです",
         "Max": "マックス",
         "Unité": "団結",
@@ -44,6 +41,6 @@
         "Le mot de passe du compte Enedis doit être renseigné": ""
     },
     "info.json": {
-        "Récupérer les informations du compteur communiquant Linky à partir du compte client Enedis.": ""
+        "Récupérer les informations du compteur communicant Linky à partir de son compte-client Enedis.": ""
     }
 }

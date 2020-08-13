@@ -15,7 +15,7 @@
     },
     "index.md": {
         "Plugin Enedis Linky": "Enedis Linky plugin",
-        "Plugin permettant la récupération des consommations du compteur": "Plugin allowing the recovery of consumption of the meter",
+        "Plugin permettant la récupération des consommations du compteur communicant": "Plugin allowing the recovery of consumption of the communicating meter",
         "par l'interrogation du compte-client": "by querying the customer account",
         "Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille": "As the data is not made available in real time, the plugin retrieves the electricity consumption data from the day before each day",
         "4 types de données de consommation sont accessibles": "4 types of consumption data are accessible",
