@@ -312,7 +312,7 @@ class enedis extends eqLogic {
      }
      else if ($data['etat']['valeur'] == 'nonActive')
      {
-       log::add(__CLASS__, 'info', $this->getHumanName() . ' La collecte et l\'enregistrement de la consommation horaire doivent être activé dans votre compte Enedis');
+       log::add(__CLASS__, 'info', $this->getHumanName() . ' La collecte et l\'enregistrement de la consommation horaire doivent être activés dans votre compte Enedis');
      }
 
    }
