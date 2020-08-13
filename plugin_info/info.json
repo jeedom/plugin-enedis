@@ -8,7 +8,7 @@
         "de_DE": "Rufen Sie die Zählerinformationen, die Linky kommunizieren, vom Enedis-Kundenkonto ab",
         "pt_PT": "Recupere as informações do medidor que comunicam Linky da conta do cliente Enedis"
     },
-    "utilization" : "Sur la page de l'équipement renseignez l'identifiant ainsi que le mot de passe de votre compte-client Enedis, cochez la case Activer puis cliquez sur le bouton Sauvegarder.",
+    "utilization" : "Sur la page de l'équipement renseignez l'identifiant ainsi que le mot de passe de votre compte-client Enedis puis cliquez sur le bouton Sauvegarder.",
     "licence": "AGPL",
     "author": "Jeedom SAS",
     "require": "3.3.39",

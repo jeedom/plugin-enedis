@@ -324,6 +324,8 @@ class enedis extends eqLogic {
       $this->setDisplay('height','152px');
       $this->setDisplay('width', '552px');
       $this->setCategory('energy', 1);
+      $this->setIsEnable(1);
+      $this->setIsVisible(1);
     }
 
  // Fonction exécutée automatiquement avant la mise à jour de l'équipement
