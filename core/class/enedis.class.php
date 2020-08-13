@@ -38,10 +38,14 @@ class enedis extends eqLogic {
       {
         if (date('G') < 4 || date('G') >= 22)
         {
+          if(date('G') == 1)
+    			{
+            $eqLogic->setCache('getEnedisData', null);
+          }
           return;
-		    }
+        }
 
-      log::add(__CLASS__, 'debug', ' getEnedisData = ' . $eqLogic->getCache('getEnedisData') . ' - Arrêt du cron');
+      log::add(__CLASS__, 'debug', $eqLogic->getHumanName() . ' getEnedisData Cache = ' . $eqLogic->getCache('getEnedisData'));
       if ($eqLogic->getCache('getEnedisData') != 'done')
       {
         $need_refresh = false;
