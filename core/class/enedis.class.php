@@ -30,20 +30,25 @@ class enedis extends eqLogic {
 
     /*     * ***********************Methode static*************************** */
 
-    public static function cron30()
+    public static function cronHourly()
     {
-      if (date('G') < 4 || date('G') >= 22)
-  		{
-        return;
-  		}
       $eqLogics = self::byType(__CLASS__, true);
 
       foreach ($eqLogics as $eqLogic)
       {
+        if (date('G') < 4 || date('G') >= 22)
+        {
+          return;
+		    }
+
+      log::add(__CLASS__, 'debug', ' getEnedisData = ' . $eqLogic->getCache('getEnedisData') . ' - Arrêt du cron');
+      if ($eqLogic->getCache('getEnedisData') != 'done')
+      {
         $need_refresh = false;
         $eqLogicCmds = $eqLogic->getCmd();
 
-        foreach ($eqLogicCmds as $eqLogicCmd) {
+        foreach ($eqLogicCmds as $eqLogicCmd)
+        {
           $eqLogicCmd->execCmd();
           if ($eqLogicCmd->getCollectDate() == date('Y-m-d 23:55:00', strtotime('-1 day')))
           {
@@ -59,8 +64,14 @@ class enedis extends eqLogic {
         {
           $eqLogic->pullEnedis();
         }
+        else
+        {
+          $eqLogic->setCache('getEnedisData', 'done');
+          log::add(__CLASS__, 'info', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : toutes les données sont à jour - désactivation de la vérification automatique pour aujourd\'hui');
+        }
       }
     }
+  }
 
     /*     * *********************Méthodes d'instance************************* */
 
