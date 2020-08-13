@@ -1,6 +1,6 @@
 # Plugin Enedis Linky
 
-Plugin permettant la récupération des consommations du compteur *linky* par l'interrogation du compte-client *Enedis*. Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille.
+Plugin permettant la récupération des consommations du compteur communicant *linky* par l'interrogation du compte-client *Enedis*. Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille.
 
 4 types de données de consommation sont accessibles :
 - la **puissance soutirée** par demi-heure *(en kW)*.

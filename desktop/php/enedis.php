@@ -115,10 +115,10 @@ foreach (jeeObject::all() as $object) {
 <table id="table_cmd" class="table table-bordered table-condensed">
     <thead>
         <tr>
-            <th class="col-xs-1">{{Id}}</th>
-            <th class="col-xs-2">{{Nom}}</th>
-						<th class="col-xs-2">{{Type}}</th>
-						<th class="col-xs-3">{{Paramètres}}</th>
+            <th style="width:50px;">{{Id}}</th>
+            <th style="width:250px;">{{Nom}}</th>
+						<th>{{Type}}</th>
+						<th class="col-xs-3">{{Options}}</th>
 						<th class="col-xs-2">{{Action}}</th>
         </tr>
     </thead>

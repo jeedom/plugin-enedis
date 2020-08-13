@@ -2,7 +2,7 @@
     "id": "enedis",
     "name": "Enedis Linky",
     "description": {
-        "fr_FR": "Récupérer les informations du compteur communiquant Linky à partir du compte client Enedis.",
+        "fr_FR": "Récupérer les informations du compteur communicant Linky à partir de son compte-client Enedis.",
         "en_US": "Retrieve the meter information communicating Linky from the Enedis customer account",
         "es_ES": "Recupere la información del medidor que comunica a Linky de la cuenta de cliente de Enedis",
         "de_DE": "Rufen Sie die Zählerinformationen, die Linky kommunizieren, vom Enedis-Kundenkonto ab",
