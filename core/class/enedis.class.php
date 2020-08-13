@@ -30,47 +30,34 @@ class enedis extends eqLogic {
 
     /*     * ***********************Methode static*************************** */
 
-    public static function cronHourly()
+    public static function cron30()
     {
-      static $done = false;
       if (date('G') < 4 || date('G') >= 22)
   		{
-  			if(date('Gi') == 115)
-  			{
-  				$done = false;
-  			}
-  			return;
+        return;
   		}
-      if ($done == false)
+      $eqLogics = self::byType(__CLASS__, true);
+
+      foreach ($eqLogics as $eqLogic)
       {
-        $eqLogics = self::byType(__CLASS__, true);
+        $need_refresh = false;
+        $eqLogicCmds = $eqLogic->getCmd();
 
-        foreach ($eqLogics as $eqLogic)
-        {
-          $need_refresh = false;
-          $eqLogicCmds = $eqLogic->getCmd();
-
-          foreach ($eqLogicCmds as $eqLogicCmd) {
-            $eqLogicCmd->execCmd();
-            if ($eqLogicCmd->getCollectDate() == date('Y-m-d 23:55:00', strtotime('-1 day')))
-            {
-              log::add(__CLASS__, 'info', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : données déjà présentes pour la commande ' . $eqLogicCmd->getName());
-            }
-            else
-            {
-              $need_refresh = true;
-              log::add(__CLASS__, 'info', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : absence de données pour la commande ' . $eqLogicCmd->getName());
-            }
-          }
-          if ($need_refresh == true)
+        foreach ($eqLogicCmds as $eqLogicCmd) {
+          $eqLogicCmd->execCmd();
+          if ($eqLogicCmd->getCollectDate() == date('Y-m-d 23:55:00', strtotime('-1 day')))
           {
-            $eqLogic->pullEnedis();
+            log::add(__CLASS__, 'info', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : données déjà présentes pour la commande ' . $eqLogicCmd->getName());
           }
           else
           {
-            $done = true;
-            log::add(__CLASS__, 'info', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : toutes les données sont à jour - désactivation de la vérification automatique pour aujourd\'hui');
+            $need_refresh = true;
+            log::add(__CLASS__, 'info', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : absence de données pour la commande ' . $eqLogicCmd->getName());
           }
+        }
+        if ($need_refresh == true)
+        {
+          $eqLogic->pullEnedis();
         }
       }
     }
