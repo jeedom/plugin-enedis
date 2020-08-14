@@ -56,12 +56,12 @@ class enedis extends eqLogic {
           $eqLogicCmd->execCmd();
           if ($eqLogicCmd->getCollectDate() == date('Y-m-d 23:55:00', strtotime('-1 day')))
           {
-            log::add(__CLASS__, 'info', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : données déjà présentes pour la commande ' . $eqLogicCmd->getName());
+            log::add(__CLASS__, 'debug', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : données déjà présentes pour la commande ' . $eqLogicCmd->getName());
           }
           else
           {
             $need_refresh = true;
-            log::add(__CLASS__, 'info', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : absence de données pour la commande ' . $eqLogicCmd->getName());
+            log::add(__CLASS__, 'debug', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : absence de données pour la commande ' . $eqLogicCmd->getName());
           }
         }
         if ($need_refresh == true)
@@ -71,6 +71,7 @@ class enedis extends eqLogic {
         else
         {
           $eqLogic->setCache('getEnedisData', 'done');
+          log::add(__CLASS__, 'debug', $eqLogic->getHumanName() . ' getEnedisData Cache = ' . $eqLogic->getCache('getEnedisData'));
           log::add(__CLASS__, 'info', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : toutes les données sont à jour - désactivation de la vérification automatique pour aujourd\'hui');
         }
       }
@@ -357,7 +358,7 @@ class enedis extends eqLogic {
 					$cmd->setLogicalId($logicalId);
           $cmd->setEqLogic_id($this->getId());
 					$cmd->setName($name);
-          $cmd->setGeneric_type('GENERIC_INFO');
+          ($logicalId == 'charge') ? $cmd->setGeneric_type('POWER') : $cmd->setGeneric_type('CONSUMPTION');
           ($logicalId == 'charge') ? $cmd->setUnite('kW') : $cmd->setUnite('kWh');
           $cmd->setIsHistorized(1);
           $cmd->setDisplay('showStatsOndashboard', 0);
@@ -376,12 +377,6 @@ class enedis extends eqLogic {
 
     }
 
-    /*
-     * Non obligatoire : permet de modifier l'affichage du widget (également utilisable par les commandes)
-      public function toHtml($_version = 'dashboard') {
-
-      }
-     */
 
     /*     * **********************Getteur Setteur*************************** */
 }

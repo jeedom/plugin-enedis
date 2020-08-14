@@ -4,6 +4,8 @@ Plugin permettant la récupération des consommations du compteur communicant *l
 
 4 types de données de consommation sont accessibles :
 - la **puissance soutirée** par demi-heure *(en kW)*.
+>*La courbe de consommation *(ou puissance soutirée)* restitue la puissance appelée par tous vos appareils électriques en moyenne sur une demi-heure.*
+
 - la **consommation journalière** *(en kWh)*.
 - la **consommation mensuelle** *(en kWh)*.
 - la **consommation annuelle** *(en kWh)*.
