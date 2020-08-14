@@ -32,7 +32,6 @@
         "Unité": "Unit",
         "Afficher": "Show",
         "Historiser": "Historize",
-        "Inverser": "Invert",
         "Tester": "Test"
     },
     "plugins\/enedis\/core\/class\/enedis.class.php": {
