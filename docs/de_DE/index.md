@@ -1,6 +1,6 @@
 # Enedis Linky Plugin
 
-Plugin zur Wiederherstellung des Verbrauchs des Messgeräts *Linky* durch Abfragen des Kundenkontos *Enedis*. Da die Daten nicht in Echtzeit verfügbar sind, ruft das Plugin die Stromverbrauchsdaten vom Vortag ab.
+Plugin zur Wiederherstellung des Verbrauchs des kommunizierenden Messgeräts *Linky* durch Abfragen des Kundenkontos *Enedis*. Da die Daten nicht in Echtzeit verfügbar sind, ruft das Plugin die Stromverbrauchsdaten vom Vortag ab.
 
 Es stehen 4 Arten von Verbrauchsdaten zur Verfügung :
 - die **gezogene Kraft** pro halbe Stunde *(in kW)*.

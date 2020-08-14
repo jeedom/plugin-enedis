@@ -15,7 +15,7 @@
     },
     "index.md": {
         "Plugin Enedis Linky": "Complemento Enedis Linky",
-        "Plugin permettant la récupération des consommations du compteur": "Plugin que permite la recuperación del consumo del contador",
+        "Plugin permettant la récupération des consommations du compteur communicant": "Plugin que permite recuperar consumos del contador comunicante",
         "par l'interrogation du compte-client": "consultando la cuenta del cliente",
         "Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille": "Como los datos no están disponibles en tiempo real, el complemento recupera los datos de consumo de electricidad del día anterior a cada día",
         "4 types de données de consommation sont accessibles": "4 tipos de datos de consumo accesibles",

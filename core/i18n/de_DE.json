@@ -24,12 +24,9 @@
         "Id": "Identifikation",
         "Nom": "Name",
         "Type": "Typ",
-        "Paramètres": "Einstellungen",
         "Action": "Aktion"
     },
     "plugins\/enedis\/desktop\/js\/enedis.js": {
-        "Nom": "Name",
-        "Icône": "Symbol",
         "Min": "Niedrig",
         "Max": "Max",
         "Unité": "Unit",
@@ -44,6 +41,6 @@
         "Le mot de passe du compte Enedis doit être renseigné": "Das Passwort für das Enedis-Konto muss eingegeben werden"
     },
     "info.json": {
-        "Récupérer les informations du compteur communiquant Linky à partir du compte client Enedis.": "Rufen Sie die Zählerinformationen, die Linky kommunizieren, vom Enedis-Kundenkonto ab"
+        "Récupérer les informations du compteur communicant Linky à partir de son compte-client Enedis.": "Rufen Sie die Informationen des Linky Smart Meters von seinem Enedis-Kundenkonto ab"
     }
 }

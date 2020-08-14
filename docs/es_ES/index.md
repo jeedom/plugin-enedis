@@ -1,6 +1,6 @@
 # Complemento Enedis Linky
 
-Plugin que permite la recuperación del consumo del contador *linky* consultando la cuenta del cliente *Enedis*. Como los datos no están disponibles en tiempo real, el complemento recupera los datos de consumo de electricidad del día anterior a cada día.
+Plugin que permite recuperar consumos del contador comunicante *linky* consultando la cuenta del cliente *Enedis*. Como los datos no están disponibles en tiempo real, el complemento recupera los datos de consumo de electricidad del día anterior a cada día.
 
 4 tipos de datos de consumo accesibles :
 - el **poder dibujado** por media hora *(en kW)*.
