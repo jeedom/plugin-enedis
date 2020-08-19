@@ -66,6 +66,7 @@ class enedis extends eqLogic {
         }
         if ($need_refresh == true)
         {
+          sleep(rand(60, 1800));
           $eqLogic->pullEnedis();
         }
         else
