@@ -22,7 +22,7 @@ require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
   function enedis_install() {
     $cronMinute = config::byKey('cronMinute', 'enedis');
     if (empty($cronMinute)) {
-      $randMinute = rand(5, 59);
+      $randMinute = rand(3, 59);
       config::save('cronMinute', $randMinute, 'enedis');
     }
   }
@@ -31,7 +31,7 @@ require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
   function enedis_update() {
     $cronMinute = config::byKey('cronMinute', 'enedis');
     if (empty($cronMinute)) {
-      $randMinute = rand(5, 59);
+      $randMinute = rand(3, 59);
       config::save('cronMinute', $randMinute, 'enedis');
     }
 

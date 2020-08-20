@@ -32,7 +32,7 @@ class enedis extends eqLogic {
 
     public static function cron()
     {
-      $cronMinute = config::byKey('cronMinute', 'enedis');
+      $cronMinute = config::byKey('cronMinute', __CLASS__);
       if (!empty($cronMinute) && date('i') != $cronMinute) return;
 
       $eqLogics = self::byType(__CLASS__, true);
