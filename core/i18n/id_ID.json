@@ -1,4 +1,8 @@
 {
+    "plugins\/enedis\/plugin_info\/configuration.php": {
+        "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "Récupération des données à la minute": ""
+    },
     "plugins\/enedis\/desktop\/php\/enedis.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Gestion": "Manajemen",
