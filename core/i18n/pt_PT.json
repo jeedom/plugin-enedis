@@ -1,4 +1,8 @@
 {
+    "plugins\/enedis\/plugin_info\/configuration.php": {
+        "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Récupération des données à la minute": "Recuperação de dados por minuto"
+    },
     "plugins\/enedis\/desktop\/php\/enedis.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Gestion": "Gestão",
@@ -32,7 +36,6 @@
         "Unité": "Unidade",
         "Afficher": "Display",
         "Historiser": "Historicizar",
-        "Inverser": "Inverter",
         "Tester": "Teste"
     },
     "plugins\/enedis\/core\/class\/enedis.class.php": {

@@ -30,8 +30,11 @@ class enedis extends eqLogic {
 
     /*     * ***********************Methode static*************************** */
 
-    public static function cronHourly()
+    public static function cron()
     {
+      $cronMinute = config::byKey('cronMinute', __CLASS__);
+      if (!empty($cronMinute) && date('i') != $cronMinute) return;
+
       $eqLogics = self::byType(__CLASS__, true);
 
       foreach ($eqLogics as $eqLogic)
