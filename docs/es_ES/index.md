@@ -11,7 +11,7 @@ Plugin que permite recuperar consumos del contador comunicante *linky* consultan
 - el **consumo anual** *(en kWh)*.
 
 >**Importante**      
->Il est nécessaire d'être en possession d'un compte-client Enedis : https://mon-compte-client.enedis.fr/.
+>Debes tener una cuenta de cliente de Enedis. El complemento recupera información del juego *profesionales* [del sitio de Enedis](https://espace-client-connexion.enedis.fr/auth/XUI/#login/&realm=particuliers&goto=https://espace-client-particuliers.enedis.fr%2Fgroup%2Fespace-particuliers%2Faccueil){:target = "\_ blank"}, por lo que debe comprobar que tiene acceso a él y que los datos están disponibles allí. De lo contrario, el complemento no funcionará.
 
 # Configuration
 

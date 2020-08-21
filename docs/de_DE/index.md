@@ -11,7 +11,7 @@ Es stehen 4 Arten von Verbrauchsdaten zur Verfügung :
 - die **Jahresverbrauch** *(in kWh)*.
 
 >**Wichtig**      
->Il est nécessaire d'être en possession d'un compte-client Enedis : https://mon-compte-client.enedis.fr/.
+>Sie müssen über ein Enedis-Kundenkonto verfügen. Das Plugin ruft Informationen aus dem Spiel ab *Profis* [der Enedis-Site](https://espace-client-connexion.enedis.fr/auth/XUI/#login/&realm=particuliers&goto=https://espace-client-particuliers.enedis.fr%2Fgroup%2Fespace-particuliers%2Faccueil){:target = "\_ blank"}, daher müssen Sie überprüfen, ob Sie Zugriff darauf haben und ob die Daten dort verfügbar sind. Andernfalls funktioniert das Plugin nicht.
 
 # Configuration
 

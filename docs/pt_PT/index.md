@@ -11,7 +11,7 @@ Plugin permitindo a recuperação do consumo do medidor de comunicação *linky*
 - o **consumo anual** *(em kWh)*.
 
 >**IMPORTANTE**      
->Il est nécessaire d'être en possession d'un compte-client Enedis : https://mon-compte-client.enedis.fr/.
+>Você deve ter uma conta de cliente Enedis. O plugin recupera informações do jogo *profissionais* [do site Enedis](https://espace-client-connexion.enedis.fr/auth/XUI/#login/&realm=particuliers&goto=https://espace-client-particuliers.enedis.fr%2Fgroup%2Fespace-particuliers%2Faccueil){:target = "\_ blank"}, então você deve verificar se você tem acesso a ele e se os dados estão disponíveis lá. Caso contrário, o plugin não funcionará.
 
 # Configuration
 

@@ -11,7 +11,7 @@ Plugin allowing the recovery of consumption of the communicating meter *linky* b
 - the **annual consumption** *(in kWh)*.
 
 >**Important**      
->Il est nécessaire d'être en possession d'un compte-client Enedis : https://mon-compte-client.enedis.fr/.
+>You must have an Enedis customer account. The plugin retrieves information from the game *professionals* [of the Enedis site](https://espace-client-connexion.enedis.fr/auth/XUI/#login/&realm=particuliers&goto=https://espace-client-particuliers.enedis.fr%2Fgroup%2Fespace-particuliers%2Faccueil){:target = "\_ blank"}, so you have to check that you have access to it and that the data is available there. Otherwise the plugin will not work.
 
 # Configuration
 
