@@ -44,6 +44,6 @@
         "Le mot de passe du compte Enedis doit être renseigné": "A senha para a conta Enedis deve ser inserida"
     },
     "info.json": {
-        "Récupérer les informations du compteur communicant Linky à partir de son compte-client Enedis.": "Recupere as informações do medidor inteligente Linky de sua conta de cliente Enedis"
+        "Récupérer les informations du compteur communicant Linky à partir de son compte-client Enedis. Attention il est indispensable d'avoir accès à la partie \"professionnels\" du site Enedis (voir la documentation)": "Recupere as informações do medidor inteligente Linky de sua conta de cliente Enedis. Note que é fundamental ter acesso à parte \"profissionais\" do site Enedis (ver a documentação)"
     }
 }
