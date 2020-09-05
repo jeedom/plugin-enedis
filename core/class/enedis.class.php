@@ -30,53 +30,27 @@ class enedis extends eqLogic {
 
     /*     * ***********************Methode static*************************** */
 
-    public static function cron()
+  public static function cron()
+  {
+    $cronMinute = config::byKey('cronMinute', __CLASS__);
+    if (!empty($cronMinute) && date('i') != $cronMinute) return;
+
+    $eqLogics = self::byType(__CLASS__, true);
+
+    foreach ($eqLogics as $eqLogic)
     {
-      $cronMinute = config::byKey('cronMinute', __CLASS__);
-      if (!empty($cronMinute) && date('i') != $cronMinute) return;
-
-      $eqLogics = self::byType(__CLASS__, true);
-
-      foreach ($eqLogics as $eqLogic)
+      if (date('G') < 4 || date('G') >= 22)
       {
-        if (date('G') < 4 || date('G') >= 22)
-        {
-          if ($eqLogic->getCache('getEnedisData') == 'done')
-    			{
-            $eqLogic->setCache('getEnedisData', null);
-          }
-          return;
+        if ($eqLogic->getCache('getEnedisData') == 'done')
+    		{
+          $eqLogic->setCache('getEnedisData', null);
         }
+        return;
+      }
 
-      log::add(__CLASS__, 'debug', $eqLogic->getHumanName() . ' getEnedisData Cache = ' . $eqLogic->getCache('getEnedisData'));
       if ($eqLogic->getCache('getEnedisData') != 'done')
       {
-        $need_refresh = false;
-        $eqLogicCmds = $eqLogic->getCmd();
-
-        foreach ($eqLogicCmds as $eqLogicCmd)
-        {
-          $eqLogicCmd->execCmd();
-          if ($eqLogicCmd->getCollectDate() == date('Y-m-d 23:55:00', strtotime('-1 day')))
-          {
-            log::add(__CLASS__, 'debug', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : données déjà présentes pour la commande ' . $eqLogicCmd->getName());
-          }
-          else
-          {
-            $need_refresh = true;
-            log::add(__CLASS__, 'debug', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : absence de données pour la commande ' . $eqLogicCmd->getName());
-          }
-        }
-        if ($need_refresh == true)
-        {
-          $eqLogic->pullEnedis();
-        }
-        else
-        {
-          $eqLogic->setCache('getEnedisData', 'done');
-          log::add(__CLASS__, 'debug', $eqLogic->getHumanName() . ' getEnedisData Cache = ' . $eqLogic->getCache('getEnedisData'));
-          log::add(__CLASS__, 'info', $eqLogic->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : toutes les données sont à jour - désactivation de la vérification automatique pour aujourd\'hui');
-        }
+        $eqLogic->pullEnedis();
       }
     }
   }
@@ -85,43 +59,72 @@ class enedis extends eqLogic {
 
     public function pullEnedis()
     {
-      $cookies = $this->connectEnedis();
+      $need_refresh = false;
 
-      $charge = $this->getCmd(null, 'charge');
-      if (is_object($charge))
+      foreach ($this->getCmd('info') as $eqLogicCmd)
       {
-        $end = date('d/m/Y');
-        $start = date('d/m/Y', strtotime('-1 day'));
-        $resource_id = 'urlCdcHeure';
-        $this->getEnedisData($cookies, $resource_id, $start, $end);
+        $eqLogicCmd->execCmd();
+        if ($eqLogicCmd->getCollectDate() == date('Y-m-d 23:55:00', strtotime('-1 day')))
+        {
+          log::add(__CLASS__, 'debug', $this->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : données déjà présentes pour la commande ' . $eqLogicCmd->getName());
+        }
+        else
+        {
+          $need_refresh = true;
+          log::add(__CLASS__, 'debug', $this->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : absence de données pour la commande ' . $eqLogicCmd->getName());
+        }
       }
 
-      $consoDay = $this->getCmd(null, 'consod');
-      if (is_object($consoDay))
+      if ($need_refresh == true)
       {
-        $end = date('d/m/Y', strtotime('-1 day'));
-        $start = date('d/m/Y', strtotime('-31 days'));
-        $resource_id = 'urlCdcJour';
-        $this->getEnedisData($cookies, $resource_id, $start, $end);
+        sleep(rand(5,50));
+        $cookies = $this->connectEnedis();
+
+        $charge = $this->getCmd(null, 'charge');
+        if (is_object($charge))
+        {
+          $end = date('d/m/Y');
+          $start = date('d/m/Y', strtotime('-1 day'));
+          $resource_id = 'urlCdcHeure';
+          $this->getEnedisData($cookies, $resource_id, $start, $end);
+        }
+
+        $consoDay = $this->getCmd(null, 'consod');
+        if (is_object($consoDay))
+        {
+          $end = date('d/m/Y', strtotime('-1 day'));
+          $start = date('d/m/Y', strtotime('-31 days'));
+          $resource_id = 'urlCdcJour';
+          $this->getEnedisData($cookies, $resource_id, $start, $end);
+        }
+
+        $consoMonth = $this->getCmd(null, 'consom');
+        if (is_object($consoMonth))
+        {
+          $end = date('d/m/Y', strtotime('-1 day'));
+          $start = date('d/m/Y', strtotime('first day of this month -11 months'));
+          $resource_id = 'urlCdcMois';
+          $this->getEnedisData($cookies, $resource_id, $start, $end);
+        }
+
+        $consoYear = $this->getCmd(null, 'consoy');
+        if (is_object($consoYear))
+        {
+          $end = date('d/m/Y', strtotime('-1 day'));
+          $start = date('d/m/Y', strtotime('first day of january this year -3 years'));
+          $resource_id = 'urlCdcAn';
+          $this->getEnedisData($cookies, $resource_id, $start, $end);
+        }
+      }
+      else
+      {
+        if ($this->getCache('getEnedisData') != 'done')
+        {
+          $this->setCache('getEnedisData', 'done');
+          log::add(__CLASS__, 'info', $this->getHumanName() . ' le ' . date('d/m/Y', strtotime('-1 day')) . ' : toutes les données sont à jour - désactivation de la vérification automatique pour aujourd\'hui');
+        }
       }
 
-      $consoMonth = $this->getCmd(null, 'consom');
-      if (is_object($consoMonth))
-      {
-        $end = date('d/m/Y', strtotime('-1 day'));
-        $start = date('d/m/Y', strtotime('first day of this month -11 months'));
-        $resource_id = 'urlCdcMois';
-        $this->getEnedisData($cookies, $resource_id, $start, $end);
-      }
-
-      $consoYear = $this->getCmd(null, 'consoy');
-      if (is_object($consoYear))
-      {
-        $end = date('d/m/Y', strtotime('-1 day'));
-        $start = date('d/m/Y', strtotime('first day of january this year -3 years'));
-        $resource_id = 'urlCdcAn';
-        $this->getEnedisData($cookies, $resource_id, $start, $end);
-      }
     }
 
     public function connectEnedis()
@@ -325,8 +328,9 @@ class enedis extends eqLogic {
 
  // Fonction exécutée automatiquement avant la création de l'équipement
     public function preInsert() {
-      $this->setDisplay('height','152px');
-      $this->setDisplay('width', '552px');
+      $this->setDisplay('height','332px');
+      $this->setDisplay('width', '192px');
+      $this->setConfiguration('widgetTemplate', 1);
       $this->setCategory('energy', 1);
       $this->setIsEnable(1);
       $this->setIsVisible(1);
@@ -380,6 +384,29 @@ class enedis extends eqLogic {
 
     }
 
+    // Non obligatoire : permet de modifier l'affichage du widget (également utilisable par les commandes)
+    public function toHtml($_version = 'dashboard') {
+      if ($this->getConfiguration('widgetTemplate') != 1)
+    	{
+    		return parent::toHtml();
+    	}
+
+      $replace = $this->preToHtml($_version);
+      if (!is_array($replace)) {
+        return $replace;
+      }
+      $version = jeedom::versionAlias($_version);
+
+      foreach ($this->getCmd('info') as $cmd) {
+        $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
+        $replace['#' . $cmd->getLogicalId() . '#'] = $cmd->execCmd();
+        $replace['#' . $cmd->getLogicalId() . '_collect#'] = $cmd->getCollectDate();
+      }
+
+      $html = template_replace($replace, getTemplate('core', $version, 'enedis.template', __CLASS__));
+      cache::set('widgetHtml' . $_version . $this->getId(), $html, 0);
+      return $html;
+    }
 
     /*     * **********************Getteur Setteur*************************** */
 }
