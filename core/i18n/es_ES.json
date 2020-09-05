@@ -25,6 +25,8 @@
         "Visible": "Visible",
         "Identifiant Enedis": "ID de Enedis",
         "Mot de passe Enedis": "Contraseña de Enedis",
+        "Cocher la case pour utiliser le template de widget aux couleurs du compteur Linky": "Marque la casilla para usar la plantilla del widget en los colores del contador Linky",
+        "Template de widget": "Plantilla de widget",
         "Id": "Identificación",
         "Nom": "Nombre",
         "Type": "Tipo",

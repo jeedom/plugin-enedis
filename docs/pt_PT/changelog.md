@@ -6,6 +6,11 @@
 >
 >Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto.
 
+# 09/04/2020 (BETA)
+- Adição do modelo para a versão do painel.
+- Adição do modelo para versão móvel.
+- Otimização do número de chamadas para servidores Enedis.
+
 # 21/08/2020
 
 - Recuperação de informações em um minuto aleatório para não sobrecarregar os servidores Enedis.
