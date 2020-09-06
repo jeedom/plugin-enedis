@@ -107,6 +107,12 @@ foreach (jeeObject::all() as $object) {
 				 <input type="password" autocomplete="new-password" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="password" placeholder="Mot de passe du compte Enedis"/>
 		 </div>
  </div>
+ <div class="form-group">
+	 <label class="col-sm-3 control-label help" data-help="{{Cocher la case pour utiliser le template de widget aux couleurs du compteur Linky}}">{{Template de widget}}</label>
+	 <div class="col-sm-3">
+		<input type="checkbox" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="widgetTemplate"/>
+ 	 </div>
+	</div>
 </fieldset>
 </form>
 </div>

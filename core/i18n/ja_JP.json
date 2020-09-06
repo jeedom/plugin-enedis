@@ -25,6 +25,8 @@
         "Visible": "目に見えます",
         "Identifiant Enedis": "",
         "Mot de passe Enedis": "",
+        "Cocher la case pour utiliser le template de widget aux couleurs du compteur Linky": "",
+        "Template de widget": "",
         "Id": "",
         "Nom": "表題",
         "Type": "タイプ",
@@ -44,6 +46,6 @@
         "Le mot de passe du compte Enedis doit être renseigné": ""
     },
     "info.json": {
-        "Récupérer les informations du compteur communicant Linky à partir de son compte-client Enedis.": ""
+        "Récupérer les informations du compteur communicant Linky à partir de son compte-client Enedis. Attention il est indispensable d'avoir accès à la partie \"professionnels\" du site Enedis (voir la documentation)": ""
     }
 }

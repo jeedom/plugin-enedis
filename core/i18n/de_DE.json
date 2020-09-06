@@ -25,6 +25,8 @@
         "Visible": "Sichtbar",
         "Identifiant Enedis": "Enedis ID",
         "Mot de passe Enedis": "Enedis Passwort",
+        "Cocher la case pour utiliser le template de widget aux couleurs du compteur Linky": "Aktivieren Sie das Kontrollkästchen, um die Widget-Vorlage in den Farben des Linky-Zählers zu verwenden",
+        "Template de widget": "Widget-Vorlage",
         "Id": "Identifikation",
         "Nom": "Name",
         "Type": "Typ",
@@ -44,6 +46,6 @@
         "Le mot de passe du compte Enedis doit être renseigné": "Das Passwort für das Enedis-Konto muss eingegeben werden"
     },
     "info.json": {
-        "Récupérer les informations du compteur communicant Linky à partir de son compte-client Enedis.": "Rufen Sie die Informationen des Linky Smart Meters von seinem Enedis-Kundenkonto ab"
+        "Récupérer les informations du compteur communicant Linky à partir de son compte-client Enedis. Attention il est indispensable d'avoir accès à la partie \"professionnels\" du site Enedis (voir la documentation)": "Rufen Sie die Informationen des Linky Smart Meters von ihrem Enedis-Kundenkonto ab. Bitte beachten Sie, dass der Zugriff auf den Teil \"Profis\" auf der Enedis-Website unbedingt erforderlich ist (siehe Dokumentation)"
     }
 }
