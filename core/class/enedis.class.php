@@ -77,7 +77,7 @@ class enedis extends eqLogic {
 
       if ($need_refresh == true)
       {
-        sleep(rand(5,50));
+        sleep(rand(0,15));
         $cookies = $this->connectEnedis();
 
         $charge = $this->getCmd(null, 'charge');
@@ -312,7 +312,7 @@ class enedis extends eqLogic {
            }
            else
            {
-             log::add(__CLASS__, 'debug', $this->getHumanName() . ' Enregistrement mesure : ' . ' Date = ' . $date . ' => Mesure = ' . $roundMeasure);
+             log::add(__CLASS__, 'info', $this->getHumanName() . ' Enregistrement mesure : ' . ' Date = ' . $date . ' => Mesure = ' . $roundMeasure);
              $cmd->event($roundMeasure, $date);
            }
          }
@@ -388,11 +388,9 @@ class enedis extends eqLogic {
     public function toHtml($_version = 'dashboard') {
       if ($this->getConfiguration('widgetTemplate') != 1)
     	{
-        log::add(__CLASS__, 'debug', $this->getHumanName() . ' Utilisation du template Jeedom (' . $_version . ')');
-        return parent::toHtml($_version);
+    		return parent::toHtml($_version);
     	}
 
-      log::add(__CLASS__, 'debug', $this->getHumanName() . ' Utilisation du template Linky (' . $_version . ')');
       $replace = $this->preToHtml($_version);
       if (!is_array($replace)) {
         return $replace;
