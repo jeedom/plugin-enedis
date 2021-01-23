@@ -29,8 +29,6 @@ function enedis_install() {
 
 // Fonction exécutée automatiquement après la mise à jour du plugin
 function enedis_update() {
-  log::add('enedis', 'debug', 'Enedis update ');
-
    $cronMinute = config::byKey('cronMinute', 'enedis');
     if (empty($cronMinute)) {
       $randMinute = rand(3, 59);
@@ -45,7 +43,7 @@ function enedis_update() {
   ];
   $eqLogics = eqLogic::byType('enedis');
   foreach ($eqLogics as $eqLogic) {
-log::add('enedis', 'debug', 'Suppression des configurations obsolètes ' . print_r($eqLogic, true));
+    log::add('enedis', 'debug', $this->getHumanName() . __('Suppression des configurations obsolètes', __FILE__));
     if (!empty($eqLogic->getConfiguration('login'))) {
       $eqLogic->setConfiguration('login', null);
       $update = true;
@@ -58,12 +56,12 @@ log::add('enedis', 'debug', 'Suppression des configurations obsolètes ' . print
       $eqLogic->save();
     }
 
-    foreach ($cmdInfos as $oldLogicalId => $newLogicalId) {
-      $cmd = $eqLogic->getCmd('info', $oldLogicalId);
-      if (is_object($cmd)) {
-        $cmd->setLogicalId($newLogicalId)->save();
-      }
-    }
+    // foreach ($cmdInfos as $oldLogicalId => $newLogicalId) {
+    //   $cmd = $eqLogic->getCmd('info', $oldLogicalId);
+    //   if (is_object($cmd)) {
+    //     $cmd->setLogicalId($newLogicalId)->save();
+    //   }
+    // }
   }
 }
 
