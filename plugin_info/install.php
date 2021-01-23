@@ -41,7 +41,7 @@ function enedis_update() {
     'consom' => 'monthly_consumption',
     'consoy' => 'yearly_consumption'
   ];
-  $eqLogics = enedis::byType('enedis');
+  $eqLogics = eqLogic::byType('enedis');
 
   foreach ($eqLogics as $eqLogic) {
     if (!empty($eqLogic->getConfiguration('login'))) {

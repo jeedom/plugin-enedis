@@ -5,10 +5,6 @@ if (!isConnect('admin')) {
 $plugin = plugin::byId('enedis');
 sendVarToJS('eqType', $plugin->getId());
 $eqLogics = eqLogic::byType($plugin->getId());
-//
-// echo '<pre>';
-// var_dump(enedis::refreshData(eqLogic::byId(125)));
-// echo '</pre>';
 ?>
 
 <div class="row row-overflow">
