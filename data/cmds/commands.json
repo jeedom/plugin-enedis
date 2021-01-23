@@ -1,0 +1,123 @@
+{
+  "consumption" : [
+    {
+      "name": "Consommation Jour",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" :"kWh",
+      "configuration":{
+        "calculValueOffset":"#value#\/1000",
+        "historizeRound":"3"
+      },
+      "generic_type":"CONSUMPTION",
+      "order":1,
+      "logicalId": "daily_consumption"
+    },
+    {
+      "name": "Consommation Mois",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" :"kWh",
+      "configuration":{
+        "calculValueOffset":"#value#\/1000",
+        "historizeRound":"3"
+      },
+      "generic_type":"CONSUMPTION",
+      "order":2,
+      "logicalId": "monthly_consumption"
+    },
+    {
+      "name": "Consommation Année",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" :"kWh",
+      "configuration":{
+        "calculValueOffset":"#value#\/1000",
+        "historizeRound":"3"
+      },
+      "generic_type":"CONSUMPTION",
+      "order":3,
+      "logicalId": "yearly_consumption"
+    },
+    {
+      "name": "Consommation horaire",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" :"W",
+      "generic_type":"CONSUMPTION",
+      "order":4,
+      "logicalId": "consumption_load_curve"
+    },
+    {
+      "name": "Consommation Puissance max",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"kVA",
+      "configuration":{
+        "calculValueOffset":"#value#\/1000",
+        "historizeRound":"2"
+      },
+      "generic_type":"POWER",
+      "order":5,
+      "logicalId": "daily_consumption_max_power"
+    }
+  ],
+  "production": [
+    {
+      "name": "Production Jour",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" :"kWh",
+      "configuration":{
+        "calculValueOffset":"#value#\/1000",
+        "historizeRound":"3"
+      },
+      "order":6,
+      "logicalId": "daily_production"
+    },
+    {
+      "name": "Production Mois",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" :"kWh",
+      "configuration":{
+        "calculValueOffset":"#value#\/1000",
+        "historizeRound":"3"
+      },
+      "order":7,
+      "logicalId": "monthly_production"
+    },
+    {
+      "name": "Production Année",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" :"kWh",
+      "configuration":{
+        "calculValueOffset":"#value#\/1000",
+        "historizeRound":"3"
+      },
+      "order":8,
+      "logicalId": "yearly_production"
+    },
+    {
+      "name": "Production horaire",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite" :"W",
+      "logicalId": "production_load_curve"
+    },
+    {
+      "name": "Production Puissance Max",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite":"kVA",
+      "configuration":{
+        "calculValueOffset":"#value#\/1000",
+        "historizeRound":"2"
+      },
+      "generic_type":"POWER",
+      "order":9,
+      "logicalId": "daily_production_max_power"
+    }
+  ]
+}

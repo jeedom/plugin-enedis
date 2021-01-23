@@ -24,9 +24,11 @@ if (!isConnect('admin')) {
 <form class="form-horizontal">
 	<fieldset>
    <div class="form-group">
-    <label class="col-lg-4 control-label" title="Afin de ne pas surcharger les serveurs Enedis, les données sont vérifiées une fois par heure à une minute aléatoire">{{Récupération des données à la minute}}</label>
-    <div class="col-lg-4">
-     <input class="configKey form-control" data-l1key="cronMinute" disabled/>
+    <label class="col-sm-3 control-label">{{Récupération des données à la minute}}
+      <sup><i class="fas fa-question-circle tooltips" title="{{Afin de ne pas surcharger les serveurs Enedis, les données sont vérifiées une fois par heure à une minute aléatoire}}"></i></sup>
+    </label>
+    <div class="col-sm-7">
+     <input type="number" class="configKey form-control" data-l1key="cronMinute"/>
    </div>
  </div>
 </fieldset>
