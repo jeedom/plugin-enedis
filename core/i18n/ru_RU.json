@@ -1,4 +1,7 @@
 {
+    "plugins\/enedis\/plugin_info\/install.php": {
+        "Suppression des configurations obsolètes": "Suppression des configurations obsolètes"
+    },
     "plugins\/enedis\/plugin_info\/configuration.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Récupération des données à la minute": "Récupération des données à la minute",
