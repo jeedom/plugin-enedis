@@ -35,12 +35,6 @@ function enedis_update() {
       config::save('cronMinute', $randMinute, 'enedis');
     }
 
-  $cmdInfos = [
-    'charge' => 'consumption_load_curve',
-    'consod' => 'daily_consumption',
-    'consom' => 'monthly_consumption',
-    'consoy' => 'yearly_consumption'
-  ];
   $eqLogics = eqLogic::byType('enedis');
   foreach ($eqLogics as $eqLogic) {
     log::add('enedis', 'debug', $this->getHumanName() . __('Suppression des configurations obsolètes', __FILE__));
@@ -55,13 +49,6 @@ function enedis_update() {
     if (isset($update) && $update === true) {
       $eqLogic->save();
     }
-
-    // foreach ($cmdInfos as $oldLogicalId => $newLogicalId) {
-    //   $cmd = $eqLogic->getCmd('info', $oldLogicalId);
-    //   if (is_object($cmd)) {
-    //     $cmd->setLogicalId($newLogicalId)->save();
-    //   }
-    // }
   }
 }
 
