@@ -1,14 +1,15 @@
 {
     "plugins\/enedis\/plugin_info\/configuration.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Récupération des données à la minute": "Data recovery by the minute"
+        "Récupération des données à la minute": "Data recovery by the minute",
+        "Afin de ne pas surcharger les serveurs Enedis, les données sont vérifiées une fois par heure à une minute aléatoire": "In order not to overload the Enedis servers, the data is checked once an hour at a random minute"
     },
     "plugins\/enedis\/desktop\/php\/enedis.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Gestion": "Management",
         "Ajouter": "Add",
         "Configuration": "Configuration",
-        "Mes comptes Enedis": "My Enedis accounts",
+        "Mes compteurs Linky": "My Linky counters",
         "Rechercher": "Search",
         "Configuration avancée": "Advanced configuration",
         "Dupliquer": "Duplicate",
@@ -16,6 +17,7 @@
         "Supprimer": "Delete",
         "Equipement": "Equipment",
         "Commandes": "Commands",
+        "Général": "General",
         "Nom de l'équipement Enedis": "Name of the Enedis equipment",
         "Objet parent": "Parent object",
         "Aucun": "None",
@@ -23,8 +25,13 @@
         "Options": "Options",
         "Activer": "Activate",
         "Visible": "Visible",
-        "Identifiant Enedis": "Enedis ID",
-        "Mot de passe Enedis": "Enedis password",
+        "Autorisation": "Authorization",
+        "Paramètres": "Settings",
+        "Type de mesure": "Type of measurement",
+        "Consommation": "Consumption",
+        "Production": "Production",
+        "Consommation & Production": "Consumption & Production",
+        "Informations": "Information",
         "Cocher la case pour utiliser le template de widget aux couleurs du compteur Linky": "Check the box to use the widget template in the colors of the Linky counter",
         "Template de widget": "Widget template",
         "Id": "ID",
@@ -33,17 +40,27 @@
         "Action": "Action"
     },
     "plugins\/enedis\/desktop\/js\/enedis.js": {
-        "Min": "Min",
-        "Max": "Max",
-        "Unité": "Unit",
+        "Nom de la commande": "Order name",
+        "Icône": "Icon",
         "Afficher": "Show",
         "Historiser": "Historize",
-        "Tester": "Test"
+        "Inverser": "Reverse",
+        "Unité": "Unit"
     },
     "plugins\/enedis\/core\/class\/enedis.class.php": {
-        "Erreur d\\'authentification : vérifier la validité de l\\'identifiant et du mot de passe": "Authentication error: check the validity of the username and password",
-        "L\\'identifiant du compte Enedis doit être renseigné": "The identifier of the Enedis account must be entered",
-        "Le mot de passe du compte Enedis doit être renseigné": "The password for the Enedis account must be entered"
+        " Interrogation des serveurs Enedis": "Querying of Enedis servers",
+        "] Données déjà enregistrées pour le ": "] Data already recorded for the",
+        "] Erreur sur la récupération des données : ": "] Error on data recovery:",
+        " Toutes les données sont à jour - désactivation de la vérification automatique pour aujourd\\'hui": "All data is up to date - disable automatic checking for today",
+        " Données brutes : ": "Raw data :",
+        "] Mesure en historique - Aucune action : Date = ": "] Historical measurement - No action: Date =",
+        " => Mesure = ": "=> Measure =",
+        "] Enregistrement mesure : Date = ": "] Measurement recording: Date =",
+        "L\\'identifiant du point de livraison (PDL) doit être renseigné": "The delivery point identifier (PDL) must be entered",
+        "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères": "The delivery point identifier (PDL) must contain 14 characters",
+        "Fichier de création de commandes non trouvé": "Order creation file not found",
+        " Création commande : refresh\/Rafraîchir": "Command creation: refresh \/ Refresh",
+        " Création commande : ": "Order creation:"
     },
     "info.json": {
         "Récupérer les informations du compteur communicant Linky à partir de son compte-client Enedis. Attention il est indispensable d'avoir accès à la partie \"professionnels\" du site Enedis avec vos identifiants habituels (voir la documentation)": "Retrieve the information of the Linky smart meter from their Enedis customer account. Please note, it is essential to have access to the \"professional\" part of the Enedis site with your usual identifiers (see the documentation)"
