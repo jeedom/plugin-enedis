@@ -29,6 +29,8 @@ function enedis_install() {
 
 // Fonction exécutée automatiquement après la mise à jour du plugin
 function enedis_update() {
+  log::add('enedis', 'debug', 'Enedis update ');
+
    $cronMinute = config::byKey('cronMinute', 'enedis');
     if (empty($cronMinute)) {
       $randMinute = rand(3, 59);
