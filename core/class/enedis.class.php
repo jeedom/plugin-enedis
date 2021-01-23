@@ -27,19 +27,15 @@ class enedis extends eqLogic {
 
     $eqLogics = self::byType(__CLASS__, true);
 
-    foreach ($eqLogics as $eqLogic)
-    {
-      if (date('G') < 4 || date('G') >= 22)
-      {
-        if ($eqLogic->getCache('getEnedisData') == 'done')
-        {
+    foreach ($eqLogics as $eqLogic) {
+      if (date('G') < 4 || date('G') >= 22) {
+        if ($eqLogic->getCache('getEnedisData') == 'done') {
           $eqLogic->setCache('getEnedisData', null);
         }
         return;
       }
 
-      if ($eqLogic->getCache('getEnedisData') != 'done')
-      {
+      if ($eqLogic->getCache('getEnedisData') != 'done') {
         $eqLogic->refreshData();
       }
     }
