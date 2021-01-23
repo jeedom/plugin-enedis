@@ -42,8 +42,8 @@ function enedis_update() {
     'consoy' => 'yearly_consumption'
   ];
   $eqLogics = eqLogic::byType('enedis');
-
   foreach ($eqLogics as $eqLogic) {
+log::add('enedis', 'debug', 'Suppression des configurations obsolètes ' . print_r($eqLogic, true));
     if (!empty($eqLogic->getConfiguration('login'))) {
       $eqLogic->setConfiguration('login', null);
       $update = true;

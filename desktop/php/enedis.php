@@ -22,7 +22,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 				<span>{{Configuration}}</span>
 			</div>
 		</div>
-		<legend><i class="fas fa-charging-station"></i> {{Mes compteurs Linky}}</legend>
+		<legend><i class="fas fa-charging-station"></i> {{Mes compteurs}}</legend>
 		<div class="input-group" style="margin:5px;">
 			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchEqlogic"/>
 			<div class="input-group-btn">
@@ -31,7 +31,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
 		</div>
 		<div class="eqLogicThumbnailContainer">
 			<?php
-			// Affiche la liste des équipements
 			foreach ($eqLogics as $eqLogic) {
 				$opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
 				echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '">';
