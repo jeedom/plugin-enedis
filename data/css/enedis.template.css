@@ -1,33 +1,47 @@
 @font-face {
 	font-family: "Digital-7";
-	src:  url("../fonts/digital-7.ttf") format("truetype");
+	src:  url("../fonts/digital-7.ttf") format("opentype");
 }
 .enedisEqlogicName {
-	font-family:"Comic Sans MS", "Comic Sans", cursive;
+	font-family:"Comic Sans MS", "Comic Sans";
 	text-shadow: 1px -1px 1px rgba(0,0,0,0.4), -1px 1px 0 rgba(255,255,255,0.6);
-	color:#CCE630!important;
 }
 .enedis_template {
-	height:100%;
+	--eqLogic-height: 209px;
+	height:85%;
 	background-image:url("../images/LinkyScreen.png");
-	background-size: 90%;
 	background-repeat: no-repeat;
 	background-position: center 0%;
 	font-family: "Digital-7";
 	color: black!important;
-	letter-spacing: 1px;
+	background-size: 90% 100%;
+}
+.enedis_template div.enedisTitle {
+	line-height:1;
+	font-weight:bold;
+	color:#505050;
 }
 .enedis_template div.enedisCdc{
+	letter-spacing: 1px;
 	color:#505050;
-	line-height:1;
-	margin-top:2%;
+	line-height: 1;
 }
 .enedis_template div.enedisUnite{
+	letter-spacing: 1px;
 	color:#505050;
 }
-.enedisValue {
+.enedis_template .enedisValue {
+	letter-spacing: 1px;
 	font-weight:bold;
 }
-.enedisValueUnite {
-	line-height:1;
+.enedis_template div.enedisValueUnite{
+	line-height: 1;
+}
+.enedis_template #consumption,
+.enedis_template #production {
+	padding-top: calc(var(--eqLogic-height) * 0.1);
+	height: calc(var(--eqLogic-height) * 0.74);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 }

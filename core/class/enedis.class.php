@@ -72,7 +72,7 @@ class enedis extends eqLogic {
           $this->checkAndUpdateCmd('monthly_consumption', $month);
         }
         else if (isset($data['error'])) {
-          log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $dailyCMaxCmd->getName() . __('] Erreur sur la récupération des données : ',__FILE__) . $data['error'] . ' ' . $data['error_description']);
+          log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $dailyCCmd->getName() . __('] Erreur sur la récupération des données : ',__FILE__) . $data['error'] . ' ' . $data['error_description']);
         }
       }
 
@@ -148,7 +148,7 @@ class enedis extends eqLogic {
     if ($measureType === 'consumption' || $measureType === 'both') {
       $consLoadCmd = $this->getCmd('info', 'consumption_load_curve');
       $consLoadCmd->execCmd();
-      if ($consLoadCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
+      if ($consLoadCmd->getCollectDate() >= date('Y-m-d', strtotime('today'))) {
         log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $consLoadCmd->getName() . __('] Données déjà enregistrées pour le ',__FILE__) . date('d/m/Y', strtotime('-1 day')));
       }
       else {
@@ -168,7 +168,7 @@ class enedis extends eqLogic {
     if ($measureType === 'production' || $measureType === 'both') {
       $prodLoadCmd = $this->getCmd('info', 'production_load_curve');
       $prodLoadCmd->execCmd();
-      if ($prodLoadCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
+      if ($prodLoadCmd->getCollectDate() >= date('Y-m-d', strtotime('today'))) {
         log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $prodLoadCmd->getName() . __('] Données déjà enregistrées pour le ',__FILE__) . date('d/m/Y', strtotime('-1 day')));
       }
       else {
@@ -186,9 +186,9 @@ class enedis extends eqLogic {
     }
 
     if ($need_refresh === false && $this->getCache('getEnedisData') != 'done') {
-          $this->setCache('getEnedisData', 'done');
-          log::add(__CLASS__, 'info', $this->getHumanName() . __(' Toutes les données sont à jour - désactivation de la vérification automatique pour aujourd\'hui',__FILE__));
-        }
+      $this->setCache('getEnedisData', 'done');
+      log::add(__CLASS__, 'info', $this->getHumanName() . __(' Toutes les données sont à jour - désactivation de la vérification automatique pour aujourd\'hui',__FILE__));
+    }
   }
 
   public function getData($_path){
@@ -215,10 +215,7 @@ class enedis extends eqLogic {
     }
 
     $cmdHistory = history::byCmdIdDatetime($cmd->getId(), $date);
-    if (is_object($cmdHistory)) {
-      log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $cmd->getName() . __('] Mesure en historique - Aucune action : Date = ',__FILE__) . $date . __(' => Mesure = ',__FILE__) . $value);
-    }
-    else {
+    if (!is_object($cmdHistory)) {
       log::add(__CLASS__, 'info', $this->getHumanName() . '[' . $cmd->getName() . __('] Enregistrement mesure : Date = ',__FILE__) . $date . __(' => Mesure = ',__FILE__) . $value);
       $cmd->event($value, $date);
     }
@@ -230,6 +227,8 @@ class enedis extends eqLogic {
     $this->setCategory('energy', 1);
     $this->setIsEnable(1);
     $this->setIsVisible(1);
+    $this->setConfiguration('widgetTemplate', 1);
+    $this->setConfiguration('widgetBGColor', '#A3CC28');
   }
 
   public function preUpdate() {
@@ -307,28 +306,30 @@ class enedis extends eqLogic {
   }
 
   // Non obligatoire : permet de modifier l'affichage du widget (également utilisable par les commandes)
-  //  public function toHtml($_version = 'dashboard') {
-  // if ($this->getConfiguration('widgetTemplate') != 1)
-  // {
-  // 	return parent::toHtml($_version);
-  // }
-  //
-  // $replace = $this->preToHtml($_version);
-  // if (!is_array($replace)) {
-  //   return $replace;
-  // }
-  // $version = jeedom::versionAlias($_version);
-  //
-  // foreach ($this->getCmd('info') as $cmd) {
-  //   $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
-  //   $replace['#' . $cmd->getLogicalId() . '#'] = $cmd->execCmd();
-  //   $replace['#' . $cmd->getLogicalId() . '_collect#'] = $cmd->getCollectDate();
-  // }
-  //
-  // $html = template_replace($replace, getTemplate('core', $version, 'enedis.template', __CLASS__));
-  // cache::set('widgetHtml' . $_version . $this->getId(), $html, 0);
-  // return $html;
-  //}
+  public function toHtml($_version = 'dashboard') {
+    if ($this->getConfiguration('widgetTemplate') != 1)
+    {
+      return parent::toHtml($_version);
+    }
+
+    $replace = $this->preToHtml($_version);
+    if (!is_array($replace)) {
+      return $replace;
+    }
+    $version = jeedom::versionAlias($_version);
+
+    foreach ($this->getCmd('info') as $cmd) {
+      $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
+      $replace['#' . $cmd->getLogicalId() . '#'] = $cmd->execCmd();
+      $replace['#' . $cmd->getLogicalId() . '_collect#'] = $cmd->getCollectDate();
+    }
+    $replace['#BGEnedis#'] = $this->getConfiguration('widgetBGColor');
+    $replace['#measureType#'] = $this->getConfiguration('measure_type');
+
+    $html = template_replace($replace, getTemplate('core', $version, 'enedis.template', __CLASS__));
+    cache::set('widgetHtml' . $_version . $this->getId(), $html, 0);
+    return $html;
+  }
 
 }
 

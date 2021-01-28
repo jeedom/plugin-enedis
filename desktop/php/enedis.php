@@ -119,7 +119,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
 							<br>
 							<legend><i class="fas fa-cogs"></i> {{Paramètres}}</legend>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">Point de livraison</label>
+								<label class="col-sm-3 control-label">{{Point de livraison}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Indiquer le numéro de 14 caractères permettant d'identifier le point de livraison dont il faut récupérer les données}}"></i></sup>
+								</label>
 								<div class="col-sm-7">
 									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="usage_point_id">
 								</div>
@@ -127,7 +129,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
 
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label"> {{Type de mesure}}</label>
+								<label class="col-sm-3 control-label"> {{Type de mesure}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Indiquer le type de mesure qu'il faut récupérer (consommation, production ou les deux)}}"></i></sup>
+								</label>
 								<div class="col-sm-7">
 									<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="measure_type">
 										<option value="consumption">{{Consommation}}</option>
@@ -139,19 +143,25 @@ $eqLogics = eqLogic::byType($plugin->getId());
 						</div>
 
 						<div class="col-lg-5">
-							<legend><i class="fas fa-info"></i> {{Informations}}</legend>
+							<legend><i class="fas fa-camera-retro"></i> {{Widget}}</legend>
 							<div class="form-group">
-								<div class="text-center">
-									<img name="icon_visu" src="<?= $plugin->getPathImgIcon(); ?>" style="max-width:160px;"/>
+								<label class="col-sm-3 control-label">{{Template de widget}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case pour utiliser le template de widget représentant le compteur Linky}}"></i></sup>
+								</label>
+								<div class="col-sm-1">
+									<input type="checkbox" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="widgetTemplate"/>
+								</div>
+							<!-- </div>
+							<div class="form-group"> -->
+								<label class="col-sm-3 control-label">{{Couleur de fond}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner la couleur de fond du template de widget}}"></i></sup>
+								</label>
+								<div class="col-sm-3">
+									<input type="color" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="widgetBGColor"/>
 								</div>
 							</div>
 						</div>
-						<!-- <div class="form-group">
-						<label class="col-sm-3 control-label help" data-help="{{Cocher la case pour utiliser le template de widget aux couleurs du compteur Linky}}">{{Template de widget}}</label>
-						<div class="col-sm-3">
-						<input type="checkbox" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="widgetTemplate"/>
-					</div>
-				</div> -->
+
 			</fieldset>
 		</form>
 		<hr>
