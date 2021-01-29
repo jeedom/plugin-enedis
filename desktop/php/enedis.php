@@ -151,8 +151,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
 								<div class="col-sm-1">
 									<input type="checkbox" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="widgetTemplate"/>
 								</div>
-							<!-- </div>
-							<div class="form-group"> -->
 								<label class="col-sm-3 control-label">{{Couleur de fond}}
 									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner la couleur de fond du template de widget}}"></i></sup>
 								</label>

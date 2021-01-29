@@ -22,7 +22,7 @@
       </div>
       <div class="history cursor" data-cmd_id="#consumption_load_curve_id#" title="#consumption_load_curve_collect#">
         <div class="enedisCdc">HORAIRE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#consumption_load_curve#</span><span class="enedisUnite"> W</span></div>
+        <div class="enedisValueUnite"><span class="enedisValue">#consumption_load_curve#</span><span class="enedisUnite"> kW</span></div>
       </div>
       <div class="history cursor" data-cmd_id="#daily_consumption_max_power_id#" title="#daily_consumption_max_power_collect#">
         <div class="enedisCdc">PUISSANCE MAX</div>
@@ -45,7 +45,7 @@
       </div>
       <div class="history cursor" data-cmd_id="#production_load_curve_id#" title="#production_load_curve_collect#">
         <div class="enedisCdc">HORAIRE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#production_load_curve#</span><span class="enedisUnite"> W</span></div>
+        <div class="enedisValueUnite"><span class="enedisValue">#production_load_curve#</span><span class="enedisUnite"> kW</span></div>
       </div>
       <div class="history cursor" data-cmd_id="#daily_production_max_power_id#" title="#daily_production_max_power_collect#">
         <div class="enedisCdc">PUISSANCE MAX</div>
@@ -58,24 +58,24 @@
     var eqLogic = $('.eqLogic[data-eqLogic_uid=#uid#]');
     var measureType = '#measureType#';
     if (measureType === 'consumption') {
-      $('#consumption').show();
-      $('#production').hide();
+      eqLogic.find('#consumption').show();
+      eqLogic.find('#production').hide();
     }
     else if (measureType === 'production') {
-      $('#consumption').hide();
-      $('#production').show();
+      eqLogic.find('#consumption').hide();
+      eqLogic.find('#production').show();
     }
     else if (measureType === 'both') {
-      $('.toggleMeasure').addClass('cursor');
-      $('.toggleMeasure').on('click', function () {
-        $('#consumption').toggle();
-        $('#production').toggle();
+      eqLogic.find('.toggleMeasure').addClass('cursor');
+      eqLogic.find('.toggleMeasure').on('click', function () {
+        eqLogic.find('#consumption').toggle();
+        eqLogic.find('#production').toggle();
       })
     }
 
     var eqlogic_height = eqLogic.height();
     eqLogic.find('.enedis_template').css('--eqLogic-height', eqlogic_height+'px');
-    eqLogic.find('.enedisCdc').css('font-size', (eqlogic_height*0.05)+'px');
+  //  eqLogic.find('.enedisCdc').css('font-size', (eqlogic_height*0.05)+'px');
     eqLogic.find('.enedisValue, .enedisTitle').css('font-size', (eqlogic_height*0.06)+'px');
     eqLogic.find('.enedisUnite').css('font-size', (eqlogic_height*0.04)+'px');
   </script>
