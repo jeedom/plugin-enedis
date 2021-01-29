@@ -110,19 +110,19 @@ class enedis extends eqLogic {
 
       $loadCmd = $this->getCmd('info', $measureType.'_load_curve');
       $loadCmd->execCmd();
-    //   if (!empty($startDate)) {
-    //     foreach (new DatePeriod(new DateTime($start_date), new DateInterval('P7D'), new DateTime($end_date)) as $period_date) {
-    //       $data = $this->getData('/metering_data/'.$measureType.'_load_curve?start='.$period_date->format('Y-m-d').'&end='.date('Y-m-d', strtotime($period_date->format('Y-m-d') . '+7 days')).'&usage_point_id='.$usagePointId);
-    //       if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
-    //         foreach ($data['meter_reading']['interval_reading'] as $value) {
-    //           $this->checkData($loadCmd, $value['value'], $value['date']);
-    //         }
-    //       }
-    //       else if (isset($data['error'])) {
-    //         log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $loadCmd->getName() . __('] Erreur sur la récupération des données : ',__FILE__) . $data['error'] . ' ' . $data['error_description']);
-    //       }
-    //     }
-    //   }
+      //   if (!empty($startDate)) {
+      //     foreach (new DatePeriod(new DateTime($start_date), new DateInterval('P7D'), new DateTime($end_date)) as $period_date) {
+      //       $data = $this->getData('/metering_data/'.$measureType.'_load_curve?start='.$period_date->format('Y-m-d').'&end='.date('Y-m-d', strtotime($period_date->format('Y-m-d') . '+7 days')).'&usage_point_id='.$usagePointId);
+      //       if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
+      //         foreach ($data['meter_reading']['interval_reading'] as $value) {
+      //           $this->checkData($loadCmd, $value['value'], $value['date']);
+      //         }
+      //       }
+      //       else if (isset($data['error'])) {
+      //         log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $loadCmd->getName() . __('] Erreur sur la récupération des données : ',__FILE__) . $data['error'] . ' ' . $data['error_description']);
+      //       }
+      //     }
+      //   }
 
       $start_date = date('Y-m-d',strtotime('-7 days'));
       if ($loadCmd->getCollectDate() >= date('Y-m-d', strtotime('today'))) {
@@ -195,36 +195,39 @@ class enedis extends eqLogic {
   }
 
   public function postUpdate() {
-    if (!is_file(dirname(__FILE__) . '/../../data/cmds/commands.json')) {
-      log::add(__CLASS__, 'debug', $this->getHumanName() . __('Fichier de création de commandes non trouvé',__FILE__));
-    }
-    else {
-      $cmdsJson = file_get_contents(dirname(__FILE__) . '/../../data/cmds/commands.json');
-      $cmdsArray = json_decode($cmdsJson, true);
-      $measureType = $this->getConfiguration('measure_type');
+    if ($this->getIsEnable() == 1) {
+      $refreshCmd = $this->getCmd(null, 'refresh');
+      if (!is_object($refreshCmd)) {
+        log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Création commande : refresh/Rafraîchir',__FILE__));
+        $refreshCmd = (new enedisCmd)
+        ->setLogicalId('refresh')
+        ->setEqLogic_id($this->getId())
+        ->setName('Rafraîchir')
+        ->setType('action')
+        ->setSubType('other')
+        ->setOrder(1)
+        ->save();
+      }
 
-      if ($measureType == 'both') {
-        if ($this->createCommands($cmdsArray['consumption']) || $this->createCommands($cmdsArray['production'])) {
+      if (!is_file(dirname(__FILE__) . '/../../data/cmds/commands.json')) {
+        log::add(__CLASS__, 'debug', $this->getHumanName() . __('Fichier de création de commandes non trouvé',__FILE__));
+      }
+      else {
+        $cmdsJson = file_get_contents(dirname(__FILE__) . '/../../data/cmds/commands.json');
+        $cmdsArray = json_decode($cmdsJson, true);
+        $measureType = $this->getConfiguration('measure_type');
+
+        if ($measureType == 'both') {
+          if ($this->createCommands($cmdsArray['consumption']) || $this->createCommands($cmdsArray['production'])) {
+            $this->refreshData(date('Y-m-d', strtotime('-3 years')));
+          }
+        }
+        else if ($this->createCommands($cmdsArray[$measureType])){
           $this->refreshData(date('Y-m-d', strtotime('-3 years')));
         }
       }
-      else if ($this->createCommands($cmdsArray[$measureType])){
-        $this->refreshData(date('Y-m-d', strtotime('-3 years')));
-      }
     }
 
-    $refreshCmd = $this->getCmd(null, 'refresh');
-    if (!is_object($refreshCmd)) {
-      log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Création commande : refresh/Rafraîchir',__FILE__));
-      $refreshCmd = (new enedisCmd)
-      ->setLogicalId('refresh')
-      ->setEqLogic_id($this->getId())
-      ->setName('Rafraîchir')
-      ->setType('action')
-      ->setSubType('other')
-      ->setOrder(1)
-      ->save();
-    }
   }
 
   public function createCommands($type) {
