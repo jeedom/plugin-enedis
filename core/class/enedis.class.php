@@ -222,7 +222,7 @@ class enedis extends eqLogic {
       ->setName('Rafraîchir')
       ->setType('action')
       ->setSubType('other')
-      ->setOrder(0)
+      ->setOrder(1)
       ->save();
     }
   }

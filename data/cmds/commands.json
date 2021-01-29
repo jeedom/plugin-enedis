@@ -10,7 +10,7 @@
         "historizeRound":"3"
       },
       "generic_type":"CONSUMPTION",
-      "order":1,
+      "order":2,
       "logicalId": "daily_consumption"
     },
     {
@@ -23,7 +23,7 @@
         "historizeRound":"3"
       },
       "generic_type":"CONSUMPTION",
-      "order":2,
+      "order":3,
       "logicalId": "monthly_consumption"
     },
     {
@@ -36,7 +36,7 @@
         "historizeRound":"3"
       },
       "generic_type":"CONSUMPTION",
-      "order":3,
+      "order":4,
       "logicalId": "yearly_consumption"
     },
     {
@@ -49,7 +49,7 @@
         "historizeRound":"3"
       },
       "generic_type":"CONSUMPTION",
-      "order":4,
+      "order":5,
       "logicalId": "consumption_load_curve"
     },
     {
@@ -62,7 +62,7 @@
         "historizeRound":"2"
       },
       "generic_type":"POWER",
-      "order":5,
+      "order":6,
       "logicalId": "daily_consumption_max_power"
     }
   ],
@@ -76,7 +76,7 @@
         "calculValueOffset":"#value#\/1000",
         "historizeRound":"3"
       },
-      "order":6,
+      "order":7,
       "logicalId": "daily_production"
     },
     {
@@ -88,7 +88,7 @@
         "calculValueOffset":"#value#\/1000",
         "historizeRound":"3"
       },
-      "order":7,
+      "order":8,
       "logicalId": "monthly_production"
     },
     {
@@ -100,7 +100,7 @@
         "calculValueOffset":"#value#\/1000",
         "historizeRound":"3"
       },
-      "order":8,
+      "order":9,
       "logicalId": "yearly_production"
     },
     {
@@ -112,6 +112,7 @@
         "calculValueOffset":"#value#\/1000",
         "historizeRound":"3"
       },
+      "order":10,
       "logicalId": "production_load_curve"
     },
     {
@@ -124,7 +125,7 @@
         "historizeRound":"2"
       },
       "generic_type":"POWER",
-      "order":9,
+      "order":11,
       "logicalId": "daily_production_max_power"
     }
   ]
