@@ -203,8 +203,10 @@ class enedis extends eqLogic {
       $cmdsArray = json_decode($cmdsJson, true);
       $measureType = $this->getConfiguration('measure_type');
 
-      if ($measureType === 'both' && $this->createCommands($cmdsArray['consumption']) && $this->createCommands($cmdsArray['production'])) {
-        $this->refreshData(date('Y-m-d', strtotime('-3 years')));
+      if ($measureType == 'both') {
+        if ($this->createCommands($cmdsArray['consumption']) || $this->createCommands($cmdsArray['production'])) {
+          $this->refreshData(date('Y-m-d', strtotime('-3 years')));
+        }
       }
       else if ($this->createCommands($cmdsArray[$measureType])){
         $this->refreshData(date('Y-m-d', strtotime('-3 years')));
