@@ -60,7 +60,6 @@
         "] Données déjà enregistrées pour le ": "] Données déjà enregistrées pour le ",
         "] Erreur sur la récupération des données : ": "] Erreur sur la récupération des données : ",
         " Toutes les données sont à jour - désactivation de la vérification automatique pour aujourd\\'hui": " Toutes les données sont à jour - désactivation de la vérification automatique pour aujourd\\'hui",
-        " Données brutes : ": " Données brutes : ",
         "] Enregistrement mesure : Date = ": "] Enregistrement mesure : Date = ",
         " => Mesure = ": " => Mesure = ",
         "L\\'identifiant du point de livraison (PDL) doit être renseigné": "L\\'identifiant du point de livraison (PDL) doit être renseigné",

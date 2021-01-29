@@ -60,7 +60,6 @@
         "] Données déjà enregistrées pour le ": "] Daten bereits für die aufgezeichnet",
         "] Erreur sur la récupération des données : ": "] Fehler bei der Datenwiederherstellung:",
         " Toutes les données sont à jour - désactivation de la vérification automatique pour aujourd\\'hui": "Alle Daten sind aktuell - deaktivieren Sie die automatische Überprüfung für heute",
-        " Données brutes : ": "Rohdaten :",
         "] Enregistrement mesure : Date = ": "] Messaufzeichnung: Datum =",
         " => Mesure = ": "=> Messen =",
         "L\\'identifiant du point de livraison (PDL) doit être renseigné": "Die Zustellpunktkennung (PDL) muss eingegeben werden",

@@ -60,7 +60,6 @@
         "] Données déjà enregistrées pour le ": "] Data already recorded for the",
         "] Erreur sur la récupération des données : ": "] Error on data recovery:",
         " Toutes les données sont à jour - désactivation de la vérification automatique pour aujourd\\'hui": "All data is up to date - disable automatic checking for today",
-        " Données brutes : ": "Raw data :",
         "] Enregistrement mesure : Date = ": "] Measurement recording: Date =",
         " => Mesure = ": "=> Measure =",
         "L\\'identifiant du point de livraison (PDL) doit être renseigné": "The delivery point identifier (PDL) must be entered",
