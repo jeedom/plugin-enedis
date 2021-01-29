@@ -218,7 +218,9 @@ class enedis extends eqLogic {
         $measureType = $this->getConfiguration('measure_type');
 
         if ($measureType == 'both') {
-          if ($this->createCommands($cmdsArray['consumption']) || $this->createCommands($cmdsArray['production'])) {
+          $cons = $this->createCommands($cmdsArray['consumption']);
+          $prod = $this->createCommands($cmdsArray['production']);
+          if ($cons === true || $prod === true) {
             $this->refreshData(date('Y-m-d', strtotime('-3 years')));
           }
         }
