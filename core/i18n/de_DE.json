@@ -64,8 +64,8 @@
         " => Mesure = ": "=> Messen =",
         "L\\'identifiant du point de livraison (PDL) doit être renseigné": "Die Zustellpunktkennung (PDL) muss eingegeben werden",
         "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères": "Die Zustellpunktkennung (PDL) muss 14 Zeichen enthalten",
-        "Fichier de création de commandes non trouvé": "Auftragserstellungsdatei nicht gefunden",
         " Création commande : refresh\/Rafraîchir": "Befehlserstellung: Aktualisieren \/ Aktualisieren",
+        "Fichier de création de commandes non trouvé": "Auftragserstellungsdatei nicht gefunden",
         " Création commande : ": "Auftragserstellung:"
     },
     "info.json": {

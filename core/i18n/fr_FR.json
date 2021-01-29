@@ -64,8 +64,8 @@
         " => Mesure = ": " => Mesure = ",
         "L\\'identifiant du point de livraison (PDL) doit être renseigné": "L\\'identifiant du point de livraison (PDL) doit être renseigné",
         "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères": "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères",
-        "Fichier de création de commandes non trouvé": "Fichier de création de commandes non trouvé",
         " Création commande : refresh\/Rafraîchir": " Création commande : refresh\/Rafraîchir",
+        "Fichier de création de commandes non trouvé": "Fichier de création de commandes non trouvé",
         " Création commande : ": " Création commande : "
     },
     "info.json": {

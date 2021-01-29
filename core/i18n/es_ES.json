@@ -64,8 +64,8 @@
         " => Mesure = ": "=> Medir =",
         "L\\'identifiant du point de livraison (PDL) doit être renseigné": "Debe introducirse el identificador del punto de entrega (PDL)",
         "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères": "El identificador del punto de entrega (PDL) debe contener 14 caracteres",
-        "Fichier de création de commandes non trouvé": "No se encontró el archivo de creación de pedidos",
         " Création commande : refresh\/Rafraîchir": "Creación de comandos: actualizar \/ Actualizar",
+        "Fichier de création de commandes non trouvé": "No se encontró el archivo de creación de pedidos",
         " Création commande : ": "Creación de pedidos:"
     },
     "info.json": {
