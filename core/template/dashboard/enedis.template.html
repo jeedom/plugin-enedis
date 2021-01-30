@@ -1,9 +1,14 @@
 <div class="eqLogic eqLogic-widget allowResize #eqLogic_class# #class#" data-eqType="#eqType#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="width:#width#;height:#height#;background-color:#BGEnedis#!important;">
   <link rel="stylesheet" href="plugins/enedis/data/css/enedis.template.css"/>
-  <div class="text-center" style="line-height:32px;font-size:16px;">
-    <span class="warning" title="#alert_name#"><i class='#alert_icon#'></i></span>
+  <div class="text-center widget-name">
+    <span class="warning" title="#alert_name#">
+      <i class='#alert_icon#'></i>
+    </span>
+    <span class="cmd refresh pull-right cursor" data-cmd_id="#refresh_id#">
+      <i class="fas fa-sync"></i>
+    </span>
     <span class="reportModeVisible">#name_display# <span class="object_name">#object_name#</span></span>
-    <a href="#eqLink#" class="reportModeHidden enedisEqlogicName" style="color:#BGEnedis#!important;">#name_display# <span class="object_name">#object_name#</span></a>
+    <a href="#eqLink#" class="reportModeHidden">#name_display# <span class="object_name">#object_name#</span></a>
   </div>
   <div class="enedis_template text-center">
     <div id="consumption">
@@ -52,10 +57,12 @@
         <div class="enedisValueUnite"><span class="enedisValue">#daily_production_max_power#</span><span class="enedisUnite"> kVA</span></div>
       </div>
     </div>
-    <div style="margin: 2% 0 0 20%;height:12%;width:60%;" class="toggleMeasure"></div>
+    <!-- <div style="margin:2% 0 0 20%;height:12%;width:60%;border:solid 1px red;" class="toggleMeasure"></div> -->
   </div>
   <script>
     var eqLogic = $('.eqLogic[data-eqLogic_uid=#uid#]');
+    eqLogic.find('.widget-name').attr('style', 'background-color:#BGEnedis#!important');
+
     var measureType = '#measureType#';
     if (measureType === 'consumption') {
       eqLogic.find('#consumption').show();
@@ -74,9 +81,16 @@
     }
 
     var eqlogic_height = eqLogic.height();
-    eqLogic.find('.enedis_template').css('--eqLogic-height', eqlogic_height+'px');
-  //  eqLogic.find('.enedisCdc').css('font-size', (eqlogic_height*0.05)+'px');
+    // eqLogic.find('.enedisTitle').css('font-size', (eqlogic_height*0.51)+'px');
+    eqLogic.find('.enedisCdc').css('font-size', (eqlogic_height*0.05)+'px');
     eqLogic.find('.enedisValue, .enedisTitle').css('font-size', (eqlogic_height*0.06)+'px');
     eqLogic.find('.enedisUnite').css('font-size', (eqlogic_height*0.04)+'px');
+    if ('#refresh_id#' != ''){
+      $('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
+        jeedom.cmd.execute({id: '#refresh_id#'});
+      });
+    }else{
+      $('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove();
+    }
   </script>
 </div>

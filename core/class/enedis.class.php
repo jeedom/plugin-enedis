@@ -267,7 +267,6 @@ class enedis extends eqLogic {
     return $cmdsCreation;
   }
 
-  // Non obligatoire : permet de modifier l'affichage du widget (également utilisable par les commandes)
   public function toHtml($_version = 'dashboard') {
     if ($this->getConfiguration('widgetTemplate') != 1)
     {
@@ -285,6 +284,7 @@ class enedis extends eqLogic {
       $replace['#' . $cmd->getLogicalId() . '#'] = $cmd->execCmd();
       $replace['#' . $cmd->getLogicalId() . '_collect#'] = $cmd->getCollectDate();
     }
+    $replace['#refresh_id#'] = $this->getCmd('action', 'refresh')->getId();
     $replace['#BGEnedis#'] = $this->getConfiguration('widgetBGColor');
     $replace['#measureType#'] = $this->getConfiguration('measure_type');
 

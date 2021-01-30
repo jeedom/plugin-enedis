@@ -1,12 +1,15 @@
-<div class="eqLogic eqLogic-widget enedisEqlogicName" data-eqLogic_id="#id#" data-eqType="#eqType#" data-version="#version#" data-eqLogic_uid="#uid#" data-translate-category="#translate_category#" data-tags="#tags#" style="background-color:#BGEnedis#!important;">
+<div class="eqLogic eqLogic-widget #class#" data-eqLogic_id="#id#" data-eqType="#eqType#" data-version="#version#" data-eqLogic_uid="#uid#" data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="background-color:#BGEnedis#!important;">
+	<span class="cmd refresh pull-right cursor" data-cmd_id="#refresh_id#">
+		<i class="fas fa-sync"></i>
+	</span>
 	<center>
 		<link rel="stylesheet" href="plugins/enedis/data/css/enedis.mobile.css"/>
-		  <div style="padding:2% 0;font-size:14px;color:#BGEnedis#!important;">
+		<span class="widget-name">
 			<span class="warning" title="#alert_name#">
 				<i class='#alert_icon#'></i>
 			</span>
-			<span>#name_display#</span><br/>
-		</div>
+			<span>#name_display# <span class="object_name">#object_name#</span></span><br/>
+		</span>
   <div class="enedis_template text-center" style="height:220px;">
     <div id="consumption">
       <div class="enedisTitle">CONSOMMATION</div>
@@ -58,6 +61,8 @@
   </div>
   <script>
     var eqLogic = $('.eqLogic[data-eqLogic_uid=#uid#]');
+    eqLogic.find('.widget-name').attr('style', 'background-color:#BGEnedis#!important');
+
     var measureType = '#measureType#';
     if (measureType === 'consumption') {
       eqLogic.find('#consumption').show();
@@ -74,6 +79,13 @@
         eqLogic.find('#production').toggle();
       })
     }
+				if ('#refresh_id#' != '') {
+			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
+				jeedom.cmd.execute({id: '#refresh_id#'})
+			})
+		} else {
+			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove()
+		}
   </script>
 	</center>
 </div>
