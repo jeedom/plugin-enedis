@@ -50,6 +50,8 @@ class enedis extends eqLogic {
     $need_refresh = false;
 
     foreach ($measureTypes as $measureType) {
+      $returnMonthValue = 0;
+      $returnYearValue = 0;
       $dailyCmd = $this->getCmd('info', 'daily_'.$measureType);
       $monthlyCmd = $this->getCmd('info', 'monthly_'.$measureType);
       $yearlyCmd = $this->getCmd('info', 'yearly_'.$measureType);
