@@ -44,6 +44,7 @@ class enedis extends eqLogic {
     $usagePointId = $this->getConfiguration('usage_point_id');
     $measureTypes = ($this->getConfiguration('measure_type') != 'both') ? [$this->getConfiguration('measure_type')] : array('consumption', 'production');
     $start_date = (empty($startDate)) ? date('Y-m-d', strtotime('first day of January')) : $startDate;
+    $start_date_load = (empty($startDate)) ? date('Y-m-d', strtotime('-1 day')) : date('Y-m-d', strtotime('-7 days'));
     $end_date = date('Y-m-d');
     $need_refresh = false;
 
@@ -110,27 +111,12 @@ class enedis extends eqLogic {
 
       $loadCmd = $this->getCmd('info', $measureType.'_load_curve');
       $loadCmd->execCmd();
-      //   if (!empty($startDate)) {
-      //     foreach (new DatePeriod(new DateTime($start_date), new DateInterval('P7D'), new DateTime($end_date)) as $period_date) {
-      //       $data = $this->getData('/metering_data/'.$measureType.'_load_curve?start='.$period_date->format('Y-m-d').'&end='.date('Y-m-d', strtotime($period_date->format('Y-m-d') . '+7 days')).'&usage_point_id='.$usagePointId);
-      //       if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
-      //         foreach ($data['meter_reading']['interval_reading'] as $value) {
-      //           $this->checkData($loadCmd, $value['value'], $value['date']);
-      //         }
-      //       }
-      //       else if (isset($data['error'])) {
-      //         log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $loadCmd->getName() . __('] Erreur sur la récupération des données : ',__FILE__) . $data['error'] . ' ' . $data['error_description']);
-      //       }
-      //     }
-      //   }
-
-      $start_date2 = date('Y-m-d',strtotime('-7 days'));
       if ($loadCmd->getCollectDate() >= date('Y-m-d', strtotime('today'))) {
         log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $loadCmd->getName() . __('] Données déjà enregistrées pour le ',__FILE__) . date('d/m/Y', strtotime('-1 day')));
       }
       else {
         $need_refresh = true;
-        $data = $this->getData('/metering_data/'.$measureType.'_load_curve?start='.$start_date2.'&end='.$end_date.'&usage_point_id='.$usagePointId);
+        $data = $this->getData('/metering_data/'.$measureType.'_load_curve?start='.$start_date_load.'&end='.$end_date.'&usage_point_id='.$usagePointId);
         if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
           foreach ($data['meter_reading']['interval_reading'] as $value) {
             $this->checkData($loadCmd, $value['value'], $value['date']);
