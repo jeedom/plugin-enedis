@@ -111,7 +111,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 								<label class="col-sm-3 control-label">Lier Enedis avec Jeedom</label>
 								<div class="col-sm-7">
 									<a href="https://cloud.jeedom.com/frontend/login.html?service=enedis" target="_blank">
-										<img src="plugins/enedis/data/images/link_enedis.png">
+										<img src="plugins/enedis/docs/images/link_enedis.png">
 									</a>
 								</div>
 							</div>
