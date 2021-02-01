@@ -49,41 +49,38 @@ class enedis extends eqLogic {
     $need_refresh = false;
 
     foreach ($measureTypes as $measureType) {
-      $returnMonthValue = 0;
-      $returnYearValue = 0;
       $dailyCmd = $this->getCmd('info', 'daily_'.$measureType);
-      $monthlyCmd = $this->getCmd('info', 'monthly_'.$measureType);
-      $yearlyCmd = $this->getCmd('info', 'yearly_'.$measureType);
       $dailyCmd->execCmd();
       if (empty($startDate) && $dailyCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
         log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $dailyCmd->getName() . __('] Données déjà enregistrées pour le ',__FILE__) . date('d/m/Y', strtotime('-1 day')));
       }
       else {
+        $monthlyCmd = $this->getCmd('info', 'monthly_'.$measureType);
+        $yearlyCmd = $this->getCmd('info', 'yearly_'.$measureType);
+        $returnMonthValue = 0;
+        $returnYearValue = 0;
         $need_refresh = true;
         $data = $this->getData('/metering_data/daily_'.$measureType.'?start='.$start_date.'&end='.$end_date.'&usage_point_id='.$usagePointId);
         if(isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
           foreach ($data['meter_reading']['interval_reading'] as $value) {
-            $this->checkData($dailyCmd, $value['value'], $value['date']);
+            $valueTimestamp = strtotime($value['date']);
+            $this->checkData($dailyCmd, $value['value'], date('Y-m-d 00:00:00', $valueTimestamp));
 
-            if ($value['date'] >= date('Y-m-01', strtotime($value['date'])) && $value['date'] <= date('Y-m-t', strtotime($value['date']))) {
-              if ($value['date'] == date('Y-m-01', strtotime($value['date']))) {
-                $returnMonthValue = $value['value'];
-              }
-              else {
-                $returnMonthValue += $value['value'];
-              }
-              $this->checkData($monthlyCmd, $returnMonthValue, $value['date']);
+            if ($value['date'] == date('Y-m-01', $valueTimestamp)) {
+              $returnMonthValue = $value['value'];
             }
+            else {
+              $returnMonthValue += $value['value'];
+            }
+            $this->checkData($monthlyCmd, $returnMonthValue, date('Y-m-d 00:00:00', $valueTimestamp));
 
-            if ($value['date'] >= date('Y-01-01', strtotime($value['date'])) && $value['date'] <= date('Y-12-31', strtotime($value['date']))) {
-              if ($value['date'] == date('Y-01-01', strtotime($value['date']))) {
-                $returnYearValue = $value['value'];
-              }
-              else {
-                $returnYearValue += $value['value'];
-              }
-              $this->checkData($yearlyCmd, $returnYearValue, $value['date']);
+            if ($value['date'] == date('Y-01-01', $valueTimestamp)) {
+              $returnYearValue = $value['value'];
             }
+            else {
+              $returnYearValue += $value['value'];
+            }
+            $this->checkData($yearlyCmd, $returnYearValue, date('Y-m-d 00:00:00', $valueTimestamp));
           }
         }
         else if (isset($data['error'])) {
