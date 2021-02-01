@@ -10,82 +10,84 @@
 			</span>
 			<span>#name_display# <span class="object_name">#object_name#</span></span><br/>
 		</span>
-  <div class="enedis_template text-center" style="height:220px;">
-    <div id="consumption">
-      <div class="enedisTitle">CONSOMMATION</div>
-      <div class="history cursor" data-cmd_id="#yearly_consumption_id#" title="#yearly_consumption_collect#">
-        <div class="enedisCdc">ANNUELLE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#yearly_consumption#</span><span class="enedisUnite"> kWh</span></div>
-      </div>
-      <div class="history cursor" data-cmd_id="#monthly_consumption_id#" title="#monthly_consumption_collect#">
-        <div class="enedisCdc">MENSUELLE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#monthly_consumption#</span><span class="enedisUnite"> kWh</span></div>
-      </div>
-      <div class="history cursor" data-cmd_id="#daily_consumption_id#" title="#daily_consumption_collect#">
-        <div class="enedisCdc">QUOTIDIENNE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#daily_consumption#</span><span class="enedisUnite"> kWh</span></div>
-      </div>
-      <div class="history cursor" data-cmd_id="#consumption_load_curve_id#" title="#consumption_load_curve_collect#">
-        <div class="enedisCdc">HORAIRE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#consumption_load_curve#</span><span class="enedisUnite"> kW</span></div>
-      </div>
-      <div class="history cursor" data-cmd_id="#daily_consumption_max_power_id#" title="#daily_consumption_max_power_collect#">
-        <div class="enedisCdc">PUISSANCE MAX</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#daily_consumption_max_power#</span><span class="enedisUnite"> kVA</span></div>
-      </div>
-    </div>
-    <div id="production" style="display:none;">
-      <div class="enedisTitle">PRODUCTION</div>
-      <div class="history cursor" data-cmd_id="#yearly_production_id#" title="#yearly_production_collect#">
-        <div class="enedisCdc">ANNUELLE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#yearly_production#</span><span class="enedisUnite"> kWh</span></div>
-      </div>
-      <div class="history cursor" data-cmd_id="#monthly_production_id#" title="#monthly_production_collect#">
-        <div class="enedisCdc">MENSUELLE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#monthly_production#</span><span class="enedisUnite"> kWh</span></div>
-      </div>
-      <div class="history cursor" data-cmd_id="#daily_production_id#" title="#daily_production_collect#">
-        <div class="enedisCdc">QUOTIDIENNE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#daily_production#</span><span class="enedisUnite"> kWh</span></div>
-      </div>
-      <div class="history cursor" data-cmd_id="#production_load_curve_id#" title="#production_load_curve_collect#">
-        <div class="enedisCdc">HORAIRE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#production_load_curve#</span><span class="enedisUnite"> kW</span></div>
-      </div>
-      <div class="history cursor" data-cmd_id="#daily_production_max_power_id#" title="#daily_production_max_power_collect#">
-        <div class="enedisCdc">PUISSANCE MAX</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#daily_production_max_power#</span><span class="enedisUnite"> kVA</span></div>
-      </div>
-    </div>
-    <div style="margin: 2% 0 0 3%;height:12%;width:60%;" class="toggleMeasure"></div>
-  </div>
-  <script>
-    var eqLogic = $('.eqLogic[data-eqLogic_uid=#uid#]');
-    eqLogic.find('.widget-name').attr('style', 'background-color:#BGEnedis#!important');
+		<div class="enedis_template text-center" style="height:220px;">
+			<div id="consumption">
+				<div class="enedisTitle">CONSOMMATION</div>
+				<div class="history cursor" data-cmd_id="#yearly_consumption_id#" title="#yearly_consumption_collect#">
+					<div class="enedisCdc">ANNUELLE</div>
+					<div class="enedisValueUnite"><span class="enedisValue">#yearly_consumption#</span><span class="enedisUnite"> kWh</span></div>
+				</div>
+				<div class="history cursor" data-cmd_id="#monthly_consumption_id#" title="#monthly_consumption_collect#">
+					<div class="enedisCdc">MENSUELLE</div>
+					<div class="enedisValueUnite"><span class="enedisValue">#monthly_consumption#</span><span class="enedisUnite"> kWh</span></div>
+				</div>
+				<div class="history cursor" data-cmd_id="#daily_consumption_id#" title="#daily_consumption_collect#">
+					<div class="enedisCdc">QUOTIDIENNE</div>
+					<div class="enedisValueUnite"><span class="enedisValue">#daily_consumption#</span><span class="enedisUnite"> kWh</span></div>
+				</div>
+				<div class="history cursor" data-cmd_id="#consumption_load_curve_id#" title="#consumption_load_curve_collect#">
+					<div class="enedisCdc">HORAIRE</div>
+					<div class="enedisValueUnite"><span class="enedisValue">#consumption_load_curve#</span><span class="enedisUnite"> kW</span></div>
+				</div>
+				<div class="history cursor" data-cmd_id="#daily_consumption_max_power_id#" title="#daily_consumption_max_power_collect#">
+					<div class="enedisCdc">PUISSANCE MAX</div>
+					<div class="enedisValueUnite"><span class="enedisValue">#daily_consumption_max_power#</span><span class="enedisUnite"> kVA</span></div>
+				</div>
+			</div>
+			<div id="production" style="display:none;">
+				<div class="enedisTitle">PRODUCTION</div>
+				<div class="history cursor" data-cmd_id="#yearly_production_id#" title="#yearly_production_collect#">
+					<div class="enedisCdc">ANNUELLE</div>
+					<div class="enedisValueUnite"><span class="enedisValue">#yearly_production#</span><span class="enedisUnite"> kWh</span></div>
+				</div>
+				<div class="history cursor" data-cmd_id="#monthly_production_id#" title="#monthly_production_collect#">
+					<div class="enedisCdc">MENSUELLE</div>
+					<div class="enedisValueUnite"><span class="enedisValue">#monthly_production#</span><span class="enedisUnite"> kWh</span></div>
+				</div>
+				<div class="history cursor" data-cmd_id="#daily_production_id#" title="#daily_production_collect#">
+					<div class="enedisCdc">QUOTIDIENNE</div>
+					<div class="enedisValueUnite"><span class="enedisValue">#daily_production#</span><span class="enedisUnite"> kWh</span></div>
+				</div>
+				<div class="history cursor" data-cmd_id="#production_load_curve_id#" title="#production_load_curve_collect#">
+					<div class="enedisCdc">HORAIRE</div>
+					<div class="enedisValueUnite"><span class="enedisValue">#production_load_curve#</span><span class="enedisUnite"> kW</span></div>
+				</div>
+				<div class="history cursor" data-cmd_id="#daily_production_max_power_id#" title="#daily_production_max_power_collect#">
+					<div class="enedisCdc">PUISSANCE MAX</div>
+					<div class="enedisValueUnite"><span class="enedisValue">#daily_production_max_power#</span><span class="enedisUnite"> kVA</span></div>
+				</div>
+			</div>
+			<div style="margin: 2% 0 0 3%;height:12%;width:60%;" class="toggleMeasure"></div>
+		</div>
+		<script>
+			var eqLogic = $('.eqLogic[data-eqLogic_uid=#uid#]');
+			if ('#BGEnedis#' != 'transparent') {
+				eqLogic.find('.widget-name').attr('style', 'background-color:#BGEnedis#!important');
+			}
 
-    var measureType = '#measureType#';
-    if (measureType === 'consumption') {
-      eqLogic.find('#consumption').show();
-      eqLogic.find('#production').hide();
-    }
-    else if (measureType === 'production') {
-      eqLogic.find('#consumption').hide();
-      eqLogic.find('#production').show();
-    }
-    else if (measureType === 'both') {
-      eqLogic.find('.toggleMeasure').addClass('cursor');
-      eqLogic.find('.toggleMeasure').on('click', function () {
-        eqLogic.find('#consumption').toggle();
-        eqLogic.find('#production').toggle();
-      })
-    }
-				if ('#refresh_id#' != '') {
-			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
-				jeedom.cmd.execute({id: '#refresh_id#'})
-			})
-		} else {
-			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove()
-		}
-  </script>
+			var measureType = '#measureType#';
+			if (measureType === 'consumption') {
+				eqLogic.find('#consumption').show();
+				eqLogic.find('#production').hide();
+			}
+			else if (measureType === 'production') {
+				eqLogic.find('#consumption').hide();
+				eqLogic.find('#production').show();
+			}
+			else if (measureType === 'both') {
+				eqLogic.find('.toggleMeasure').addClass('cursor');
+				eqLogic.find('.toggleMeasure').on('click', function () {
+					eqLogic.find('#consumption').toggle();
+					eqLogic.find('#production').toggle();
+				})
+			}
+			if ('#refresh_id#' != '') {
+				$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
+					jeedom.cmd.execute({id: '#refresh_id#'})
+				})
+			} else {
+				$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove()
+			}
+		</script>
 	</center>
 </div>

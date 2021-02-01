@@ -58,11 +58,13 @@
       </div>
     </div>
   </div>
-    <div style="margin:-25% 0 0 20%;height:10%;width:60%;" class="toggleMeasure"></div>
+  <div style="margin:-25% 0 0 20%;height:10%;width:60%;" class="toggleMeasure"></div>
 
   <script>
     var eqLogic = $('.eqLogic[data-eqLogic_uid=#uid#]');
-    eqLogic.find('.widget-name').attr('style', 'background-color:#BGEnedis#!important');
+    if ('#BGEnedis#' != 'transparent') {
+      eqLogic.find('.widget-name').attr('style', 'background-color:#BGEnedis#!important');
+    }
 
     var measureType = '#measureType#';
     if (measureType === 'consumption') {

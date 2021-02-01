@@ -126,8 +126,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
 									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="usage_point_id">
 								</div>
 							</div>
-
-
 							<div class="form-group">
 								<label class="col-sm-3 control-label"> {{Type de mesure}}
 									<sup><i class="fas fa-question-circle tooltips" title="{{Indiquer le type de mesure qu'il faut récupérer (consommation, production ou les deux)}}"></i></sup>
@@ -145,48 +143,55 @@ $eqLogics = eqLogic::byType($plugin->getId());
 						<div class="col-lg-5">
 							<legend><i class="fas fa-camera-retro"></i> {{Widget}}</legend>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">{{Template de widget}}
+								<label class="col-sm-4 control-label">{{Template de widget}}
 									<sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case pour utiliser le template de widget représentant le compteur Linky}}"></i></sup>
 								</label>
 								<div class="col-sm-1">
 									<input type="checkbox" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="widgetTemplate"/>
 								</div>
-								<label class="col-sm-3 control-label">{{Couleur de fond}}
+							</div>
+							<br>
+							<div class="form-group" id="templateParams">
+								<label class="col-sm-5 control-label">{{Couleur de fond}}
 									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner la couleur de fond du template de widget}}"></i></sup>
 								</label>
 								<div class="col-sm-3">
 									<input type="color" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="widgetBGColor"/>
 								</div>
+								<label class="col-sm-2 control-label">{{Transparent}} </label>
+								<div class="col-sm-2">
+									<input type="checkbox" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="widgetTransparent"/>
+								</div>
 							</div>
 						</div>
 
-			</fieldset>
-		</form>
-		<hr>
-	</div>
+					</fieldset>
+				</form>
+				<hr>
+			</div>
 
-	<div role="tabpanel" class="tab-pane" id="commandtab">
-		<!--<a class="btn btn-success btn-sm cmdAction pull-right" data-action="add" style="margin-top:5px;">
-		<i class="fa fa-plus-circle"></i> {{Commandes}}</a><br/> -->
-		<br/>
-		<table id="table_cmd" class="table table-bordered table-condensed">
-			<thead>
-				<tr>
-					<th>{{Id}}</th>
-					<th>{{Nom}}</th>
-					<th>{{Type}}</th>
-					<th>{{Options}}</th>
-					<th>{{Paramètres}}</th>
-					<th>{{Action}}</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-	</div>
-</div>
+			<div role="tabpanel" class="tab-pane" id="commandtab">
+				<!--<a class="btn btn-success btn-sm cmdAction pull-right" data-action="add" style="margin-top:5px;">
+				<i class="fa fa-plus-circle"></i> {{Commandes}}</a><br/> -->
+				<br/>
+				<table id="table_cmd" class="table table-bordered table-condensed">
+					<thead>
+						<tr>
+							<th>{{Id}}</th>
+							<th>{{Nom}}</th>
+							<th>{{Type}}</th>
+							<th>{{Options}}</th>
+							<th>{{Paramètres}}</th>
+							<th>{{Action}}</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
-</div>
+	</div>
 </div>
 
 <!-- Inclusion du fichier javascript du plugin (dossier, nom_du_fichier, extension_du_fichier, nom_du_plugin) -->

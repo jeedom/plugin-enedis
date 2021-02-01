@@ -265,13 +265,13 @@ class enedis extends eqLogic {
     }
     $version = jeedom::versionAlias($_version);
 
-    foreach ($this->getCmd('info') as $cmd) {
+    foreach (($this->getCmd('info')) as $cmd) {
       $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
       $replace['#' . $cmd->getLogicalId() . '#'] = $cmd->execCmd();
       $replace['#' . $cmd->getLogicalId() . '_collect#'] = $cmd->getCollectDate();
     }
     $replace['#refresh_id#'] = $this->getCmd('action', 'refresh')->getId();
-    $replace['#BGEnedis#'] = $this->getConfiguration('widgetBGColor');
+    $replace['#BGEnedis#'] = ($this->getConfiguration('widgetTransparent') == 1) ? 'transparent' : $this->getConfiguration('widgetBGColor');
     $replace['#measureType#'] = $this->getConfiguration('measure_type');
 
     $html = template_replace($replace, getTemplate('core', $version, 'enedis.template', __CLASS__));
