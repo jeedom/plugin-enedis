@@ -70,6 +70,6 @@
         " Création commande : ": "Criação de pedido:"
     },
     "info.json": {
-        "Récupérer les informations du compteur communicant Linky à partir de son compte-client Enedis. Attention il est indispensable d'avoir accès à la partie \"professionnels\" du site Enedis avec vos identifiants habituels (voir la documentation)": "Recupere as informações do medidor inteligente Linky de sua conta de cliente Enedis. Por favor, note que é essencial ter acesso à parte \"profissional\" do site Enedis com seus identificadores usuais (veja a documentação)"
+        "Récupérez les informations de vos compteurs électriques à partir de votre compte-client Enedis. Tout ce qu'il faut faire est d'autoriser le partage des données avec Jeedom et d'indiquer le numéro d'identification du Point de Livraison (PDL) concerné. <br\/><br\/>Le plugin remonte les mesures horaire, journalière, mensuelle, annuelle ainsi que la puissance max aussi bien en consommation qu'en production. <br\/>NB: Les données les plus récentes reçues par Enedis sont relatives à la veille du jour en cours": "Recupere as informações de seus medidores de eletricidade de sua conta de cliente Enedis. Tudo o que você precisa fazer é autorizar o compartilhamento de dados com a Jeedom e indicar o número de identificação do Ponto de Entrega (PDL) em questão.<br\/><br\/> O plugin retorna medições horárias, diárias, mensais e anuais, bem como a potência máxima tanto no consumo quanto na produção.<br\/> NB: Os dados mais recentes recebidos pela Enedis referem-se ao dia anterior ao dia atual"
     }
 }
