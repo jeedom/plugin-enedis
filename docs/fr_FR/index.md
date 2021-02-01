@@ -43,19 +43,19 @@ Pour accéder aux différents équipements **Enedis Linky**, dirigez-vous vers l
 
 Si ce n'est pas déjà fait, commencez par autoriser le partage des données Enedis avec Jeedom en cliquant sur le bouton **Lier Enedis avec Jeedom : j'accède à mon espace client Enedis** :      
 
-![Lien espace-client Enedis](./images/link_enedis.png)
+![Lien espace-client Enedis](../images/link_enedis.png)
 
 Vous êtes alors redirigé vers cette page sur laquelle il faut renseigner **vos identifiants au market Jeedom** puis cliquer sur le bouton **Valider** :      
 
-![Authentification compte Market Jeedom](./images/Auth_Jeedom.png)
+![Authentification compte Market Jeedom](../images/Auth_Jeedom.png)
 
 Redirection vers la page de consentement Enedis sur laquelle il faut **cocher la case** et cliquer sur **Valider** :     
 
-![Autorisation Enedis](./images/Auth_Enedis.png)
+![Autorisation Enedis](../images/Auth_Enedis.png)
 
 Une fois le partage des données validé, cette page s'affiche :     
 
-![Succès](./images/Auth_Enedis_success.png)
+![Succès](../images/Auth_Enedis_success.png)
 
 >**IMPORTANT**
 >    
@@ -77,7 +77,7 @@ Lors de la 1ère sauvegarde de l'équipement, le plugin va automatiquement crée
 
 Le plugin offre la possibilité d'afficher les données de consommation et/ou de production dans un template de widget imitant l'aspect d'un compteur *Linky*. Le clic sur le bouton "**- | +**" permet de basculer de la consommation à la production pour ceux qui ont accès aux 2 types de mesures.
 
-![Template de widget](./images/enedis_screenshot1.png)
+![Template de widget](../images/enedis_screenshot1.png)
 
 Pour activer cette option, il suffit de cocher la case **Template de widget** sur la page générale de l'équipement concerné. Une fois la case cochée, une option permet de sélectionner la couleur de fond du widget.
 
