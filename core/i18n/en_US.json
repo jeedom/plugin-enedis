@@ -42,6 +42,7 @@
         "Cocher la case pour utiliser le template de widget représentant le compteur Linky": "Check the box to use the widget template representing the Linky counter",
         "Couleur de fond": "Background color",
         "Sélectionner la couleur de fond du template de widget": "Select the background color of the widget template",
+        "Transparent": "Transparent",
         "Id": "ID",
         "Nom": "Name",
         "Type": "Type",
