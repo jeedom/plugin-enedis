@@ -28,14 +28,12 @@ class enedis extends eqLogic {
     $eqLogics = self::byType(__CLASS__, true);
 
     foreach ($eqLogics as $eqLogic) {
-      if (date('G') < 4 || date('G') >= 22) {
+      if (date('G') < 5 || date('G') >= 20) {
         if ($eqLogic->getCache('getEnedisData') == 'done') {
           $eqLogic->setCache('getEnedisData', null);
         }
-        return;
       }
-
-      if ($eqLogic->getCache('getEnedisData') != 'done') {
+      else if ($eqLogic->getCache('getEnedisData') != 'done') {
         $eqLogic->refreshData();
       }
     }
@@ -126,13 +124,13 @@ class enedis extends eqLogic {
       //     }
       //   }
 
-      $start_date = date('Y-m-d',strtotime('-7 days'));
+      $start_date2 = date('Y-m-d',strtotime('-7 days'));
       if ($loadCmd->getCollectDate() >= date('Y-m-d', strtotime('today'))) {
         log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $loadCmd->getName() . __('] Données déjà enregistrées pour le ',__FILE__) . date('d/m/Y', strtotime('-1 day')));
       }
       else {
         $need_refresh = true;
-        $data = $this->getData('/metering_data/'.$measureType.'_load_curve?start='.$start_date.'&end='.$end_date.'&usage_point_id='.$usagePointId);
+        $data = $this->getData('/metering_data/'.$measureType.'_load_curve?start='.$start_date2.'&end='.$end_date.'&usage_point_id='.$usagePointId);
         if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
           foreach ($data['meter_reading']['interval_reading'] as $value) {
             $this->checkData($loadCmd, $value['value'], $value['date']);
