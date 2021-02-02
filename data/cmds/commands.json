@@ -11,6 +11,7 @@
       },
       "generic_type":"CONSUMPTION",
       "order":2,
+      "graphType":"column",
       "logicalId": "daily_consumption"
     },
     {
@@ -24,6 +25,7 @@
       },
       "generic_type":"CONSUMPTION",
       "order":3,
+      "graphType":"column",
       "logicalId": "monthly_consumption"
     },
     {
@@ -37,6 +39,7 @@
       },
       "generic_type":"CONSUMPTION",
       "order":4,
+      "graphType":"column",
       "logicalId": "yearly_consumption"
     },
     {
@@ -63,6 +66,7 @@
       },
       "generic_type":"POWER",
       "order":6,
+      "graphType":"column",
       "logicalId": "daily_consumption_max_power"
     }
   ],
@@ -77,6 +81,7 @@
         "historizeRound":"3"
       },
       "order":7,
+      "graphType":"column",
       "logicalId": "daily_production"
     },
     {
@@ -89,6 +94,7 @@
         "historizeRound":"3"
       },
       "order":8,
+      "graphType":"column",
       "logicalId": "monthly_production"
     },
     {
@@ -101,6 +107,7 @@
         "historizeRound":"3"
       },
       "order":9,
+      "graphType":"column",
       "logicalId": "yearly_production"
     },
     {
@@ -126,6 +133,7 @@
       },
       "generic_type":"POWER",
       "order":11,
+      "graphType":"column",
       "logicalId": "daily_production_max_power"
     }
   ]
