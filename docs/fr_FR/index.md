@@ -12,7 +12,7 @@ Il est possible d'accéder aux données de **consommation**, de **production** o
 
 5 données sont remontées pour chaque type de mesure :
 - la **consommation horaire** par demi-heure *(en kW)*.
->*Autrement appelée "courbe de consommation" ou "puissance soutirée", cette donnée restitue la puissance appelée par tous vos appareils électriques en moyenne sur une demi-heure.*
+>*Autrement appelée "courbe de charge", cette donnée restitue la puissance appelée/injectée en moyenne sur une demi-heure.*
 
 - la **consommation journalière** *(en kWh)*.
 - la **consommation mensuelle** *(en kWh)*.
@@ -79,7 +79,7 @@ Le plugin offre la possibilité d'afficher les données de consommation et/ou de
 
 ![Template de widget](../images/enedis_screenshot1.png)
 
-Pour activer cette option, il suffit de cocher la case **Template de widget** sur la page générale de l'équipement concerné. Une fois la case cochée, une option permet de sélectionner la couleur de fond du widget.
+Pour activer cette option, il suffit de cocher la case **Template de widget** sur la page générale de l'équipement concerné. Une fois la case cochée, une option permet de sélectionner la couleur de fond du widget *(163, 204, 40 par défaut)*.
 
 >**INFORMATION**
 >     
