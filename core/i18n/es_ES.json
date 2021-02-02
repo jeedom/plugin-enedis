@@ -1,14 +1,18 @@
 {
+    "plugins\/enedis\/plugin_info\/install.php": {
+        "Suppression des configurations obsolètes": "Eliminación de configuraciones obsoletas"
+    },
     "plugins\/enedis\/plugin_info\/configuration.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Récupération des données à la minute": "Recuperación de datos por minuto"
+        "Récupération des données à la minute": "Recuperación de datos por minuto",
+        "Afin de ne pas surcharger les serveurs Enedis, les données sont vérifiées une fois par heure à une minute aléatoire": "Para no sobrecargar los servidores de Enedis, los datos se verifican una vez por hora en un minuto aleatorio"
     },
     "plugins\/enedis\/desktop\/php\/enedis.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Gestion": "Gestión",
         "Ajouter": "Añadir",
         "Configuration": "Configuración",
-        "Mes comptes Enedis": "Mis cuentas de Enedis",
+        "Mes compteurs": "Mis contadores",
         "Rechercher": "Buscar",
         "Configuration avancée": "Configuración avanzada",
         "Dupliquer": "Duplicar",
@@ -16,6 +20,7 @@
         "Supprimer": "Borrar",
         "Equipement": "Dispositivos",
         "Commandes": "Comandos",
+        "Général": "General",
         "Nom de l'équipement Enedis": "Nombre del equipo Enedis",
         "Objet parent": "Objeto padre",
         "Aucun": "Ninguna",
@@ -23,29 +28,48 @@
         "Options": "Opciones",
         "Activer": "Activar",
         "Visible": "Visible",
-        "Identifiant Enedis": "ID de Enedis",
-        "Mot de passe Enedis": "Contraseña de Enedis",
-        "Cocher la case pour utiliser le template de widget aux couleurs du compteur Linky": "Marque la casilla para usar la plantilla del widget en los colores del contador Linky",
+        "Autorisation": "Autorización",
+        "Paramètres": "Configuraciones",
+        "Point de livraison": "Punto de entrega",
+        "Indiquer le numéro de 14 caractères permettant d'identifier le point de livraison dont il faut récupérer les données": "Indique el número de 14 caracteres para identificar el punto de entrega cuyos datos deben recuperarse",
+        "Type de mesure": "Tipo de medida",
+        "Indiquer le type de mesure qu'il faut récupérer (consommation, production ou les deux)": "Indique el tipo de medida a recuperar (consumo, producción o ambos)",
+        "Consommation": "Consumo",
+        "Production": "Producción",
+        "Consommation & Production": "Consumo y producción",
+        "Widget": "Widget",
         "Template de widget": "Plantilla de widget",
+        "Cocher la case pour utiliser le template de widget représentant le compteur Linky": "Marque la casilla para usar la plantilla de widget que representa el contador Linky",
+        "Couleur de fond": "Color de fondo",
+        "Sélectionner la couleur de fond du template de widget": "Seleccione el color de fondo de la plantilla del widget",
+        "Transparent": "Transparente",
         "Id": "Identificación",
         "Nom": "Nombre",
         "Type": "Tipo",
         "Action": "Acción"
     },
     "plugins\/enedis\/desktop\/js\/enedis.js": {
-        "Min": "Min",
-        "Max": "Max",
-        "Unité": "Unidad",
+        "Nom de la commande": "Nombre de la orden",
+        "Icône": "Icono",
         "Afficher": "Mostrar",
         "Historiser": "Guardar historial",
-        "Tester": "Probar"
+        "Inverser": "Contrarrestar",
+        "Unité": "Unidad"
     },
     "plugins\/enedis\/core\/class\/enedis.class.php": {
-        "Erreur d\\'authentification : vérifier la validité de l\\'identifiant et du mot de passe": "Error de autenticación: compruebe la validez del nombre de usuario y la contraseña",
-        "L\\'identifiant du compte Enedis doit être renseigné": "Se debe ingresar el identificador de la cuenta Enedis",
-        "Le mot de passe du compte Enedis doit être renseigné": "Se debe ingresar la contraseña de la cuenta de Enedis"
+        " Interrogation des serveurs Enedis": "Consulta de servidores Enedis",
+        "] Données déjà enregistrées pour le ": "] Datos ya registrados para el",
+        "] Erreur sur la récupération des données : ": "] Error en la recuperación de datos:",
+        " Toutes les données sont à jour - désactivation de la vérification automatique pour aujourd\\'hui": "Todos los datos están actualizados: deshabilite la verificación automática por hoy",
+        "] Enregistrement mesure : Date = ": "] Registro de medidas: Fecha =",
+        " => Mesure = ": "=> Medir =",
+        "L\\'identifiant du point de livraison (PDL) doit être renseigné": "Debe introducirse el identificador del punto de entrega (PDL)",
+        "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères": "El identificador del punto de entrega (PDL) debe contener 14 caracteres",
+        " Création commande : refresh\/Rafraîchir": "Creación de comandos: actualizar \/ Actualizar",
+        "Fichier de création de commandes non trouvé": "No se encontró el archivo de creación de pedidos",
+        " Création commande : ": "Creación de pedidos:"
     },
     "info.json": {
-        "Récupérer les informations du compteur communicant Linky à partir de son compte-client Enedis. Attention il est indispensable d'avoir accès à la partie \"professionnels\" du site Enedis avec vos identifiants habituels (voir la documentation)": "Recupere la información del medidor inteligente Linky de su cuenta de cliente de Enedis. Tenga en cuenta que es fundamental tener acceso a la parte \"profesional\" del sitio de Enedis con sus identificadores habituales (consulte la documentación)"
+        "Récupérez les informations de vos compteurs électriques à partir de votre compte-client Enedis. Tout ce qu'il faut faire est d'autoriser le partage des données avec Jeedom et d'indiquer le numéro d'identification du Point de Livraison (PDL) concerné. <br\/><br\/>Le plugin remonte les mesures horaire, journalière, mensuelle, annuelle ainsi que la puissance max aussi bien en consommation qu'en production. <br\/>NB: Les données les plus récentes reçues par Enedis sont relatives à la veille du jour en cours": "Recupera la información de tus contadores eléctricos de tu cuenta de cliente de Enedis. Todo lo que necesita hacer es autorizar el intercambio de datos con Jeedom e indicar el número de identificación del Punto de Entrega (PDL) en cuestión.<br\/><br\/> El plugin devuelve medidas horarias, diarias, mensuales, anuales así como la potencia máxima tanto en consumo como en producción.<br\/> NB: Los datos más recientes recibidos por Enedis se refieren al día anterior al día actual"
     }
 }
