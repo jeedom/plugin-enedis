@@ -47,6 +47,7 @@ function enedis_update() {
       $update = true;
     }
     if (isset($update) && $update === true) {
+      $eqLogic->setIsEnable(0);
       $eqLogic->save();
     }
   }
