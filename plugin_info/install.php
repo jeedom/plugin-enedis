@@ -37,7 +37,6 @@ function enedis_update() {
 
   $eqLogics = eqLogic::byType('enedis');
   foreach ($eqLogics as $eqLogic) {
-    log::add('enedis', 'debug', $this->getHumanName() . __('Suppression des configurations obsolètes', __FILE__));
     if (!empty($eqLogic->getConfiguration('login'))) {
       $eqLogic->setConfiguration('login', null);
       $update = true;
