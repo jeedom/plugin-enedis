@@ -6,6 +6,11 @@
 >
 >Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte.
 
+# 18/02/2021
+
+- Ajout de la gestion des dépendances afin de confirmer la présence de `php-mbstring` absent sur certaines installations
+- Nouvelle icône du plugin plus en accord avec les prérogatives Enedis
+
 # 01/02/2021
 
 - Réécriture complète du plugin qui utilise désormais l'api Enedis Data-Connect
@@ -15,7 +20,6 @@
 - Réécriture des templates de widgets dashboard & mobile
 - Ajout de la possibilité de choisir la couleur de fond du template de widget *(ou transparent)*
 - Réécriture de la documentation
-
 
 # 10/09/2020
 - Correction d'un bug d'affichage en vue mobile sans le template de widget.

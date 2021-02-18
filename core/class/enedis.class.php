@@ -39,6 +39,21 @@ class enedis extends eqLogic {
     }
   }
 
+  public static function dependancy_info() {
+    $return = array();
+    $return['progress_file'] = jeedom::getTmpFolder('enedis') . '/dependance';
+		$return['state'] = 'ok';
+    if (exec('dpkg-query -l php-mbstring | wc -l') == 0) {
+      $return['state'] = 'nok';
+    }
+    return $return;
+  }
+
+  public static function dependancy_install() {
+    log::remove(__CLASS__ . '_update');
+    return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('enedis') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
+  }
+
   public function refreshData($startDate = null) {
     log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Interrogation des serveurs Enedis',__FILE__));
     $usagePointId = $this->getConfiguration('usage_point_id');

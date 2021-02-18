@@ -1,0 +1,17 @@
+PROGRESS_FILE=/tmp/dependancy_enedis_in_progress
+if [ ! -z $1 ]; then
+	PROGRESS_FILE=$1
+fi
+touch ${PROGRESS_FILE}
+echo 0 > ${PROGRESS_FILE}
+echo "********************************************************"
+echo "*        Launch install of Enedis dependancies         *"
+echo "********************************************************"
+sudo apt-get update
+echo 50 > ${PROGRESS_FILE}
+sudo apt-get install -y php-mbstring
+echo 100 > ${PROGRESS_FILE}
+echo "********************************************************"
+echo "*     Enedis dependancies successfully installed!      *"
+echo "********************************************************"
+rm ${PROGRESS_FILE}
