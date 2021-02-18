@@ -27,7 +27,7 @@ Il est possible d'accéder aux données de **consommation**, de **production** o
 
 ## Configuration du plugin
 
-Comme tout plugin Jeedom, plugin **Enedis** doit être activé après l'installation.
+Comme tout plugin Jeedom, le plugin **Enedis** doit être activé après l'installation.
 
 Le plugin nécessite la présence du paquet Linux `php-mbstring` normalement présent par défaut, le statut des dépendances doit donc être **OK** dès l'installation du plugin. Dans le cas contraire, il faudra cliquer sur le bouton **Relancer** pour installer le paquet manquant.
 
