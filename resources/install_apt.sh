@@ -9,7 +9,7 @@ echo "*        Launch install of Enedis dependancies         *"
 echo "********************************************************"
 sudo apt-get update
 echo 50 > ${PROGRESS_FILE}
-sudo apt-get install -y php-mbstring
+sudo apt install -o Dpkg::Options::="--force-confdef" -y php-mbstring
 echo 100 > ${PROGRESS_FILE}
 echo "********************************************************"
 echo "*     Enedis dependancies successfully installed!      *"

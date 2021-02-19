@@ -42,10 +42,8 @@ class enedis extends eqLogic {
   public static function dependancy_info() {
     $return = array();
     $return['progress_file'] = jeedom::getTmpFolder('enedis') . '/dependance';
-		$return['state'] = 'ok';
-    if (exec('dpkg-query -l php-mbstring | wc -l') == 0) {
-      $return['state'] = 'nok';
-    }
+    $packages = system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/../../plugin_info/packages.json'),true));
+    $return['state'] = ($packages['apt::php-mbstring']['status'] == 1) ? 'ok' : 'nok';
     return $return;
   }
 
