@@ -53,6 +53,7 @@
       },
       "generic_type":"CONSUMPTION",
       "order":5,
+      "graphType":"areaspline",
       "logicalId": "consumption_load_curve"
     },
     {
@@ -120,6 +121,7 @@
         "historizeRound":"3"
       },
       "order":10,
+      "graphType":"areaspline",
       "logicalId": "production_load_curve"
     },
     {
