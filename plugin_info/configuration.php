@@ -24,11 +24,13 @@ if (!isConnect('admin')) {
 <form class="form-horizontal">
 	<fieldset>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">{{Récupération des données à la minute}}
-				<sup><i class="fas fa-question-circle tooltips" title="{{Afin de ne pas surcharger les serveurs Enedis, les données sont vérifiées une fois par heure à une minute aléatoire}}"></i></sup>
+			<label class="col-md-4 control-label">Lier Enedis avec Jeedom
+				<sup><i class="fas fa-question-circle tooltips" title="{{Cliquez sur l'image pour autoriser la liaison entre votre compte market Jeedom et Enedis}}"></i></sup>
 			</label>
-			<div class="col-sm-3">
-				<input type="number" class="configKey form-control" data-l1key="cronMinute"/>
+			<div class="col-md-4">
+				<a href="https://cloud.jeedom.com/frontend/login.html?service=enedis" target="_blank">
+					<img src="/plugins/enedis/docs/images/link_enedis.png">
+				</a>
 			</div>
 		</div>
 	</fieldset>

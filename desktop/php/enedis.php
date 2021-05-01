@@ -59,13 +59,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
 		</ul>
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="eqlogictab">
-				<br/>
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="col-lg-6">
-							<legend><i class="fas fa-wrench"></i> {{Général}}</legend>
+							<legend><i class="fas fa-wrench"></i> {{Paramètres généraux}}</legend>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">{{Nom de l'équipement Enedis}}</label>
+								<label class="col-sm-3 control-label">{{Nom du compteur Enedis}}</label>
 								<div class="col-sm-7">
 									<input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
 									<input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement Enedis}}"/>
@@ -87,7 +86,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">{{Catégorie}}</label>
-								<div class="col-sm-9">
+								<div class="col-sm-7">
 									<?php
 									foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
 										echo '<label class="checkbox-inline">';
@@ -104,20 +103,8 @@ $eqLogics = eqLogic::byType($plugin->getId());
 									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
 								</div>
 							</div>
-							<br>
 
-							<legend><i class="fas fa-magic"></i></i> {{Autorisation}}</legend>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Lier Enedis avec Jeedom</label>
-								<div class="col-sm-7">
-									<a href="https://cloud.jeedom.com/frontend/login.html?service=enedis" target="_blank">
-										<img src="plugins/enedis/docs/images/link_enedis.png">
-									</a>
-								</div>
-							</div>
-
-							<br>
-							<legend><i class="fas fa-cogs"></i> {{Paramètres}}</legend>
+							<legend><i class="fas fa-cogs"></i> {{Paramètres spécifiques}}</legend>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">{{Point de livraison}}
 									<sup><i class="fas fa-question-circle tooltips" title="{{Indiquer le numéro de 14 caractères permettant d'identifier le point de livraison dont il faut récupérer les données}}"></i></sup>

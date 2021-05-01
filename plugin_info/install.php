@@ -18,25 +18,20 @@
 
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
-// Fonction exécutée automatiquement après l'installation du plugin
-function enedis_install() {
-     $cronMinute = config::byKey('cronMinute', 'enedis');
-    if (empty($cronMinute)) {
-      $randMinute = rand(3, 59);
-      config::save('cronMinute', $randMinute, 'enedis');
-    }
-}
-
-// Fonction exécutée automatiquement après la mise à jour du plugin
 function enedis_update() {
-   $cronMinute = config::byKey('cronMinute', 'enedis');
-    if (empty($cronMinute)) {
-      $randMinute = rand(3, 59);
-      config::save('cronMinute', $randMinute, 'enedis');
-    }
-
   $eqLogics = eqLogic::byType('enedis');
   foreach ($eqLogics as $eqLogic) {
+    $options = array('enedis_id' => intval($eqLogic->getId()));
+    $cron = cron::byClassAndFunction(__CLASS__, 'pull', $options);
+    if ($eqLogic->getIsEnable() == 1 && !is_object($cron)) {
+      $eqLogic->reschedule();
+    }
+
+    // Remove old confs
+    $cronMinute = config::byKey('cronMinute', 'enedis');
+    if (!empty($cronMinute)) {
+      config::remove('cronMinute', 'enedis');
+    }
     if (!empty($eqLogic->getConfiguration('login'))) {
       $eqLogic->setConfiguration('login', null);
       $update = true;
@@ -52,8 +47,14 @@ function enedis_update() {
   }
 }
 
-// Fonction exécutée automatiquement après la suppression du plugin
 function enedis_remove() {
+  $eqLogics = eqLogic::byType('enedis');
+  foreach ($eqLogics as $eqLogic) {
+    $options = array('enedis_id' => intval($eqLogic->getId()));
+    $cron = cron::byClassAndFunction(__CLASS__, 'pull', $options);
+    if (is_object($cron)) {
+      $cron->remove(false);
+    }
+  }
 }
-
 ?>

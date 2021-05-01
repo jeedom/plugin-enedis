@@ -6,6 +6,12 @@
 >
 >Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte.
 
+# 01/05/2021
+
+- Optimisation du nombre d'appels aux serveurs Enedis par l'auto-programmation de tâches dans jeedom
+- Optimisation du code
+- Réorganisation des paramètres de configuration et de la documentation
+
 # 18/02/2021
 
 - Ajout de la gestion des dépendances afin de confirmer la présence de `php-mbstring` absent sur certaines installations

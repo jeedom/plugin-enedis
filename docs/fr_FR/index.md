@@ -1,7 +1,5 @@
 # Plugin Enedis
 
-# Description
-
 Plugin permettant la récupération des données de consommation électrique des compteurs communicants *(linky par exemple)* par l'interrogation du [compte-client **Enedis**](https://mon-compte.enedis.fr/auth/XUI/#login/&realm=/enedis&forward=true){:target="\_blank"}.
 
 >**IMPORTANT**
@@ -12,8 +10,6 @@ Il est possible d'accéder aux données de **consommation**, de **production** o
 
 5 données sont remontées pour chaque type de mesure :
 - la **consommation horaire** par demi-heure *(en kW)*.
->*Autrement appelée "courbe de charge", cette donnée restitue la puissance appelée/injectée en moyenne sur une demi-heure.*
-
 - la **consommation journalière** *(en kWh)*.
 - la **consommation mensuelle** *(en kWh)*.
 - la **consommation annuelle** *(en kWh)*.
@@ -23,27 +19,19 @@ Il est possible d'accéder aux données de **consommation**, de **production** o
 >    
 >Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille.
 
-# Configuration
+Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs toutes les heures entre 7h et 20h, autrement les appels sont suspendus jusqu'au lendemain.
 
-## Configuration du plugin
+# Configuration
 
 Comme tout plugin Jeedom, le plugin **Enedis** doit être activé après l'installation.
 
+## Gestion des dépendances
+
 Le plugin nécessite la présence du paquet Linux `php-mbstring` normalement présent par défaut, le statut des dépendances doit donc être **OK** dès l'installation du plugin. Dans le cas contraire, il faudra cliquer sur le bouton **Relancer** pour installer le paquet manquant.
 
-Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs toutes les heures entre 5h et 20h, autrement les appels sont suspendus jusqu'au lendemain.
+## Configuration du plugin
 
-Afin de ne pas surcharger les serveurs Enedis, les appels se font à une minute aléatoire qui peut être consultée ou modifiée sur la page de configuration du plugin.
-
-## Configuration des équipements
-
-Pour accéder aux différents équipements **Enedis**, dirigez-vous vers le menu **Plugins → Energie → Enedis**.
-
->**INFORMATION**
->    
->Le bouton **+ Ajouter** permet d'ajouter un nouveau compteur/PDL.
-
-Si ce n'est pas déjà fait, commencez par autoriser le partage des données Enedis avec Jeedom en cliquant sur le bouton **Lier Enedis avec Jeedom : j'accède à mon espace client Enedis** :      
+Si ce n'est pas déjà fait, commencez par autoriser le partage des données Enedis avec Jeedom en cliquant sur le bouton **Lier Enedis avec Jeedom : j'accède à mon espace client Enedis** depuis la page de configuration du plugin :      
 
 ![Lien espace-client Enedis](../images/link_enedis.png)
 
@@ -63,9 +51,17 @@ Une fois le partage des données validé, cette page s'affiche :
 >    
 >Si vous ne parvenez pas à accéder à l’une de ces pages, désactiver le bloqueur de publicité du navigateur.
 
-Une fois le partage des données autorisé, il ne reste plus qu'à renseigner **le numéro d'identification du Point de Livraison** concerné *(PDL)* et le **type de mesure** à récupérer.
+## Configuration des équipements
 
-Lors de la 1ère sauvegarde de l'équipement, le plugin va automatiquement créer les commandes nécessaires et intégrer les historiques disponibles sur le site internet Enedis jusqu'à 3 années en arrière.
+Pour accéder aux différents équipements **Enedis**, dirigez-vous vers le menu **Plugins → Energie → Enedis**.
+
+>**INFORMATION**
+>    
+>Le bouton **+ Ajouter** permet d'ajouter un nouveau compteur/PDL.
+
+Une fois le partage des données autorisé depuis la page de configuration du plugin, il ne reste plus qu'à renseigner **le numéro d'identification du Point de Livraison** concerné *(PDL)* et le **type de mesure** à récupérer.
+
+Lors de la 1ère sauvegarde de l'équipement, le plugin va automatiquement créer les commandes nécessaires et intégrer les historiques disponibles sur le site Enedis jusqu'à 3 ans en arrière. En conséquence, ce processus est suceptible de durer de longues minutes. Vous pouvez en suivre l'avancée depuis le menu **Analyse → Logs** en positionnant les logs en ``debug``.
 
 >**ASTUCE**
 >
