@@ -121,34 +121,33 @@ $eqLogics = eqLogic::byType($plugin->getId());
 									<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="measure_type">
 										<option value="consumption">{{Consommation}}</option>
 										<option value="production">{{Production}}</option>
-										<option value="both">{{Consommation & Production}}</option>
+										<option value="'consumption','production'">{{Consommation & Production}}</option>
 									</select>
 								</div>
 							</div>
 						</div>
 
-						<div class="col-lg-5">
-							<legend><i class="fas fa-camera-retro"></i> {{Widget}}</legend>
+						<div class="col-lg-6">
+							<legend><i class="fas fa-tablet-alt"></i> {{Template de Widget}}</legend>
 							<div class="form-group">
-								<label class="col-sm-4 control-label">{{Template de widget}}
+								<label class="col-sm-3 control-label">{{Activer}}
 									<sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case pour utiliser le template de widget représentant le compteur Linky}}"></i></sup>
 								</label>
-								<div class="col-sm-1">
-									<input type="checkbox" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="widgetTemplate"/>
+								<div class="col-sm-7">
+										<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="widgetTemplate"/>
 								</div>
 							</div>
 							<br>
 							<div class="form-group" id="templateParams">
-								<label class="col-sm-5 control-label">{{Couleur de fond}}
+								<label class="col-sm-3 control-label">{{Couleur de fond}}
 									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner la couleur de fond du template de widget}}"></i></sup>
 								</label>
 								<div class="col-sm-3">
 									<input type="color" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="widgetBGColor"/>
 								</div>
-								<label class="col-sm-2 control-label">{{Transparent}} </label>
-								<div class="col-sm-2">
-									<input type="checkbox" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="widgetTransparent"/>
-								</div>
+									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="widgetTransparent"/>{{Transparent}}
+										<sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case pour un fond transparent}}"></i></sup>
+									</label>
 							</div>
 						</div>
 
@@ -158,8 +157,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
 			</div>
 
 			<div role="tabpanel" class="tab-pane" id="commandtab">
-				<!--<a class="btn btn-success btn-sm cmdAction pull-right" data-action="add" style="margin-top:5px;">
-				<i class="fa fa-plus-circle"></i> {{Commandes}}</a><br/> -->
 				<br/>
 				<table id="table_cmd" class="table table-bordered table-condensed">
 					<thead>
@@ -168,7 +165,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 							<th>{{Nom}}</th>
 							<th>{{Type}}</th>
 							<th>{{Options}}</th>
-							<th>{{Paramètres}}</th>
+							<th>{{Unité}}</th>
 							<th>{{Action}}</th>
 						</tr>
 					</thead>

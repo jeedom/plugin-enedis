@@ -72,15 +72,15 @@ class enedis extends eqLogic {
     $cron->save();
   }
 
-  public function refreshData($startDate = null) {
+  public function refreshData($startDate = null, $endDate = null) {
     if ($this->getIsEnable() == 1) {
       log::add(__CLASS__, 'debug', $this->getHumanName() .' -----------------------------------------------------------------------');
       log::add(__CLASS__, 'debug', $this->getHumanName() . __(' *** Interrogation des serveurs Enedis ***',__FILE__));
       $usagePointId = $this->getConfiguration('usage_point_id');
-      $measureTypes = ($this->getConfiguration('measure_type') != 'both') ? [$this->getConfiguration('measure_type')] : array('consumption', 'production');
+      $measureTypes = array($this->getConfiguration('measure_type'));
       $start_date = (empty($startDate)) ? date('Y-m-d', strtotime('first day of January')) : $startDate;
-      $start_date_load = (empty($startDate)) ? date('Y-m-d', strtotime('-1 day')) : date('Y-m-d', strtotime('-7 days'));
-      $end_date = date('Y-m-d');
+      $start_date_load = (empty($startDate)) ? date('Y-m-d', strtotime('-1 day')) : $startDate;
+      $end_date = (empty($endDate)) ? date('Y-m-d') : $endDate;
       $refresh_day = true;
       $refresh_power = true;
       $refresh_load = true;
@@ -96,7 +96,6 @@ class enedis extends eqLogic {
           foreach ($data['meter_reading']['interval_reading'] as $value) {
             $valueTimestamp = strtotime($value['date']);
             $this->checkData($dailyCmd, $value['value'], date('Y-m-d 00:00:00', $valueTimestamp));
-
             if (date('Y-m-d', $valueTimestamp) >= date('Y-m-d', strtotime('-1 day'))) {
               $refresh_day = false;
             }
@@ -140,7 +139,7 @@ class enedis extends eqLogic {
         if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
           foreach ($data['meter_reading']['interval_reading'] as $value) {
             $this->checkData($loadCmd, $value['value'], $value['date']);
-            if ($value['date'] >= date('Y-m-d')) {
+            if ($value['date'] >= $end_date) {
               $refresh_load = false;
             }
           }
@@ -151,7 +150,7 @@ class enedis extends eqLogic {
       }
 
       if (!$refresh_day && !$refresh_power && !$refresh_load) {
-        log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Toutes les données sont à jour',__FILE__));
+        log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Toutes les données ont été récupérées',__FILE__));
         $this->reschedule();
       }
       else if (date('H') >= 19) {
@@ -175,12 +174,6 @@ class enedis extends eqLogic {
   }
 
   public function checkData($cmd, $value, $date) {
-    if (strlen($date) === 19) {
-      $rounded = new DateTime($date);
-      $rounded->setTime($rounded->format('H'), floor($rounded->format('i') / 5) * 5, 0);
-      $date = $rounded->format("Y-m-d H:i:s");
-    }
-
     $cmdHistory = history::byCmdIdDatetime($cmd->getId(), $date);
     if (!is_object($cmdHistory)) {
       log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $cmd->getName() . __('] Enregistrement mesure : Date = ',__FILE__) . $date . __(' => Mesure = ',__FILE__) . $value);
@@ -199,12 +192,14 @@ class enedis extends eqLogic {
   }
 
   public function preUpdate() {
-    $usagePointId = $this->getConfiguration('usage_point_id');
-    if (empty($usagePointId)) {
-      throw new Exception(__('L\'identifiant du point de livraison (PDL) doit être renseigné',__FILE__));
-    }
-    if (strlen($usagePointId) != 14) {
-      throw new Exception(__('L\'identifiant du point de livraison (PDL) doit contenir 14 caractères',__FILE__));
+    if ($this->getIsEnable() == 1) {
+      $usagePointId = $this->getConfiguration('usage_point_id');
+      if (empty($usagePointId)) {
+        throw new Exception(__('L\'identifiant du point de livraison (PDL) doit être renseigné',__FILE__));
+      }
+      if (strlen($usagePointId) != 14) {
+        throw new Exception(__('L\'identifiant du point de livraison (PDL) doit contenir 14 caractères',__FILE__));
+      }
     }
   }
 
@@ -212,8 +207,8 @@ class enedis extends eqLogic {
     $options = array('enedis_id' => intval($this->getId()));
     $cron = cron::byClassAndFunction(__CLASS__, 'pull', $options);
     if ($this->getIsEnable() == 1) {
-      if (!is_object($cron)) {
-        $this->reschedule();
+      if (!is_file(dirname(__FILE__) . '/../config/cmds/commands.json')) {
+        throw new Exception(__('Fichier de création de commandes non trouvé', __FILE__));
       }
 
       $refreshCmd = $this->getCmd(null, 'refresh');
@@ -229,25 +224,12 @@ class enedis extends eqLogic {
         ->save();
       }
 
-      if (!is_file(dirname(__FILE__) . '/../../data/cmds/commands.json')) {
-        log::add(__CLASS__, 'error', $this->getHumanName() . __('Fichier de création de commandes non trouvé',__FILE__));
+      $cmdsArray = json_decode(file_get_contents(dirname(__FILE__) . '/../config/cmds/commands.json'), true);
+      $measureTypes = array($this->getConfiguration('measure_type'));
+      foreach ($measureTypes as $measureType) {
+        $this->createCommands($cmdsArray[$measureType]);
       }
-      else {
-        $cmdsJson = file_get_contents(dirname(__FILE__) . '/../../data/cmds/commands.json');
-        $cmdsArray = json_decode($cmdsJson, true);
-        $measureType = $this->getConfiguration('measure_type');
-
-        if ($measureType == 'both') {
-          $cons = $this->createCommands($cmdsArray['consumption']);
-          $prod = $this->createCommands($cmdsArray['production']);
-          if ($cons === true || $prod === true) {
-            $this->refreshData(date('Y-m-d', strtotime('-3 years')));
-          }
-        }
-        else if ($this->createCommands($cmdsArray[$measureType])) {
-          $this->refreshData(date('Y-m-d', strtotime('-3 years')));
-        }
-      }
+      $this->refreshData();
     }
     else if (is_object($cron)) {
       $cron->remove(false);
@@ -255,11 +237,9 @@ class enedis extends eqLogic {
   }
 
   public function createCommands($type) {
-    $cmdsCreation = false;
     foreach ($type as $cmd2create) {
       $cmd = $this->getCmd(null, $cmd2create['logicalId']);
       if (!is_object($cmd)) {
-        $cmdsCreation = true;
         log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Création commande : ',__FILE__) . $cmd2create['logicalId'].'/'.$cmd2create['name']);
         $cmd = (new enedisCmd)
         ->setLogicalId($cmd2create['logicalId'])
@@ -286,7 +266,6 @@ class enedis extends eqLogic {
         $cmd->save();
       }
     }
-    return $cmdsCreation;
   }
 
   public function toHtml($_version = 'dashboard') {
