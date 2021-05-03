@@ -19,30 +19,30 @@
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
 function enedis_update() {
+  $cronMinute = config::byKey('cronMinute', 'enedis');
+  if (!empty($cronMinute)) {
+    config::remove('cronMinute', 'enedis');
+  }
+  if (is_dir('/var/www/html/plugins/enedis/data')) {
+    rrmdir('/var/www/html/plugins/enedis/data');
+  }
+
   $eqLogics = eqLogic::byType('enedis');
   foreach ($eqLogics as $eqLogic) {
+    if (!empty($eqLogic->getConfiguration('login')) || !empty($eqLogic->getConfiguration('password'))) {
+      $eqLogic->setConfiguration('login', null);
+      $eqLogic->setConfiguration('password', null);
+      $eqLogic->setIsEnable(0);
+      $eqLogic->save(true);
+    }
+    else if ($eqLogic->getConfiguration('measure_type') == 'both') {
+      $eqLogic->setConfiguration('measure_type', "'consumption','production'")->save(true);
+    }
+
     $options = array('enedis_id' => intval($eqLogic->getId()));
     $cron = cron::byClassAndFunction(__CLASS__, 'pull', $options);
     if ($eqLogic->getIsEnable() == 1 && !is_object($cron)) {
-      $eqLogic->reschedule();
-    }
-
-    // Remove old confs
-    $cronMinute = config::byKey('cronMinute', 'enedis');
-    if (!empty($cronMinute)) {
-      config::remove('cronMinute', 'enedis');
-    }
-    if (!empty($eqLogic->getConfiguration('login'))) {
-      $eqLogic->setConfiguration('login', null);
-      $update = true;
-    }
-    if (!empty($eqLogic->getConfiguration('password'))) {
-      $eqLogic->setConfiguration('password', null);
-      $update = true;
-    }
-    if (isset($update) && $update === true) {
-      $eqLogic->setIsEnable(0);
-      $eqLogic->save(true);
+      $eqLogic->refreshData();
     }
   }
 }
