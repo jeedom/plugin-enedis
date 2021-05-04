@@ -158,14 +158,15 @@ $eqLogics = eqLogic::byType($plugin->getId());
 
 			<div role="tabpanel" class="tab-pane" id="commandtab">
 				<br/>
+				<div class="table-responsive">
 				<table id="table_cmd" class="table table-bordered table-condensed">
 					<thead>
 						<tr>
 							<th>{{Id}}</th>
 							<th>{{Nom}}</th>
 							<th>{{Type}}</th>
-							<th>{{Options}}</th>
 							<th>{{Unité}}</th>
+							<th>{{Options}}</th>
 							<th>{{Action}}</th>
 						</tr>
 					</thead>
@@ -173,12 +174,11 @@ $eqLogics = eqLogic::byType($plugin->getId());
 					</tbody>
 				</table>
 			</div>
+			</div>
 		</div>
 
 	</div>
 </div>
 
-<!-- Inclusion du fichier javascript du plugin (dossier, nom_du_fichier, extension_du_fichier, nom_du_plugin) -->
 <?php include_file('desktop', 'enedis', 'js', 'enedis');?>
-<!-- Inclusion du fichier javascript du core - NE PAS MODIFIER NI SUPPRIMER -->
 <?php include_file('core', 'plugin.template', 'js');?>
