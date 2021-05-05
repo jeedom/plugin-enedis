@@ -224,7 +224,22 @@ class enedis extends eqLogic {
   }
 
   public function recordData($cmd, $value, $date, $function = 'addHistoryValue') {
-    if (date('Gi', strtotime($date)) == 000 && !is_object(history::byCmdIdDatetime($cmd->getId(), $date)) || date('Gi', strtotime($date)) != 000 && date('Gi', strtotime($date)) != 2330 && empty($cmd->getHistory(date('Y-m-d H:i:s', strtotime('-29 minutes '.$date)), date('Y-m-d 23:59:59', strtotime($date)))) || date('Gi', strtotime($date)) == 2330 && !is_object(history::byCmdIdDatetime($cmd->getId(), date('Y-m-d 00:00:00', strtotime('+1 day ' . $date))))) {
+    $record = false;
+    if (strpos($cmd->getLogicalId(), 'load') !== false) {
+      if (date('Gi', strtotime($date)) == 2330) {
+        if (!is_object(history::byCmdIdDatetime($cmd->getId(), date('Y-m-d 00:00:00', strtotime('+1 day ' . $date))))) {
+          $record = true;
+        }
+      }
+      else if (empty($cmd->getHistory($date, date('Y-m-d 23:59:59', strtotime($date))))) {
+        $record = true;
+      }
+    }
+    else if (empty($cmd->getHistory(date('Y-m-d 00:00:00', strtotime($date)), date('Y-m-d 23:59:59', strtotime($date))))) {
+      $record = true;
+    }
+
+    if ($record) {
       if ($function === 'event') {
         log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $cmd->getName() . __('] Mise à jour de la valeur : Date = ',__FILE__) . $date . __(' => Mesure = ',__FILE__) . $value);
         $cmd->event($value, $date);
