@@ -48,7 +48,7 @@
     "plugins\/enedis\/desktop\/js\/enedis.js": {
         "Nom de la commande": "Bestellname",
         "Icône": "Symbol",
-        "Unité": "Einheit",
+        "Unité": "Unit",
         "Afficher": "Anzeige",
         "Historiser": "Chronik",
         "Inverser": "Umkehren",
