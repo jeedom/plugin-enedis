@@ -6,6 +6,12 @@
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto.
 
+# 01/05/2021
+
+- Optimización del número de llamadas a los servidores de Enedis mediante la autoprogramación de tareas en jeedom
+- Optimización de código
+- Reorganización de los parámetros de configuración y la documentación
+
 # 18/02/2021
 
 - Se agregó administración de dependencias para confirmar la presencia de `php-mbstring` ausente en algunas instalaciones

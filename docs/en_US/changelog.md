@@ -6,6 +6,12 @@
 >
 >As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text.
 
+# 05/01/2021
+
+- Optimization of the number of calls to Enedis servers by the auto-programming of tasks in jeedom
+- Code optimization
+- Reorganization of configuration settings and documentation
+
 # 02/18/2021
 
 - Added dependency management to confirm the presence of `php-mbstring` absent on some installations

@@ -6,6 +6,12 @@
 >
 >Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt.
 
+# 01.05.2021
+
+- Optimierung der Anzahl der Aufrufe von Enedis-Servern durch automatische Programmierung von Aufgaben in jeedom
+- Codeoptimierung
+- Neuorganisation der Konfigurationseinstellungen und Dokumentation
+
 # 18.02.2021
 
 - Abhängigkeitsverwaltung hinzugefügt, um das Vorhandensein von "php-mbstring" zu bestätigen, das bei einigen Installationen nicht vorhanden ist

@@ -1,7 +1,5 @@
 # Enedis plugin
 
-# Description
-
 Plugin allowing the recovery of electricity consumption data from smart meters *(linky for example)* by questioning the [customer account **Enedis**](https://mon-compte.enedis.fr/auth/XUI/#login/&realm=/enedis&forward=true){:target = "\_ blank"}.
 
 >**Important**
@@ -12,8 +10,6 @@ It is possible to access data from **consumption**, of **production** or to the 
 
 5 data are reported for each type of measurement :
 - the **hourly consumption** per half hour *(in kW)*.
->*Otherwise called "load curve", this data returns the power demanded / injected on average over half an hour.*
-
 - the **daily consumption** *(in kWh)*.
 - the **monthly consumption** *(in kWh)*.
 - the **annual consumption** *(in kWh)*.
@@ -23,27 +19,19 @@ It is possible to access data from **consumption**, of **production** or to the 
 >    
 >As the data is not made available in real time, the plugin retrieves the electricity consumption data from the day before each day.
 
-# Configuration
+As long as the plugin has not retrieved all of the data from the day before, it continues to poll the servers every hour between 7 a.m. and 8 p.m., otherwise calls are suspended until the next day.
 
-## Plugin configuration
+# Configuration
 
 Like any Jeedom plugin, the plugin **Enedis** must be activated after installation.
 
+## Dependency management
+
 The plugin requires the presence of the Linux package `php-mbstring` normally present by default, so the dependency status must be **Okay** as soon as the plugin is installed. Otherwise, click on the button **Revive** to install the missing package.
 
-As long as the plugin has not retrieved all of the data from the day before, it continues to poll the servers every hour between 5 a.m. and 8 p.m., otherwise calls are suspended until the next day.
+## Plugin configuration
 
-In order not to overload the Enedis servers, calls are made at a random minute which can be viewed or modified on the plugin configuration page.
-
-## Equipment configuration
-
-To access the different equipment **Enedis**, go to the menu **Plugins → Energy → Enedis**.
-
->**INFORMATION**
->    
->The button **+ Add** allows you to add a new meter / PDL.
-
-If you haven't already done so, start by authorizing the sharing of Enedis data with Jeedom by clicking on the button **Link Enedis with Jeedom : I access my Enedis customer area** :      
+If you haven't already done so, start by authorizing the sharing of Enedis data with Jeedom by clicking on the button **Link Enedis with Jeedom : I access my Enedis customer area** from the plugin configuration page :      
 
 ![Lien espace-client Enedis](../images/link_enedis.png)
 
@@ -63,9 +51,17 @@ Once the data sharing is validated, this page is displayed :
 >    
 >If you are unable to access any of these pages, disable the browser ad blocker.
 
-Once the data sharing has been authorized, all that remains is to inform **the identification number of the Delivery Point** concerned *(PDL)* and the **type of measurement** to get back.
+## Equipment configuration
 
-When saving the equipment for the first time, the plugin will automatically create the necessary commands and integrate the histories available on the Enedis website up to 3 years back.
+To access the different equipment **Enedis**, go to the menu **Plugins → Energy → Enedis**.
+
+>**INFORMATION**
+>    
+>The button **+ Add** allows you to add a new meter / PDL.
+
+Once data sharing has been authorized from the plugin configuration page, all you have to do is enter **the identification number of the Delivery Point** concerned *(PDL)* and the **type of measurement** to get back.
+
+During the 1st backup of the equipment, the plugin will automatically create the necessary commands and integrate the histories available on the Enedis site up to 3 years back. As a result, this process is likely to take long minutes. You can follow the progress from the menu **Analysis → Logs** by positioning the logs in ``debug``.
 
 >**TRICK**
 >

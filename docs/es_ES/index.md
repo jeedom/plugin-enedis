@@ -1,7 +1,5 @@
 # Complemento de Enedis
 
-# Description
-
 Complemento que permite la recuperación de datos de consumo eléctrico de contadores inteligentes *(linky por ejemplo)* cuestionando el [cuenta cliente **Enedis**](https://mon-compte.enedis.fr/auth/XUI/#login/&realm=/enedis&forward=true){:target = "\_ en blanco"}.
 
 >**Importante**
@@ -12,8 +10,6 @@ Es posible acceder a datos desde **consumo**, de **producción** oa los 2 tipos 
 
 Se reportan 5 datos para cada tipo de medición :
 - el **consumo por hora** por media hora *(en kW)*.
->*También llamado "curva de carga", estos datos devuelven la potencia demandada / inyectada en promedio durante media hora.*
-
 - el **consumo diario** *(en kWh)*.
 - el **consumo mensual** *(en kWh)*.
 - el **consumo anual** *(en kWh)*.
@@ -23,27 +19,19 @@ Se reportan 5 datos para cada tipo de medición :
 >    
 >Como los datos no están disponibles en tiempo real, el complemento recupera los datos de consumo de electricidad del día anterior a cada día.
 
-# Configuration
+Siempre que el complemento no haya recuperado todos los datos del día anterior, continúa sondeando los servidores cada hora entre las 7 a.m. y las 8 p.m., de lo contrario, las llamadas se suspenden hasta el día siguiente.
 
-## Configuración del plugin
+# Configuration
 
 Como cualquier complemento de Jeedom, el complemento **Enedis** debe activarse después de la instalación.
 
+## Gestión de la dependencia
+
 El complemento requiere la presencia del paquete de Linux `php-mbstring` normalmente presente de forma predeterminada, por lo que el estado de dependencia debe ser **Bueno** tan pronto como se instale el complemento. De lo contrario, haga clic en el botón **Reanimar** para instalar el paquete que falta.
 
-Siempre que el complemento no haya recuperado todos los datos del día anterior, continúa sondeando los servidores cada hora entre las 5 a.m. y las 8 p.m., de lo contrario, las llamadas se suspenden hasta el día siguiente.
+## Configuración del plugin
 
-Para no sobrecargar los servidores de Enedis, las llamadas se realizan en un minuto aleatorio que se puede ver o modificar en la página de configuración del complemento.
-
-## Configuración del equipo
-
-Para acceder a los diferentes equipos **Enedis**, ir al menú **Complementos → Energía → Enedis**.
-
->**INFORMACIÓN**
->    
->El botón **+ Agregar** le permite agregar un nuevo medidor / PDL.
-
-Si aún no lo ha hecho, comience por autorizar el intercambio de datos de Enedis con Jeedom haciendo clic en el botón **Vincula a Enedis con Jeedom : Accedo a mi área de clientes de Enedis** :      
+Si aún no lo ha hecho, comience por autorizar el intercambio de datos de Enedis con Jeedom haciendo clic en el botón **Vincula a Enedis con Jeedom : Accedo a mi área de clientes de Enedis** desde la página de configuración del complemento :      
 
 ![Lien espace-client Enedis](../images/link_enedis.png)
 
@@ -63,9 +51,17 @@ Una vez que se valida el intercambio de datos, se muestra esta página :
 >    
 >Si no puede acceder a ninguna de estas páginas, desactive el bloqueador de anuncios del navegador.
 
-Una vez que se ha autorizado el intercambio de datos, todo lo que queda es informar **el número de identificación del Punto de Entrega** preocupado *(PDL)* y el **tipo de medida** volver.
+## Configuración del equipo
 
-Al guardar el equipo por primera vez, el complemento creará automáticamente los comandos necesarios e integrará los historiales disponibles en el sitio web de Enedis hasta hace 3 años.
+Para acceder a los diferentes equipos **Enedis**, ir al menú **Complementos → Energía → Enedis**.
+
+>**INFORMACIÓN**
+>    
+>El botón **+ Agregar** le permite agregar un nuevo medidor / PDL.
+
+Una vez que se haya autorizado el intercambio de datos desde la página de configuración del complemento, todo lo que tiene que hacer es ingresar **el número de identificación del Punto de Entrega** preocupado *(PDL)* y el **tipo de medida** volver.
+
+Durante la primera copia de seguridad del equipo, el complemento creará automáticamente los comandos necesarios e integrará los historiales disponibles en el sitio de Enedis hasta hace 3 años. Como resultado, es probable que este proceso tarde muchos minutos. Puedes seguir el progreso desde el menú **Análisis → Registros** colocando los registros en ``debug``.
 
 >**CONSEJO**
 >
