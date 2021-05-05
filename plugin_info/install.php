@@ -35,13 +35,9 @@ function enedis_update() {
       $eqLogic->setIsEnable(0);
       $eqLogic->save(true);
     }
-    else if ($eqLogic->getConfiguration('measure_type') == 'both') {
-      $eqLogic->setConfiguration('measure_type', "'consumption','production'")->save(true);
-    }
 
-    $options = array('enedis_id' => intval($eqLogic->getId()));
-    $cron = cron::byClassAndFunction(__CLASS__, 'pull', $options);
-    if ($eqLogic->getIsEnable() == 1 && !is_object($cron)) {
+    $crons = cron::searchClassAndFunction(__CLASS__, 'pull', '"enedis_id":' . intval($eqLogic->getId()));
+    if ($eqLogic->getIsEnable() == 1 && !is_array($crons)) {
       $eqLogic->refreshData();
     }
   }
@@ -50,11 +46,7 @@ function enedis_update() {
 function enedis_remove() {
   $eqLogics = eqLogic::byType('enedis');
   foreach ($eqLogics as $eqLogic) {
-    $options = array('enedis_id' => intval($eqLogic->getId()));
-    $cron = cron::byClassAndFunction(__CLASS__, 'pull', $options);
-    if (is_object($cron)) {
-      $cron->remove(false);
-    }
+    enedis::cleanCrons(intval($eqLogic->getId()));
   }
 }
 ?>

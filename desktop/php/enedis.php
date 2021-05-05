@@ -121,7 +121,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 									<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="measure_type">
 										<option value="consumption">{{Consommation}}</option>
 										<option value="production">{{Production}}</option>
-										<option value="'consumption','production'">{{Consommation & Production}}</option>
+										<option value="both">{{Consommation & Production}}</option>
 									</select>
 								</div>
 							</div>
