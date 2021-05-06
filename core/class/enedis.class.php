@@ -251,7 +251,11 @@ class enedis extends eqLogic {
       }
       else {
         log::add(__CLASS__, 'debug', $cmd->getHumanName() . __(' Enregistrement historique : Date = ',__FILE__) . $date . __(' => Mesure = ',__FILE__) . $value);
-        $cmd->addHistoryValue($value/1000, $date);
+        $valueOffset = $cmd->getConfiguration('calculValueOffset', '');
+        if (!empty($valueOffset) && strpos($valueOffset, '#value#') !== false) {
+          $value = jeedom::evaluateExpression(str_replace('#value#', $value, $valueOffset));
+        }
+        $cmd->addHistoryValue($value, $date);
       }
     }
   }
