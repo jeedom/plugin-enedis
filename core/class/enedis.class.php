@@ -231,6 +231,11 @@ class enedis extends eqLogic {
           $record = true;
         }
       }
+      else if (date('Gi', strtotime($date)) == 000) {
+        if (!is_object(history::byCmdIdDatetime($cmd->getId(), $date))) {
+          $record = true;
+        }
+      }
       else if (empty($cmd->getHistory($date, date('Y-m-d 23:59:59', strtotime($date))))) {
         $record = true;
       }
