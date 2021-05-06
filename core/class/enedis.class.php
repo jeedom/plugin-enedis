@@ -41,7 +41,7 @@ class enedis extends eqLogic {
 
   public static function cleanCrons($eqLogicId) {
     $crons = cron::searchClassAndFunction('enedis', 'pull', '"enedis_id":' . $eqLogicId);
-    if (is_array($crons)) {
+    if (!empty($crons)) {
       foreach ($crons as $cron) {
         $cron->remove(false);
       }
@@ -51,8 +51,8 @@ class enedis extends eqLogic {
   public static function pull($options) {
     $eqLogic = enedis::byId($options['enedis_id']);
     if (!is_object($eqLogic)) {
-      throw new Exception(__('Tâche supprimée car équipement non trouvé (ID) : ', __FILE__) . $options['enedis_id']);
       enedis::cleanCrons($options['enedis_id']);
+      throw new Exception(__('Tâche supprimée car équipement non trouvé (ID) : ', __FILE__) . $options['enedis_id']);
     }
     $options = $eqLogic->cleanArray($options, 'enedis_id');
     sleep(rand(1,59));
@@ -321,6 +321,10 @@ class enedis extends eqLogic {
     else {
       self::cleanCrons(intval($this->getId()));
     }
+  }
+
+  public function preRemove() {
+    self::cleanCrons(intval($this->getId()));
   }
 
   public function createCommands($type) {

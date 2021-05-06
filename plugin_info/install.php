@@ -18,6 +18,16 @@
 
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
+function enedis_install() {
+  $eqLogics = eqLogic::byType('enedis');
+  foreach ($eqLogics as $eqLogic) {
+    $crons = cron::searchClassAndFunction(__CLASS__, 'pull', '"enedis_id":' . intval($eqLogic->getId()));
+    if ($eqLogic->getIsEnable() == 1 && empty($crons)) {
+      $eqLogic->refreshData();
+    }
+  }
+}
+
 function enedis_update() {
   $cronMinute = config::byKey('cronMinute', 'enedis');
   if (!empty($cronMinute)) {
@@ -29,24 +39,17 @@ function enedis_update() {
 
   $eqLogics = eqLogic::byType('enedis');
   foreach ($eqLogics as $eqLogic) {
+    $crons = cron::searchClassAndFunction(__CLASS__, 'pull', '"enedis_id":' . intval($eqLogic->getId()));
+    if ($eqLogic->getIsEnable() == 1 && empty($crons)) {
+      $eqLogic->refreshData();
+    }
     if (!empty($eqLogic->getConfiguration('login')) || !empty($eqLogic->getConfiguration('password'))) {
       $eqLogic->setConfiguration('login', null);
       $eqLogic->setConfiguration('password', null);
       $eqLogic->setIsEnable(0);
       $eqLogic->save(true);
     }
-
-    $crons = cron::searchClassAndFunction(__CLASS__, 'pull', '"enedis_id":' . intval($eqLogic->getId()));
-    if ($eqLogic->getIsEnable() == 1 && !is_array($crons)) {
-      $eqLogic->refreshData();
-    }
   }
 }
 
-function enedis_remove() {
-  $eqLogics = eqLogic::byType('enedis');
-  foreach ($eqLogics as $eqLogic) {
-    enedis::cleanCrons(intval($eqLogic->getId()));
-  }
-}
 ?>
