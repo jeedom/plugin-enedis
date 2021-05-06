@@ -241,11 +241,11 @@ class enedis extends eqLogic {
 
     if ($record) {
       if ($function === 'event') {
-        log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $cmd->getName() . __('] Mise à jour de la valeur  : Date = ',__FILE__) . $date . __(' => Mesure = ',__FILE__) . $value);
+        log::add(__CLASS__, 'debug', $cmd->getHumanName() . __(' Mise à jour de la valeur  : Date = ',__FILE__) . $date . __(' => Mesure = ',__FILE__) . $value);
         $cmd->event($value, $date);
       }
       else {
-        log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $cmd->getName() . __('] Enregistrement historique : Date = ',__FILE__) . $date . __(' => Mesure = ',__FILE__) . $value);
+        log::add(__CLASS__, 'debug', $cmd->getHumanName() . __(' Enregistrement historique : Date = ',__FILE__) . $date . __(' => Mesure = ',__FILE__) . $value);
         $cmd->addHistoryValue($value/1000, $date);
       }
     }
