@@ -19,7 +19,7 @@ Il est possible d'accéder aux données de **consommation**, de **production** o
 >    
 >Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille.
 
-Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs toutes les heures entre 7h et 20h, autrement les appels sont suspendus jusqu'au lendemain.
+Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs Enedis toutes les heures entre 7h et 20h, autrement les appels sont suspendus jusqu'au lendemain.
 
 # Configuration
 
@@ -61,7 +61,7 @@ Pour accéder aux différents équipements **Enedis**, dirigez-vous vers le menu
 
 Une fois le partage des données autorisé depuis la page de configuration du plugin, il ne reste plus qu'à renseigner **le numéro d'identification du Point de Livraison** concerné *(PDL)* et le **type de mesure** à récupérer.
 
-Lors de la 1ère sauvegarde de l'équipement, le plugin va automatiquement créer les commandes nécessaires et intégrer les historiques disponibles sur le site Enedis jusqu'à 3 ans en arrière. En conséquence, ce processus est suceptible de durer de longues minutes. Vous pouvez en suivre l'avancée depuis le menu **Analyse → Logs** en positionnant les logs en ``debug``.
+Lors de la 1ère sauvegarde d'un équipement actif et configuré, le plugin va automatiquement créer les commandes nécessaires et intégrer les historiques disponibles sur le site Enedis depuis le 1er janvier de l'année en cours. Ce processus est susceptible de durer plusieurs minutes, vous pouvez en suivre l'avancée depuis le menu **Analyse → Logs** *(logs en ``debug``)*.
 
 >**ASTUCE**
 >
@@ -71,17 +71,31 @@ Lors de la 1ère sauvegarde de l'équipement, le plugin va automatiquement crée
 >
 >Les données de consommation horaire sont quand à elles récupérées sur les 7 derniers jours au maximum.
 
+## Ajout de données
+
+Il est possible d'intégrer des historiques à la demande, jusqu'à 3 années en arrière, directement depuis le site Enedis. Pour se faire, il suffit de cliquer sur le bouton bleu **Ajout historiques** depuis l’onglet **Commandes** d’un équipement, dans la colonne **Action** de la commande concernée :
+
+![Ajout d'historiques](../images/enedis_addHistory.png)
+
+Choisissez ensuite la date de début puis cliquez sur **OK** pour initier le processus.
+
+Les données jour, mois, année et puissance max seront intégrées de la date choisie jusqu'au 1er janvier de l'année en cours. Les données horaires, quand à elles, seront intégrées jusqu’à 7 jours après la date choisie.
+
+>**INFORMATION**
+>
+>Ces contraintes de temps sont fixées par Enedis.
+
 # Template de widget
+
+>**INFORMATION**
+>     
+>Le template de widget sera affiché aussi bien sur les versions desktop que mobile.
 
 Le plugin offre la possibilité d'afficher les données de consommation et/ou de production dans un template de widget imitant l'aspect d'un compteur *Linky*. Le clic sur le bouton "**- \| +**" permet de basculer de la consommation à la production pour ceux qui ont accès aux 2 types de mesures.
 
 ![Template de widget](../images/enedis_screenshot1.png)
 
 Pour activer cette option, il suffit de cocher la case **Template de widget** sur la page générale de l'équipement concerné. Une fois la case cochée, une option permet de sélectionner la couleur de fond du widget *(163, 204, 40 par défaut)*.
-
->**INFORMATION**
->     
->Le template de widget sera affiché aussi bien sur les versions desktop que mobile.
 
 >**ASTUCE**
 >     

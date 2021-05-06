@@ -6,11 +6,12 @@
 >
 >Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte.
 
-# 01/05/2021
+# 05/2021
 
-- Optimisation du nombre d'appels aux serveurs Enedis par l'auto-programmation de tâches dans jeedom
-- Optimisation du code
-- Réorganisation des paramètres de configuration et de la documentation
+- Mise en place d'un système d'auto-programmation
+- Possibilité d'intégrer des historiques à la demande
+- Meilleurs traitements et intégrations des données
+- Réorganisation des paramètres de configuration, des fichiers et de la documentation
 
 # 18/02/2021
 
