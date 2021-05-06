@@ -56,7 +56,9 @@
         "Intégrer les historiques de la date choisie jusqu\\'au 1er janvier": "Integrar os históricos da data escolhida até 1º de janeiro",
         "Intégrer les consommations horaires jusqu\\'à 7 jours après la date choisie": "Integre o consumo por hora em até 7 dias após a data escolhida",
         "Choisir la date de début": "Escolha a data de início",
-        "Ajout de données": "Adicionando dados"
+        "Ajout de données": "Adicionando dados",
+        "En cours d\\'intégration d\\'historiques...": "Em processo de integração histórica",
+        "Historiques intégrés avec succès": "Histórias integradas com sucesso"
     },
     "plugins\/enedis\/core\/ajax\/enedis.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -79,9 +81,9 @@
         " Arrêt des appels aux serveurs Enedis": "Interrompendo chamadas para servidores Enedis",
         " Certaines données n\\'ont pas été récupérées : ": "Alguns dados não foram recuperados:",
         " *** Fin d\\'interrogation des serveurs Enedis ***": "*** Fim do interrogatório dos servidores Enedis ***",
-        "] Mise à jour de la valeur : Date = ": "] Atualizar valor: Data =",
+        " Mise à jour de la valeur  : Date = ": "Valor de atualização: Data =",
         " => Mesure = ": "=> Medir =",
-        "] Enregistrement historique : Date = ": "] Registro histórico: Data =",
+        " Enregistrement historique : Date = ": "Registro histórico: Data =",
         "L\\'identifiant du point de livraison (PDL) doit être renseigné": "O identificador do ponto de entrega (PDL) deve ser inserido",
         "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères": "O identificador do ponto de entrega (PDL) deve conter 14 caracteres",
         "Fichier de création de commandes non trouvé": "Arquivo de criação de pedido não encontrado",

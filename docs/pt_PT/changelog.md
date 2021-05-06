@@ -6,11 +6,12 @@
 >
 >Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto.
 
-# 01/05/2021
+# 20/0521
 
-- Otimização do número de chamadas aos servidores Enedis pela autoprogramação de tarefas no jeedom
-- Otimização de código
-- Reorganização de definições de configuração e documentação
+- Implementação de um sistema de autoprogramação
+- Possibilidade de integração de histórias sob demanda
+- Melhor processamento e integração de dados
+- Reorganização de definições de configuração, arquivos e documentação
 
 # 18/02/2021
 

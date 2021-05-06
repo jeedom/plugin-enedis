@@ -19,7 +19,7 @@ Plugin que permite a recuperação de dados de consumo de eletricidade de medido
 >    
 >Como os dados não são disponibilizados em tempo real, o plugin recupera os dados de consumo de eletricidade da véspera de cada dia.
 
-Enquanto o plug-in não recuperou todos os dados do dia anterior, ele continua a pesquisar os servidores a cada hora entre 7h e 20h, caso contrário, as chamadas serão suspensas até o dia seguinte.
+Enquanto o plug-in não recuperou todos os dados do dia anterior, ele continua a pesquisar os servidores Enedis a cada hora entre 7h e 20h, caso contrário, as chamadas serão suspensas até o dia seguinte.
 
 # Configuration
 
@@ -61,7 +61,7 @@ Para acessar os diferentes equipamentos **Enedis**, vá para o menu **Plugins �
 
 Uma vez que o compartilhamento de dados foi autorizado na página de configuração do plugin, tudo que você precisa fazer é entrar **o número de identificação do Ponto de Entrega** preocupado *(PDL)* e a **tipo de medição** para voltar.
 
-Durante o 1º backup do equipamento, o plugin irá criar automaticamente os comandos necessários e integrar os históricos disponíveis no site da Enedis até 3 anos atrás. Como resultado, esse processo provavelmente levará longos minutos. Você pode acompanhar o progresso do menu **Análise → Logs** posicionando os registros ``debug``.
+Durante o 1º backup de um dispositivo ativo e configurado, o plugin irá criar automaticamente os comandos necessários e integrar os históricos disponíveis no site da Enedis desde 1º de janeiro do corrente ano. Este processo provavelmente levará vários minutos, você pode acompanhar o progresso no menu **Análise → Logs** *(loga ``debug``)*.
 
 >**DICA**
 >
@@ -71,17 +71,31 @@ Durante o 1º backup do equipamento, o plugin irá criar automaticamente os coma
 >
 >Os dados de consumo por hora são recuperados nos últimos 7 dias, no máximo.
 
+## Adicionando dados
+
+É possível integrar histórias sob demanda, até 3 anos atrás, diretamente do site da Enedis. Para fazer isso, basta clicar no botão azul **Acréscimos históricos** da guia **Pedidos** de um item de equipamento, na coluna **Açao** da ordem em questão :
+
+![Ajout d'historiques](../images/enedis_addHistory.png)
+
+Em seguida, escolha a data de início e clique em **Certo** para iniciar o processo.
+
+Os dados de dia, mês, ano e potência máxima serão integrados a partir da data escolhida até 1º de janeiro do ano atual. Os dados horários, quando o forem, serão integrados em até 7 dias após a data escolhida.
+
+>**EM FORMAÇÃO**
+>
+>Essas restrições de tempo são definidas pela Enedis.
+
 # Template de widget
+
+>**EM FORMAÇÃO**
+>     
+>O modelo do widget será exibido nas versões desktop e móvel.
 
 O plugin oferece a possibilidade de exibir dados de consumo e / ou produção em um template de widget que imita a aparência de um medidor *Linky*. O clique no botão "**- \| +**" permite passar do consumo para a produção para quem tem acesso a 2 tipos de medidas.
 
 ![Template de widget](../images/enedis_screenshot1.png)
 
 Para ativar esta opção, basta marcar a caixa **Template de widget** na página geral do equipamento em questão. Uma vez que a caixa é marcada, uma opção permite que você selecione a cor de fundo do widget *(163, 204, 40 por padrão)*.
-
->**EM FORMAÇÃO**
->     
->O modelo do widget será exibido nas versões desktop e móvel.
 
 >**DICA**
 >     

@@ -19,7 +19,7 @@ Für jede Messart werden 5 Daten angegeben :
 >    
 >Da die Daten nicht in Echtzeit verfügbar sind, ruft das Plugin die Stromverbrauchsdaten vom Vortag ab.
 
-Solange das Plugin nicht alle Daten vom Vortag abgerufen hat, werden die Server weiterhin stündlich zwischen 7.00 und 20.00 Uhr abgefragt. Andernfalls werden Anrufe bis zum nächsten Tag ausgesetzt.
+Solange das Plugin nicht alle Daten vom Vortag abgerufen hat, werden die Enedis-Server weiterhin stündlich zwischen 7.00 und 20.00 Uhr abgefragt. Andernfalls werden Anrufe bis zum nächsten Tag ausgesetzt.
 
 # Configuration
 
@@ -61,7 +61,7 @@ Zugriff auf die verschiedenen Geräte **Enedis**, Gehe zum Menü **Plugins → E
 
 Nachdem die Datenfreigabe auf der Plugin-Konfigurationsseite autorisiert wurde, müssen Sie nur noch eingeben **die Identifikationsnummer der Lieferstelle** besorgt *(PDL)* und der **Art der Messung** zurück zu bekommen.
 
-Während der ersten Sicherung des Geräts erstellt das Plugin automatisch die erforderlichen Befehle und integriert die auf der Enedis-Site verfügbaren Historien bis zu 3 Jahren. Infolgedessen dauert dieser Vorgang wahrscheinlich lange Minuten. Sie können den Fortschritt über das Menü verfolgen **Analyse → Protokolle** durch Positionieren der Logs ``debug``.
+Während der ersten Sicherung eines aktiven und konfigurierten Geräts erstellt das Plugin automatisch die erforderlichen Befehle und integriert die seit dem 1. Januar des laufenden Jahres auf der Enedis-Site verfügbaren Historien. Dieser Vorgang dauert wahrscheinlich einige Minuten. Sie können den Fortschritt über das Menü verfolgen **Analyse → Protokolle** *(meldet sich an ``debug``)*.
 
 >**TIPP**
 >
@@ -71,17 +71,31 @@ Während der ersten Sicherung des Geräts erstellt das Plugin automatisch die er
 >
 >Die stündlichen Verbrauchsdaten werden höchstens in den letzten 7 Tagen abgerufen.
 
+## Daten hinzufügen
+
+Es ist möglich, Historien bei Bedarf bis zu 3 Jahren direkt von der Enedis-Site aus zu integrieren. Klicken Sie dazu einfach auf die blaue Schaltfläche **Historische Ergänzungen** von der Registerkarte **Aufträge** eines Ausrüstungsgegenstandes in der Spalte **Aktion** der betreffenden Bestellung :
+
+![Ajout d'historiques](../images/enedis_addHistory.png)
+
+Wählen Sie dann das Startdatum und klicken Sie auf **In Ordnung** um den Prozess zu initiieren.
+
+Die Daten für Tag, Monat, Jahr und maximale Leistung werden ab dem gewählten Datum bis zum 1. Januar des laufenden Jahres integriert. Die stündlichen Daten werden, wenn sie vorliegen, bis zu 7 Tage nach dem gewählten Datum integriert.
+
+>**INFORMATION**
+>
+>Diese zeitlichen Einschränkungen werden von Enedis festgelegt.
+
 # Widget-Vorlage
+
+>**INFORMATION**
+>     
+>Die Widget-Vorlage wird sowohl auf Desktop- als auch auf Mobilversionen angezeigt.
 
 Das Plugin bietet die Möglichkeit, Verbrauchs- und / oder Produktionsdaten in einer Widget-Vorlage anzuzeigen, die das Erscheinungsbild eines Zählers imitiert *Linky*. Der Klick auf die Schaltfläche "**- \.| +**" ermöglicht den Wechsel vom Verbrauch zur Produktion für diejenigen, die Zugang zu zwei Arten von Maßnahmen haben.
 
 ![Widget-Vorlage](../images/enedis_screenshot1.png)
 
 Um diese Option zu aktivieren, aktivieren Sie einfach das Kontrollkästchen **Widget-Vorlage** auf der allgemeinen Seite der betreffenden Ausrüstung. Sobald das Kontrollkästchen aktiviert ist, können Sie mit einer Option die Hintergrundfarbe des Widgets auswählen *(Standardmäßig 163, 204, 40)*.
-
->**INFORMATION**
->     
->Die Widget-Vorlage wird sowohl auf Desktop- als auch auf Mobilversionen angezeigt.
 
 >**TIPP**
 >     

@@ -56,7 +56,9 @@
         "Intégrer les historiques de la date choisie jusqu\\'au 1er janvier": "Integrieren Sie die Historien des gewählten Datums bis zum 1. Januar",
         "Intégrer les consommations horaires jusqu\\'à 7 jours après la date choisie": "Integrieren Sie den stündlichen Verbrauch bis zu 7 Tage nach dem gewählten Datum",
         "Choisir la date de début": "Startdatum auswählen",
-        "Ajout de données": "Daten hinzufügen"
+        "Ajout de données": "Daten hinzufügen",
+        "En cours d\\'intégration d\\'historiques...": "Im Prozess der Integration historischer",
+        "Historiques intégrés avec succès": "Erfolgreich integrierte Geschichten"
     },
     "plugins\/enedis\/core\/ajax\/enedis.ajax.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -79,9 +81,9 @@
         " Arrêt des appels aux serveurs Enedis": "Beenden von Anrufen an Enedis-Server",
         " Certaines données n\\'ont pas été récupérées : ": "Einige Daten wurden nicht wiederhergestellt:",
         " *** Fin d\\'interrogation des serveurs Enedis ***": "*** Ende der Abfrage von Enedis-Servern ***",
-        "] Mise à jour de la valeur : Date = ": "] Aktualisierungswert: Datum =",
+        " Mise à jour de la valeur  : Date = ": "Aktualisierungswert: Datum =",
         " => Mesure = ": "=> Messen =",
-        "] Enregistrement historique : Date = ": "] Historische Aufzeichnung: Datum =",
+        " Enregistrement historique : Date = ": "Historische Aufzeichnung: Datum =",
         "L\\'identifiant du point de livraison (PDL) doit être renseigné": "Die Zustellpunktkennung (PDL) muss eingegeben werden",
         "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères": "Die Zustellpunktkennung (PDL) muss 14 Zeichen enthalten",
         "Fichier de création de commandes non trouvé": "Auftragserstellungsdatei nicht gefunden",

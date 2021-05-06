@@ -19,7 +19,7 @@ Se reportan 5 datos para cada tipo de medición :
 >    
 >Como los datos no están disponibles en tiempo real, el complemento recupera los datos de consumo de electricidad del día anterior a cada día.
 
-Siempre que el complemento no haya recuperado todos los datos del día anterior, continúa sondeando los servidores cada hora entre las 7 a.m. y las 8 p.m., de lo contrario, las llamadas se suspenden hasta el día siguiente.
+Siempre que el complemento no haya recuperado todos los datos del día anterior, continúa sondeando los servidores de Enedis cada hora entre las 7 a.m. y las 8 p.m., de lo contrario, las llamadas se suspenden hasta el día siguiente.
 
 # Configuration
 
@@ -61,7 +61,7 @@ Para acceder a los diferentes equipos **Enedis**, ir al menú **Complementos →
 
 Una vez que se haya autorizado el intercambio de datos desde la página de configuración del complemento, todo lo que tiene que hacer es ingresar **el número de identificación del Punto de Entrega** preocupado *(PDL)* y el **tipo de medida** volver.
 
-Durante la primera copia de seguridad del equipo, el complemento creará automáticamente los comandos necesarios e integrará los historiales disponibles en el sitio de Enedis hasta hace 3 años. Como resultado, es probable que este proceso tarde muchos minutos. Puedes seguir el progreso desde el menú **Análisis → Registros** colocando los registros en ``debug``.
+Durante la primera copia de seguridad de un dispositivo activo y configurado, el complemento creará automáticamente los comandos necesarios e integrará los historiales disponibles en el sitio de Enedis desde el 1 de enero del año en curso. Es probable que este proceso tarde varios minutos, puede seguir el progreso desde el menú **Análisis → Registros** *(inicia sesión ``debug``)*.
 
 >**CONSEJO**
 >
@@ -71,17 +71,31 @@ Durante la primera copia de seguridad del equipo, el complemento creará automá
 >
 >Los datos de consumo por hora se recuperan durante los últimos 7 días como máximo.
 
+## Agregar datos
+
+Es posible integrar historias bajo demanda, hasta 3 años atrás, directamente desde el sitio de Enedis. Para hacerlo, simplemente haga clic en el botón azul **Adiciones históricas** desde la pestaña **Pedidos** de un equipo, en la columna **Acción** de la orden en cuestión :
+
+![Ajout d'historiques](../images/enedis_addHistory.png)
+
+Luego elija la fecha de inicio y haga clic en **Bueno** para iniciar el proceso.
+
+Los datos de día, mes, año y potencia máxima se integrarán desde la fecha elegida hasta el 1 de enero del año en curso. Los datos horarios, cuando lo sean, se integrarán hasta 7 días después de la fecha elegida.
+
+>**INFORMACIÓN**
+>
+>Estas limitaciones de tiempo las establece Enedis.
+
 # Plantilla de widget
+
+>**INFORMACIÓN**
+>     
+>La plantilla del widget se mostrará en las versiones de escritorio y móvil.
 
 El complemento ofrece la posibilidad de mostrar datos de consumo y / o producción en una plantilla de widget imitando la apariencia de un medidor *Linky*. El clic en el botón "**- \| +**" permite pasar del consumo a la producción para quienes tienen acceso a 2 tipos de medidas.
 
 ![Plantilla de widget](../images/enedis_screenshot1.png)
 
 Para activar esta opción, simplemente marque la casilla **Plantilla de widget** en la página general del equipo en cuestión. Una vez que la casilla está marcada, una opción le permite seleccionar el color de fondo del widget *(163, 204, 40 por defecto)*.
-
->**INFORMACIÓN**
->     
->La plantilla del widget se mostrará en las versiones de escritorio y móvil.
 
 >**CONSEJO**
 >     

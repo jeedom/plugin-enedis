@@ -56,7 +56,9 @@
         "Intégrer les historiques de la date choisie jusqu\\'au 1er janvier": "Intégrer les historiques de la date choisie jusqu\\'au 1er janvier",
         "Intégrer les consommations horaires jusqu\\'à 7 jours après la date choisie": "Intégrer les consommations horaires jusqu\\'à 7 jours après la date choisie",
         "Choisir la date de début": "Choisir la date de début",
-        "Ajout de données": "Ajout de données"
+        "Ajout de données": "Ajout de données",
+        "En cours d\\'intégration d\\'historiques...": "En cours d\\'intégration d\\'historiques...",
+        "Historiques intégrés avec succès": "Historiques intégrés avec succès"
     },
     "plugins\/enedis\/core\/ajax\/enedis.ajax.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -79,9 +81,9 @@
         " Arrêt des appels aux serveurs Enedis": " Arrêt des appels aux serveurs Enedis",
         " Certaines données n\\'ont pas été récupérées : ": " Certaines données n\\'ont pas été récupérées : ",
         " *** Fin d\\'interrogation des serveurs Enedis ***": " *** Fin d\\'interrogation des serveurs Enedis ***",
-        "] Mise à jour de la valeur : Date = ": "] Mise à jour de la valeur : Date = ",
+        " Mise à jour de la valeur  : Date = ": " Mise à jour de la valeur  : Date = ",
         " => Mesure = ": " => Mesure = ",
-        "] Enregistrement historique : Date = ": "] Enregistrement historique : Date = ",
+        " Enregistrement historique : Date = ": " Enregistrement historique : Date = ",
         "L\\'identifiant du point de livraison (PDL) doit être renseigné": "L\\'identifiant du point de livraison (PDL) doit être renseigné",
         "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères": "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères",
         "Fichier de création de commandes non trouvé": "Fichier de création de commandes non trouvé",

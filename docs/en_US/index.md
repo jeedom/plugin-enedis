@@ -19,7 +19,7 @@ It is possible to access data from **consumption**, of **production** or to the 
 >    
 >As the data is not made available in real time, the plugin retrieves the electricity consumption data from the day before each day.
 
-As long as the plugin has not retrieved all of the data from the day before, it continues to poll the servers every hour between 7 a.m. and 8 p.m., otherwise calls are suspended until the next day.
+As long as the plugin has not retrieved all of the data from the day before, it continues to poll the Enedis servers every hour between 7 a.m. and 8 p.m., otherwise calls are suspended until the next day.
 
 # Configuration
 
@@ -61,7 +61,7 @@ To access the different equipment **Enedis**, go to the menu **Plugins → Energ
 
 Once data sharing has been authorized from the plugin configuration page, all you have to do is enter **the identification number of the Delivery Point** concerned *(PDL)* and the **type of measurement** to get back.
 
-During the 1st backup of the equipment, the plugin will automatically create the necessary commands and integrate the histories available on the Enedis site up to 3 years back. As a result, this process is likely to take long minutes. You can follow the progress from the menu **Analysis → Logs** by positioning the logs in ``debug``.
+During the 1st backup of an active and configured device, the plugin will automatically create the necessary commands and integrate the histories available on the Enedis site since January 1st of the current year. This process is likely to take several minutes, you can follow the progress from the menu **Analysis → Logs** *(logs in ``debug``)*.
 
 >**TRICK**
 >
@@ -71,17 +71,31 @@ During the 1st backup of the equipment, the plugin will automatically create the
 >
 >Hourly consumption data is retrieved over the last 7 days at most.
 
+## Adding data
+
+It is possible to integrate histories on demand, up to 3 years back, directly from the Enedis site. To do so, just click on the blue button **Historical additions** from the tab **Orders** of an item of equipment, in the column **Action** of the order concerned :
+
+![Ajout d'historiques](../images/enedis_addHistory.png)
+
+Then choose the start date and click on **Okay** to initiate the process.
+
+The day, month, year and maximum power data will be integrated from the date chosen until January 1 of the current year. The hourly data, when they are, will be integrated up to 7 days after the chosen date.
+
+>**INFORMATION**
+>
+>These time constraints are set by Enedis.
+
 # Widget template
+
+>**INFORMATION**
+>     
+>The widget template will be displayed on both desktop and mobile versions.
 
 The plugin offers the possibility of displaying consumption and / or production data in a widget template imitating the appearance of a meter *Linky*. The click on the button "**- \| +**" allows to switch from consumption to production for those who have access to 2 types of measures.
 
 ![Widget template](../images/enedis_screenshot1.png)
 
 To activate this option, just check the box **Widget template** on the general page of the equipment concerned. Once the box is checked, an option allows you to select the background color of the widget *(163, 204, 40 by default)*.
-
->**INFORMATION**
->     
->The widget template will be displayed on both desktop and mobile versions.
 
 >**TRICK**
 >     

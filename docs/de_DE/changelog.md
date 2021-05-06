@@ -6,11 +6,12 @@
 >
 >Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt.
 
-# 01.05.2021
+# 05/2021
 
-- Optimierung der Anzahl der Aufrufe von Enedis-Servern durch automatische Programmierung von Aufgaben in jeedom
-- Codeoptimierung
-- Neuorganisation der Konfigurationseinstellungen und Dokumentation
+- Implementierung eines automatischen Programmiersystems
+- Möglichkeit der Integration von Historien nach Bedarf
+- Bessere Datenverarbeitung und Integration
+- Neuorganisation von Konfigurationseinstellungen, Dateien und Dokumentation
 
 # 18.02.2021
 
