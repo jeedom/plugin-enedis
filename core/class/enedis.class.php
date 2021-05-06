@@ -95,7 +95,7 @@ class enedis extends eqLogic {
         $end_date_load = date('Y-m-d', strtotime('+7 days '.$_startDate));
       }
 
-      $measureTypes = ($this->getConfiguration('measure_type') != 'both') ? [$this->getConfiguration('measure_type')] : array('consumption', 'production');
+      $measureTypes = ($this->getConfiguration('measure_type') != 'both') ? [$this->getConfiguration('measure_type')] : ['consumption', 'production'];
       foreach ($measureTypes as $measureType) {
         $dailyCmd = $this->getCmd('info', 'daily_'.$measureType);
         $dailyCmd->execCmd();
@@ -312,7 +312,7 @@ class enedis extends eqLogic {
       }
 
       $cmdsArray = json_decode(file_get_contents(dirname(__FILE__) . '/../config/cmds/commands.json'), true);
-      $measureTypes = ($this->getConfiguration('measure_type') != 'both') ? [$this->getConfiguration('measure_type')] : array('consumption', 'production');
+      $measureTypes = ($this->getConfiguration('measure_type') != 'both') ? [$this->getConfiguration('measure_type')] : ['consumption', 'production'];
       foreach ($measureTypes as $measureType) {
         $this->createCommands($cmdsArray[$measureType]);
       }
