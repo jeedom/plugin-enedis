@@ -107,6 +107,7 @@ function addCmdToTable(_cmd) {
       size: 'small',
       callback: function (result) {
         if (result) {
+          $('#div_alert').showAlert({message: '{{En cours d\'intégration d\'historiques...}}', level: 'warning'});
           $.ajax({
             type: "POST",
             url: "plugins/enedis/core/ajax/enedis.ajax.php",
@@ -117,9 +118,10 @@ function addCmdToTable(_cmd) {
             },
             dataType: 'json',
             error: function (request, status, error) {
-              handleAjaxError(request, status, error, $('#md_importAlert'));
+              handleAjaxError(request, status, error, $('#div_alert'));
             },
             success: function (data) {
+              $('#div_alert').showAlert({message: '{{Historiques intégrés avec succès}}', level: 'success'});
             }
           })
         }
