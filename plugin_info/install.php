@@ -43,7 +43,7 @@ function enedis_update() {
     if ($eqLogic->getIsEnable() == 1 && empty($crons)) {
       $eqLogic->refreshData();
     }
-    if (!empty($eqLogic->getConfiguration('login')) || !empty($eqLogic->getConfiguration('password'))) {
+    if ($eqLogic->getConfiguration('login') != '' || $eqLogic->getConfiguration('password') != '') {
       $eqLogic->setConfiguration('login', null);
       $eqLogic->setConfiguration('password', null);
       $eqLogic->setIsEnable(0);

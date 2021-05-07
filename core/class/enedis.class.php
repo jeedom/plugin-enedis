@@ -49,9 +49,9 @@ class enedis extends eqLogic {
   }
 
   public static function pull($options) {
-    $eqLogic = enedis::byId($options['enedis_id']);
+    $eqLogic = self::byId($options['enedis_id']);
     if (!is_object($eqLogic)) {
-      enedis::cleanCrons($options['enedis_id']);
+      self::cleanCrons($options['enedis_id']);
       throw new Exception(__('Tâche supprimée car équipement non trouvé (ID) : ', __FILE__) . $options['enedis_id']);
     }
     $options = $eqLogic->cleanArray($options, 'enedis_id');
