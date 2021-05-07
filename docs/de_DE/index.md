@@ -31,7 +31,7 @@ Das Plugin erfordert das Vorhandensein des Linux-Pakets `php-mbstring`, das norm
 
 ## Plugin Konfiguration
 
-Wenn Sie dies noch nicht getan haben, autorisieren Sie zunächst die Freigabe von Enedis-Daten mit Jeedom, indem Sie auf die Schaltfläche klicken **Verbinde Enedis mit Jeedom : Ich greife auf meinen Enedis-Kundenbereich zu** von der Plugin-Konfigurationsseite :      
+Wenn Sie dies noch nicht getan haben, autorisieren Sie zunächst die Freigabe von Enedis-Daten mit Jeedom, indem Sie auf die Schaltfläche klicken **Autorisieren Sie den Zugriff auf Enedis-Server : Ich greife auf meinen Enedis-Kundenbereich zu** von der Plugin-Konfigurationsseite :      
 
 ![Lien espace-client Enedis](../images/link_enedis.png)
 

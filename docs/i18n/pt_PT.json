@@ -74,7 +74,7 @@
         "Dans le cas contraire, il faudra cliquer sur le bouton": "Caso contrário, clique no botão",
         "pour installer le paquet manquant": "para instalar o pacote que falta",
         "Configuration du plugin": "Configuração do plugin",
-        "Lier Enedis avec Jeedom": "Link Enedis com Jeedom",
+        "Autoriser l'accès aux serveurs Enedis": "Autorizar acesso aos servidores Enedis",
         "j'accède à mon espace client Enedis": "Eu acesso minha área de cliente Enedis",
         "Si ce n'est pas déjà fait, commencez par autoriser le partage des données Enedis avec Jeedom en cliquant sur le bouton": "Se ainda não o fez, comece por autorizar a partilha de dados Enedis com a Jeedom clicando no botão",
         "depuis la page de configuration du plugin": "da página de configuração do plugin",

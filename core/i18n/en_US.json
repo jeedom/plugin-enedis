@@ -1,6 +1,7 @@
 {
     "plugins\/enedis\/plugin_info\/configuration.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Autoriser l'accès aux serveurs Enedis": "Authorize access to Enedis servers",
         "Cliquez sur l'image pour autoriser la liaison entre votre compte market Jeedom et Enedis": "Click on the image to authorize the link between your Jeedom market account and Enedis"
     },
     "plugins\/enedis\/desktop\/php\/enedis.php": {

@@ -74,7 +74,7 @@
         "Dans le cas contraire, il faudra cliquer sur le bouton": "Otherwise, click on the button",
         "pour installer le paquet manquant": "to install the missing package",
         "Configuration du plugin": "Plugin configuration",
-        "Lier Enedis avec Jeedom": "Link Enedis with Jeedom",
+        "Autoriser l'accès aux serveurs Enedis": "Authorize access to Enedis servers",
         "j'accède à mon espace client Enedis": "I access my Enedis customer area",
         "Si ce n'est pas déjà fait, commencez par autoriser le partage des données Enedis avec Jeedom en cliquant sur le bouton": "If you haven't already done so, start by authorizing the sharing of Enedis data with Jeedom by clicking on the button",
         "depuis la page de configuration du plugin": "from the plugin configuration page",

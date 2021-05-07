@@ -31,7 +31,7 @@ O plugin requer a presença do pacote Linux `php-mbstring` normalmente presente 
 
 ## Configuração do plugin
 
-Se ainda não o fez, comece por autorizar a partilha de dados Enedis com a Jeedom clicando no botão **Link Enedis com Jeedom : Eu acesso minha área de cliente Enedis** da página de configuração do plugin :      
+Se ainda não o fez, comece por autorizar a partilha de dados Enedis com a Jeedom clicando no botão **Autorizar acesso aos servidores Enedis : Eu acesso minha área de cliente Enedis** da página de configuração do plugin :      
 
 ![Lien espace-client Enedis](../images/link_enedis.png)
 
