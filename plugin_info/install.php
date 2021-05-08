@@ -21,7 +21,7 @@ require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 function enedis_install() {
   $eqLogics = eqLogic::byType('enedis');
   foreach ($eqLogics as $eqLogic) {
-    $crons = cron::searchClassAndFunction(__CLASS__, 'pull', '"enedis_id":' . intval($eqLogic->getId()));
+    $crons = cron::searchClassAndFunction('enedis', 'pull', '"enedis_id":' . intval($eqLogic->getId()));
     if ($eqLogic->getIsEnable() == 1 && empty($crons)) {
       $eqLogic->refreshData();
     }
@@ -39,7 +39,7 @@ function enedis_update() {
 
   $eqLogics = eqLogic::byType('enedis');
   foreach ($eqLogics as $eqLogic) {
-    $crons = cron::searchClassAndFunction(__CLASS__, 'pull', '"enedis_id":' . intval($eqLogic->getId()));
+    $crons = cron::searchClassAndFunction('enedis', 'pull', '"enedis_id":' . intval($eqLogic->getId()));
     if ($eqLogic->getIsEnable() == 1 && empty($crons)) {
       $eqLogic->refreshData();
     }

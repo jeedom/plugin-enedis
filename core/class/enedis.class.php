@@ -23,24 +23,24 @@ class enedis extends eqLogic {
 
   public static function dependancy_info() {
     $return = array();
-    $return['progress_file'] = jeedom::getTmpFolder('enedis') . '/dependance';
+    $return['progress_file'] = jeedom::getTmpFolder(__CLASS__) . '/dependance';
     $return['state'] = 'ok';
     if (exec("dpkg-query -W -f='\${Status}\n' php-mbstring") == 'unknown ok not-installed') {
       $return['state'] = 'nok';
     }
-    else if (config::byKey('lastDependancyInstallTime', 'enedis') == '') {
-      config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), 'enedis');
+    else if (config::byKey('lastDependancyInstallTime', __CLASS__) == '') {
+      config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), __CLASS__);
     }
     return $return;
   }
 
   public static function dependancy_install() {
     log::remove(__CLASS__ . '_update');
-    return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('enedis') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
+    return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder(__CLASS__) . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
   }
 
   public static function cleanCrons($eqLogicId) {
-    $crons = cron::searchClassAndFunction('enedis', 'pull', '"enedis_id":' . $eqLogicId);
+    $crons = cron::searchClassAndFunction(__CLASS__, 'pull', '"enedis_id":' . $eqLogicId);
     if (!empty($crons)) {
       foreach ($crons as $cron) {
         $cron->remove(false);
