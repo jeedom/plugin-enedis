@@ -43,12 +43,13 @@
       "logicalId": "yearly_consumption"
     },
     {
-      "name": "Consommation horaire",
+      "name": "Consommation Horaire",
       "isVisible": 1,
       "isHistorized": 1,
       "unite" :"kW",
       "configuration":{
         "calculValueOffset":"#value#\/1000",
+        "historizeMode": "none",
         "historizeRound":"3"
       },
       "generic_type":"CONSUMPTION",
@@ -63,6 +64,7 @@
       "unite":"kVA",
       "configuration":{
         "calculValueOffset":"#value#\/1000",
+        "historizeMode": "none",
         "historizeRound":"2"
       },
       "generic_type":"POWER",
@@ -112,12 +114,13 @@
       "logicalId": "yearly_production"
     },
     {
-      "name": "Production horaire",
+      "name": "Production Horaire",
       "isVisible": 1,
       "isHistorized": 1,
       "unite" :"kW",
       "configuration":{
         "calculValueOffset":"#value#\/1000",
+        "historizeMode": "none",
         "historizeRound":"3"
       },
       "order":10,
@@ -131,6 +134,7 @@
       "unite":"kVA",
       "configuration":{
         "calculValueOffset":"#value#\/1000",
+        "historizeMode": "none",
         "historizeRound":"2"
       },
       "generic_type":"POWER",

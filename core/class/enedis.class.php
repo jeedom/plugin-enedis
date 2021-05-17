@@ -21,134 +21,201 @@ require_once __DIR__  . '/../../../../core/php/core.inc.php';
 
 class enedis extends eqLogic {
 
-  public static function cron() {
-    $cronMinute = config::byKey('cronMinute', __CLASS__);
-    if (!empty($cronMinute) && date('i') != $cronMinute) return;
-
-    $eqLogics = self::byType(__CLASS__, true);
-
-    foreach ($eqLogics as $eqLogic) {
-      if (date('G') < 5 || date('G') >= 20) {
-        if ($eqLogic->getCache('getEnedisData') == 'done') {
-          $eqLogic->setCache('getEnedisData', null);
-        }
-      }
-      else if ($eqLogic->getCache('getEnedisData') != 'done') {
-        $eqLogic->refreshData();
-      }
-    }
-  }
-
   public static function dependancy_info() {
     $return = array();
-    $return['progress_file'] = jeedom::getTmpFolder('enedis') . '/dependance';
+    $return['progress_file'] = jeedom::getTmpFolder(__CLASS__) . '/dependance';
     $return['state'] = 'ok';
     if (exec("dpkg-query -W -f='\${Status}\n' php-mbstring") == 'unknown ok not-installed') {
       $return['state'] = 'nok';
     }
-    // $packages = system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/../../plugin_info/packages.json'),true));
-    // $return['state'] = ($packages['apt::php-mbstring']['status'] == 1) ? 'ok' : 'nok';
+    else if (config::byKey('lastDependancyInstallTime', __CLASS__) == '') {
+      config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), __CLASS__);
+    }
     return $return;
   }
 
   public static function dependancy_install() {
     log::remove(__CLASS__ . '_update');
-    return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('enedis') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
+    return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder(__CLASS__) . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
   }
 
-  public function refreshData($startDate = null) {
-    log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Interrogation des serveurs Enedis',__FILE__));
-    $usagePointId = $this->getConfiguration('usage_point_id');
-    $measureTypes = ($this->getConfiguration('measure_type') != 'both') ? [$this->getConfiguration('measure_type')] : array('consumption', 'production');
-    $start_date = (empty($startDate)) ? date('Y-m-d', strtotime('first day of January')) : $startDate;
-    $start_date_load = (empty($startDate)) ? date('Y-m-d', strtotime('-1 day')) : date('Y-m-d', strtotime('-7 days'));
-    $end_date = date('Y-m-d');
-    $need_refresh = false;
-
-    foreach ($measureTypes as $measureType) {
-      $dailyCmd = $this->getCmd('info', 'daily_'.$measureType);
-      $dailyCmd->execCmd();
-      if (empty($startDate) && $dailyCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
-        log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $dailyCmd->getName() . __('] Données déjà enregistrées pour le ',__FILE__) . date('d/m/Y', strtotime('-1 day')));
+  public static function cleanCrons($eqLogicId) {
+    $crons = cron::searchClassAndFunction(__CLASS__, 'pull', '"enedis_id":' . $eqLogicId);
+    if (!empty($crons)) {
+      foreach ($crons as $cron) {
+        $cron->remove(false);
       }
-      else {
-        $monthlyCmd = $this->getCmd('info', 'monthly_'.$measureType);
-        $yearlyCmd = $this->getCmd('info', 'yearly_'.$measureType);
-        $returnMonthValue = 0;
-        $returnYearValue = 0;
-        $need_refresh = true;
-        $data = $this->getData('/metering_data/daily_'.$measureType.'?start='.$start_date.'&end='.$end_date.'&usage_point_id='.$usagePointId);
-        if(isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
-          foreach ($data['meter_reading']['interval_reading'] as $value) {
-            $valueTimestamp = strtotime($value['date']);
-            $this->checkData($dailyCmd, $value['value'], date('Y-m-d 00:00:00', $valueTimestamp));
-
-            if ($value['date'] == date('Y-m-01', $valueTimestamp)) {
-              $returnMonthValue = $value['value'];
-            }
-            else {
-              $returnMonthValue += $value['value'];
-            }
-            $this->checkData($monthlyCmd, $returnMonthValue, date('Y-m-d 00:00:00', $valueTimestamp));
-
-            if ($value['date'] == date('Y-01-01', $valueTimestamp)) {
-              $returnYearValue = $value['value'];
-            }
-            else {
-              $returnYearValue += $value['value'];
-            }
-            $this->checkData($yearlyCmd, $returnYearValue, date('Y-m-d 00:00:00', $valueTimestamp));
-          }
-        }
-        else if (isset($data['error'])) {
-          log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $dailyCmd->getName() . __('] Erreur sur la récupération des données : ',__FILE__) . $data['error'] . ' ' . $data['error_description']);
-        }
-      }
-
-      $dailyMaxCmd = $this->getCmd('info', 'daily_'.$measureType.'_max_power');
-      $dailyMaxCmd->execCmd();
-      if (empty($startDate) && $dailyMaxCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
-        log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $dailyMaxCmd->getName() . __('] Données déjà enregistrées pour le ',__FILE__) . date('d/m/Y', strtotime('-1 day')));
-      }
-      else {
-        $need_refresh = true;
-        $data = $this->getData('/metering_data/daily_'.$measureType.'_max_power?start='.$start_date.'&end='.$end_date.'&usage_point_id='.$usagePointId);
-        if(isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])){
-          foreach ($data['meter_reading']['interval_reading'] as $value) {
-            $this->checkData($dailyMaxCmd, $value['value'], $value['date']);
-          }
-        }
-        else if (isset($data['error'])) {
-          log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $dailyMaxCmd->getName() . __('] Erreur sur la récupération des données : ',__FILE__) . $data['error'] . ' ' . $data['error_description']);
-        }
-      }
-
-      $loadCmd = $this->getCmd('info', $measureType.'_load_curve');
-      $loadCmd->execCmd();
-      if ($loadCmd->getCollectDate() >= date('Y-m-d', strtotime('today'))) {
-        log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $loadCmd->getName() . __('] Données déjà enregistrées pour le ',__FILE__) . date('d/m/Y', strtotime('-1 day')));
-      }
-      else {
-        $need_refresh = true;
-        $data = $this->getData('/metering_data/'.$measureType.'_load_curve?start='.$start_date_load.'&end='.$end_date.'&usage_point_id='.$usagePointId);
-        if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
-          foreach ($data['meter_reading']['interval_reading'] as $value) {
-            $this->checkData($loadCmd, $value['value'], $value['date']);
-          }
-        }
-        else if (isset($data['error'])) {
-          log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $loadCmd->getName() . __('] Erreur sur la récupération des données : ',__FILE__) . $data['error'] . ' ' . $data['error_description']);
-        }
-      }
-    }
-
-    if ($need_refresh === false && $this->getCache('getEnedisData') != 'done') {
-      $this->setCache('getEnedisData', 'done');
-      log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Toutes les données sont à jour - désactivation de la vérification automatique pour aujourd\'hui',__FILE__));
     }
   }
 
-  public function getData($_path){
+  public static function pull($options) {
+    $eqLogic = self::byId($options['enedis_id']);
+    if (!is_object($eqLogic)) {
+      self::cleanCrons($options['enedis_id']);
+      throw new Exception(__('Tâche supprimée car équipement non trouvé (ID) : ', __FILE__) . $options['enedis_id']);
+    }
+    $options = $eqLogic->cleanArray($options, 'enedis_id');
+    sleep(rand(1,59));
+    $eqLogic->refreshData(null, $options);
+  }
+
+  public function reschedule($options = array()) {
+    if (empty($options)) {
+      $next_launch = strtotime('+1 day ' . date('Y-m-d 07:'.rand(1,59)));
+    }
+    else {
+      $next_launch = strtotime('+1 hour ' . date('Y-m-d H:i'));
+    }
+    log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Prochaine programmation : ',__FILE__) . date('d/m/Y H:i', $next_launch));
+    $options['enedis_id'] = intval($this->getId());
+    self::cleanCrons($options['enedis_id']);
+    $cron = (new cron)
+    ->setClass(__CLASS__)
+    ->setFunction('pull')
+    ->setOption($options)
+    ->setTimeout(120)
+    ->setOnce(1);
+    $cron->setSchedule(cron::convertDateToCron($next_launch));
+    $cron->save();
+  }
+
+  public function refreshData($_startDate = null, $_toRefresh = array()) {
+    if ($this->getIsEnable() == 1) {
+      log::add(__CLASS__, 'debug', $this->getHumanName() .' -----------------------------------------------------------------------');
+      log::add(__CLASS__, 'debug', $this->getHumanName() . __(' *** Début d\'interrogation des serveurs Enedis ***',__FILE__));
+      $usagePointId = $this->getConfiguration('usage_point_id');
+      if (empty($_startDate)) {
+        $start_date = date('Y-m-d', strtotime('first day of January'));
+        $start_date_load = date('Y-m-d', strtotime('-7 days'));
+        $end_date = $end_date_load = date('Y-m-d');
+      }
+      else {
+        $start_date = $start_date_load = $_startDate;
+        $end_date = date('Y-m-d', strtotime('first day of January'));
+        $end_date_load = date('Y-m-d', strtotime('+7 days '.$_startDate));
+      }
+
+      $measureTypes = ($this->getConfiguration('measure_type') != 'both') ? [$this->getConfiguration('measure_type')] : ['consumption', 'production'];
+      foreach ($measureTypes as $measureType) {
+        $dailyCmd = $this->getCmd('info', 'daily_'.$measureType);
+        $dailyCmd->execCmd();
+        if (empty($_startDate) && $dailyCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
+          log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Données journalières déjà enregistrées pour le ',__FILE__) . date('d/m/Y', strtotime('-1 day')));
+        }
+        else if (empty($_toRefresh) || $_toRefresh['daily_'.$measureType]) {
+          log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Récupération des données journalières',__FILE__));
+          $to_refresh['daily_'.$measureType] = true;
+          $monthlyCmd = $this->getCmd('info', 'monthly_'.$measureType);
+          $yearlyCmd = $this->getCmd('info', 'yearly_'.$measureType);
+          $returnMonthValue = $returnYearValue = 0;
+
+          $data = $this->callEnedis('/metering_data/daily_'.$measureType.'?start='.$start_date.'&end='.$end_date.'&usage_point_id='.$usagePointId);
+          if(isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
+            foreach ($data['meter_reading']['interval_reading'] as $value) {
+              $valueTimestamp = strtotime($value['date']);
+
+              if ($value['date'] == date('Y-m-01', $valueTimestamp)) {
+                $returnMonthValue = $value['value'];
+              }
+              else {
+                $returnMonthValue += $value['value'];
+              }
+
+              if ($value['date'] == date('Y-01-01', $valueTimestamp)) {
+                $returnYearValue = $value['value'];
+              }
+              else {
+                $returnYearValue += $value['value'];
+              }
+
+              if (empty($_startDate) && date('Y-m-d', $valueTimestamp) >= date('Y-m-d', strtotime('-1 day '.$end_date))) {
+                $to_refresh = $this->cleanArray($to_refresh, 'daily_'.$measureType);
+                $this->recordData($dailyCmd, $value['value'], date('Y-m-d 00:00:00', $valueTimestamp), 'event');
+                $this->recordData($monthlyCmd, $returnMonthValue, date('Y-m-d 00:00:00', $valueTimestamp), 'event');
+                $this->recordData($yearlyCmd, $returnYearValue, date('Y-m-d 00:00:00', $valueTimestamp), 'event');
+              }
+              else {
+                $this->recordData($dailyCmd, $value['value'], date('Y-m-d 00:00:00', $valueTimestamp));
+                $this->recordData($monthlyCmd, $returnMonthValue, date('Y-m-d 00:00:00', $valueTimestamp));
+                $this->recordData($yearlyCmd, $returnYearValue, date('Y-m-d 00:00:00', $valueTimestamp));
+              }
+            }
+          }
+          else if (isset($data['error'])) {
+            log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Erreur lors de la récupération des données journalières : ',__FILE__) . $data['error'] . ' ' . $data['error_description']);
+          }
+        }
+
+        $loadCmd = $this->getCmd('info', $measureType.'_load_curve');
+        $loadCmd->execCmd();
+        if (empty($_startDate) && $loadCmd->getCollectDate() >= date('Y-m-d')) {
+          log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Données horaires déjà enregistrées pour le ',__FILE__) . date('d/m/Y', strtotime('-1 day')));
+        }
+        else if (empty($_toRefresh) || $_toRefresh[$measureType.'_load_curve']) {
+          log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Récupération des données horaires',__FILE__));
+          $to_refresh[$measureType.'_load_curve'] = true;
+          $data = $this->callEnedis('/metering_data/'.$measureType.'_load_curve?start='.$start_date_load.'&end='.$end_date_load.'&usage_point_id='.$usagePointId);
+          if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
+            foreach ($data['meter_reading']['interval_reading'] as $value) {
+              if (empty($_startDate) && $value['date'] >= $end_date_load) {
+                $to_refresh = $this->cleanArray($to_refresh, $measureType.'_load_curve');
+                $this->recordData($loadCmd, $value['value'], $value['date'], 'event');
+              }
+              else {
+                $this->recordData($loadCmd, $value['value'], $value['date']);
+              }
+            }
+          }
+          else if (isset($data['error'])) {
+            log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Erreur lors de la récupération des données horaires : ',__FILE__) . $data['error'] . ' ' . $data['error_description']);
+          }
+        }
+
+        $dailyMaxCmd = $this->getCmd('info', 'daily_'.$measureType.'_max_power');
+        $dailyMaxCmd->execCmd();
+        if (empty($_startDate) && $dailyMaxCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
+          log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Données de puissance déjà enregistrées pour le ',__FILE__) . date('d/m/Y', strtotime('-1 day')));
+        }
+        else if (empty($_toRefresh) || $_toRefresh['daily_'.$measureType.'_max_power']) {
+          log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Récupération des données de puissance',__FILE__));
+          $to_refresh['daily_'.$measureType.'_max_power'] = true;
+          $data = $this->callEnedis('/metering_data/daily_'.$measureType.'_max_power?start='.$start_date.'&end='.$end_date.'&usage_point_id='.$usagePointId);
+          if(isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])){
+            foreach ($data['meter_reading']['interval_reading'] as $value) {
+              if (empty($_startDate) && $value['date'] >= date('Y-m-d', strtotime('-1 day '.$end_date))) {
+                $to_refresh = $this->cleanArray($to_refresh, 'daily_'.$measureType.'_max_power');
+                $this->recordData($dailyMaxCmd, $value['value'], $value['date'], 'event');
+              }
+              else {
+                $this->recordData($dailyMaxCmd, $value['value'], $value['date']);
+              }
+            }
+          }
+          else if (isset($data['error'])) {
+            log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Erreur lors de la récupération des données de puissance : ',__FILE__) . $data['error'] . ' ' . $data['error_description']);
+          }
+        }
+      }
+
+      if (empty($_startDate)) {
+        if (empty($to_refresh)) {
+          log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Toutes les données ont été récupérées',__FILE__));
+          $this->reschedule();
+        }
+        else if (date('G') >= 19) {
+          log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Arrêt des appels aux serveurs Enedis',__FILE__));
+          $this->reschedule();
+        }
+        else {
+          log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Certaines données n\'ont pas été récupérées : ',__FILE__) . implode(' ', array_keys($to_refresh)));
+          $this->reschedule($to_refresh);
+        }
+      }
+      log::add(__CLASS__, 'debug', $this->getHumanName() . __(' *** Fin d\'interrogation des serveurs Enedis ***',__FILE__));
+    }
+  }
+
+  public function callEnedis($_path){
     $url = config::byKey('service::cloud::url').'/service/enedis?path='.urlencode($_path);
     $request_http = new com_http($url);
     $request_http->setHeader(array('Content-Type: application/json','Autorization: '.sha512(mb_strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))));
@@ -156,22 +223,51 @@ class enedis extends eqLogic {
     return $result;
   }
 
-  public function checkData($cmd, $value, $date) {
-    if (strlen($date) === 19) {
-      $rounded = new DateTime($date);
-      $rounded->setTime(
-        $rounded->format('H'),
-        floor($rounded->format('i') / 5) * 5,
-        0
-      );
-      $date = $rounded->format("Y-m-d H:i:s");
+  public function recordData($cmd, $value, $date, $function = 'addHistoryValue') {
+    $record = false;
+    if (strpos($cmd->getLogicalId(), 'load') !== false) {
+      if (date('Gi', strtotime($date)) == 2330) {
+        if (!is_object(history::byCmdIdDatetime($cmd->getId(), date('Y-m-d 00:00:00', strtotime('+1 day ' . $date))))) {
+          $record = true;
+        }
+      }
+      else if (date('Gi', strtotime($date)) == 000) {
+        if (!is_object(history::byCmdIdDatetime($cmd->getId(), $date))) {
+          $record = true;
+        }
+      }
+      else if (empty($cmd->getHistory($date, date('Y-m-d 23:59:59', strtotime($date))))) {
+        $record = true;
+      }
+    }
+    else if (empty($cmd->getHistory(date('Y-m-d 00:00:00', strtotime($date)), date('Y-m-d 23:59:59', strtotime($date))))) {
+      $record = true;
     }
 
-    $cmdHistory = history::byCmdIdDatetime($cmd->getId(), $date);
-    if (!is_object($cmdHistory)) {
-      log::add(__CLASS__, 'debug', $this->getHumanName() . '[' . $cmd->getName() . __('] Enregistrement mesure : Date = ',__FILE__) . $date . __(' => Mesure = ',__FILE__) . $value);
-      $cmd->event($value, $date);
+    if ($record) {
+      if ($function === 'event') {
+        log::add(__CLASS__, 'debug', $cmd->getHumanName() . __(' Mise à jour de la valeur  : Date = ',__FILE__) . $date . __(' => Mesure = ',__FILE__) . $value);
+        $cmd->event($value, $date);
+      }
+      else {
+        log::add(__CLASS__, 'debug', $cmd->getHumanName() . __(' Enregistrement historique : Date = ',__FILE__) . $date . __(' => Mesure = ',__FILE__) . $value);
+        $valueOffset = $cmd->getConfiguration('calculValueOffset', '');
+        if (!empty($valueOffset) && strpos($valueOffset, '#value#') !== false) {
+          $value = jeedom::evaluateExpression(str_replace('#value#', $value, $valueOffset));
+        }
+        $cmd->addHistoryValue($value, $date);
+      }
     }
+  }
+
+  public function cleanArray($array, $logical) {
+    if (count($array) > 1) {
+      unset($array[$logical]);
+    }
+    else {
+      $array = array();
+    }
+    return $array;
   }
 
   public function preInsert() {
@@ -185,17 +281,23 @@ class enedis extends eqLogic {
   }
 
   public function preUpdate() {
-    $usagePointId = $this->getConfiguration('usage_point_id');
-    if (empty($usagePointId)) {
-      throw new Exception(__('L\'identifiant du point de livraison (PDL) doit être renseigné',__FILE__));
-    }
-    if (strlen($usagePointId) != 14) {
-      throw new Exception(__('L\'identifiant du point de livraison (PDL) doit contenir 14 caractères',__FILE__));
+    if ($this->getIsEnable() == 1) {
+      $usagePointId = $this->getConfiguration('usage_point_id');
+      if (empty($usagePointId)) {
+        throw new Exception(__('L\'identifiant du point de livraison (PDL) doit être renseigné',__FILE__));
+      }
+      if (strlen($usagePointId) != 14) {
+        throw new Exception(__('L\'identifiant du point de livraison (PDL) doit contenir 14 caractères',__FILE__));
+      }
     }
   }
 
   public function postUpdate() {
     if ($this->getIsEnable() == 1) {
+      if (!is_file(dirname(__FILE__) . '/../config/cmds/commands.json')) {
+        throw new Exception(__('Fichier de création de commandes non trouvé', __FILE__));
+      }
+
       $refreshCmd = $this->getCmd(null, 'refresh');
       if (!is_object($refreshCmd)) {
         log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Création commande : refresh/Rafraîchir',__FILE__));
@@ -209,35 +311,26 @@ class enedis extends eqLogic {
         ->save();
       }
 
-      if (!is_file(dirname(__FILE__) . '/../../data/cmds/commands.json')) {
-        log::add(__CLASS__, 'debug', $this->getHumanName() . __('Fichier de création de commandes non trouvé',__FILE__));
+      $cmdsArray = json_decode(file_get_contents(dirname(__FILE__) . '/../config/cmds/commands.json'), true);
+      $measureTypes = ($this->getConfiguration('measure_type') != 'both') ? [$this->getConfiguration('measure_type')] : ['consumption', 'production'];
+      foreach ($measureTypes as $measureType) {
+        $this->createCommands($cmdsArray[$measureType]);
       }
-      else {
-        $cmdsJson = file_get_contents(dirname(__FILE__) . '/../../data/cmds/commands.json');
-        $cmdsArray = json_decode($cmdsJson, true);
-        $measureType = $this->getConfiguration('measure_type');
-
-        if ($measureType == 'both') {
-          $cons = $this->createCommands($cmdsArray['consumption']);
-          $prod = $this->createCommands($cmdsArray['production']);
-          if ($cons === true || $prod === true) {
-            $this->refreshData(date('Y-m-d', strtotime('-3 years')));
-          }
-        }
-        else if ($this->createCommands($cmdsArray[$measureType])){
-          $this->refreshData(date('Y-m-d', strtotime('-3 years')));
-        }
-      }
+      $this->refreshData();
     }
+    else {
+      self::cleanCrons(intval($this->getId()));
+    }
+  }
 
+  public function preRemove() {
+    self::cleanCrons(intval($this->getId()));
   }
 
   public function createCommands($type) {
-    $cmdsCreation = false;
     foreach ($type as $cmd2create) {
       $cmd = $this->getCmd(null, $cmd2create['logicalId']);
       if (!is_object($cmd)) {
-        $cmdsCreation = true;
         log::add(__CLASS__, 'debug', $this->getHumanName() . __(' Création commande : ',__FILE__) . $cmd2create['logicalId'].'/'.$cmd2create['name']);
         $cmd = (new enedisCmd)
         ->setLogicalId($cmd2create['logicalId'])
@@ -264,7 +357,6 @@ class enedis extends eqLogic {
         $cmd->save();
       }
     }
-    return $cmdsCreation;
   }
 
   public function toHtml($_version = 'dashboard') {

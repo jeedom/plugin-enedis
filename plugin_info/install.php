@@ -18,42 +18,38 @@
 
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
-// Fonction exécutée automatiquement après l'installation du plugin
 function enedis_install() {
-     $cronMinute = config::byKey('cronMinute', 'enedis');
-    if (empty($cronMinute)) {
-      $randMinute = rand(3, 59);
-      config::save('cronMinute', $randMinute, 'enedis');
-    }
-}
-
-// Fonction exécutée automatiquement après la mise à jour du plugin
-function enedis_update() {
-   $cronMinute = config::byKey('cronMinute', 'enedis');
-    if (empty($cronMinute)) {
-      $randMinute = rand(3, 59);
-      config::save('cronMinute', $randMinute, 'enedis');
-    }
-
   $eqLogics = eqLogic::byType('enedis');
   foreach ($eqLogics as $eqLogic) {
-    if (!empty($eqLogic->getConfiguration('login'))) {
-      $eqLogic->setConfiguration('login', null);
-      $update = true;
-    }
-    if (!empty($eqLogic->getConfiguration('password'))) {
-      $eqLogic->setConfiguration('password', null);
-      $update = true;
-    }
-    if (isset($update) && $update === true) {
-      $eqLogic->setIsEnable(0);
-      $eqLogic->save(true);
+    $crons = cron::searchClassAndFunction('enedis', 'pull', '"enedis_id":' . intval($eqLogic->getId()));
+    if ($eqLogic->getIsEnable() == 1 && empty($crons)) {
+      $eqLogic->refreshData();
     }
   }
 }
 
-// Fonction exécutée automatiquement après la suppression du plugin
-function enedis_remove() {
+function enedis_update() {
+  $cronMinute = config::byKey('cronMinute', 'enedis');
+  if (!empty($cronMinute)) {
+    config::remove('cronMinute', 'enedis');
+  }
+  if (is_dir('/var/www/html/plugins/enedis/data')) {
+    rrmdir('/var/www/html/plugins/enedis/data');
+  }
+
+  $eqLogics = eqLogic::byType('enedis');
+  foreach ($eqLogics as $eqLogic) {
+    $crons = cron::searchClassAndFunction('enedis', 'pull', '"enedis_id":' . intval($eqLogic->getId()));
+    if ($eqLogic->getIsEnable() == 1 && empty($crons)) {
+      $eqLogic->refreshData();
+    }
+    if ($eqLogic->getConfiguration('login') != '' || $eqLogic->getConfiguration('password') != '') {
+      $eqLogic->setConfiguration('login', null);
+      $eqLogic->setConfiguration('password', null);
+      $eqLogic->setIsEnable(0);
+      $eqLogic->save(true);
+    }
+  }
 }
 
 ?>
