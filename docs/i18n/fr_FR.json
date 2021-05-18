@@ -110,8 +110,6 @@
         "Lors de la 1ère sauvegarde d'un équipement actif et configuré, le plugin va automatiquement créer les commandes nécessaires et intégrer les historiques disponibles sur le site Enedis depuis le 1er janvier de l'année en cours": "Lors de la 1ère sauvegarde d'un équipement actif et configuré, le plugin va automatiquement créer les commandes nécessaires et intégrer les historiques disponibles sur le site Enedis depuis le 1er janvier de l'année en cours",
         "Ce processus est susceptible de durer plusieurs minutes, vous pouvez en suivre l'avancée depuis le menu": "Ce processus est susceptible de durer plusieurs minutes, vous pouvez en suivre l'avancée depuis le menu",
         "logs en": "logs en",
-        "ASTUCE": "ASTUCE",
-        "Si pour une raison ou une autre le plugin ne parvenait pas à récupérer les historiques lors de la création des commandes, il suffira de supprimer les commandes puis de sauvegarder l'équipement pour à nouveau générer les commandes et leur historique": "Si pour une raison ou une autre le plugin ne parvenait pas à récupérer les historiques lors de la création des commandes, il suffira de supprimer les commandes puis de sauvegarder l'équipement pour à nouveau générer les commandes et leur historique",
         "Les données de consommation horaire sont quand à elles récupérées sur les 7 derniers jours au maximum": "Les données de consommation horaire sont quand à elles récupérées sur les 7 derniers jours au maximum",
         "Ajout de données": "Ajout de données",
         "Ajout historiques": "Ajout historiques",
@@ -137,6 +135,7 @@
         "Pour activer cette option, il suffit de cocher la case": "Pour activer cette option, il suffit de cocher la case",
         "sur la page générale de l'équipement concerné": "sur la page générale de l'équipement concerné",
         "Une fois la case cochée, une option permet de sélectionner la couleur de fond du widget": "Une fois la case cochée, une option permet de sélectionner la couleur de fond du widget",
+        "ASTUCE": "ASTUCE",
         "En version desktop, les informations affichées sur le widget s'adaptent en taille lors du redimensionnement de la tuile": "En version desktop, les informations affichées sur le widget s'adaptent en taille lors du redimensionnement de la tuile"
     }
 }

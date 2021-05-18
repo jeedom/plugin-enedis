@@ -102,7 +102,6 @@
         "Lors de la 1ère sauvegarde d'un équipement actif et configuré, le plugin va automatiquement créer les commandes nécessaires et intégrer les historiques disponibles sur le site Enedis depuis le 1er janvier de l'année en cours": "Durante la primera copia de seguridad de un dispositivo activo y configurado, el complemento creará automáticamente los comandos necesarios e integrará los historiales disponibles en el sitio de Enedis desde el 1 de enero del año en curso",
         "Ce processus est susceptible de durer plusieurs minutes, vous pouvez en suivre l'avancée depuis le menu": "Es probable que este proceso tarde varios minutos, puede seguir el progreso desde el menú",
         "logs en": "inicia sesión",
-        "Si pour une raison ou une autre le plugin ne parvenait pas à récupérer les historiques lors de la création des commandes, il suffira de supprimer les commandes puis de sauvegarder l'équipement pour à nouveau générer les commandes et leur historique": "Si por un motivo u otro el plugin no pudo recuperar los historiales al crear los pedidos, bastará con borrar los pedidos y luego guardar el equipo para generar los pedidos y su historial nuevamente",
         "Les données de consommation horaire sont quand à elles récupérées sur les 7 derniers jours au maximum": "Los datos de consumo por hora se recuperan durante los últimos 7 días como máximo",
         "Ajout de données": "Agregar datos",
         "Ajout historiques": "Adiciones históricas",
@@ -224,13 +223,6 @@
         "[concerné]": "[preocupado]",
         "*concerné*": "*preocupado*",
         " concerné*": " preocupado*",
-        " ASTUCE.": " CONSEJO.",
-        " ASTUCE?": " CONSEJO?",
-        "ASTUCE ": "CONSEJO ",
-        " ASTUCE]": " CONSEJO]",
-        "[ASTUCE]": "[CONSEJO]",
-        "*ASTUCE*": "*CONSEJO*",
-        " ASTUCE*": " CONSEJO*",
         " Commandes.": " Pedidos.",
         " Commandes?": " Pedidos?",
         "Commandes ": "Pedidos ",
@@ -251,6 +243,13 @@
         " Linky]": " Linky]",
         "[Linky]": "[Linky]",
         "*Linky*": "*Linky*",
-        " Linky*": " Linky*"
+        " Linky*": " Linky*",
+        " ASTUCE.": " CONSEJO.",
+        " ASTUCE?": " CONSEJO?",
+        "ASTUCE ": "CONSEJO ",
+        " ASTUCE]": " CONSEJO]",
+        "[ASTUCE]": "[CONSEJO]",
+        "*ASTUCE*": "*CONSEJO*",
+        " ASTUCE*": " CONSEJO*"
     }
 }
