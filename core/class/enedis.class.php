@@ -216,10 +216,15 @@ class enedis extends eqLogic {
   }
 
   public function callEnedis($_path){
-    $url = config::byKey('service::cloud::url').'/service/enedis?path='.urlencode($_path);
-    $request_http = new com_http($url);
-    $request_http->setHeader(array('Content-Type: application/json','Autorization: '.sha512(mb_strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))));
-    $result = json_decode($request_http->exec(30,1),true);
+    try {
+      $url = config::byKey('service::cloud::url').'/service/enedis?path='.urlencode($_path);
+      $request_http = new com_http($url);
+      $request_http->setHeader(array('Content-Type: application/json','Autorization: '.sha512(mb_strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))));
+      $result = json_decode($request_http->exec(30,1),true);
+    }
+    catch (exception $e) {
+      $result = array('error' => $e);
+    }
     return $result;
   }
 
