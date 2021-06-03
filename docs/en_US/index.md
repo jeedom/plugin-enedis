@@ -96,3 +96,9 @@ To activate this option, just check the box **Widget template** on the general p
 >**TRICK**
 >     
 >In desktop version, the information displayed on the widget adapts in size when resizing the tile.
+
+# FAQ
+
+>**I have `Error on enedis json return` errors in the logs yet the data is visible on the Enedis site**
+>
+>It sometimes happens that you have to go directly to the Enedis site in order to validate the latest T & Cs to access the data again. It is also sometimes necessary to replace the Jeedom / Enedis link from the plugin configuration page.

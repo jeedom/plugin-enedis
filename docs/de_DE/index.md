@@ -96,3 +96,9 @@ Um diese Option zu aktivieren, aktivieren Sie einfach das Kontrollkästchen **Wi
 >**TIPP**
 >     
 >In der Desktop-Version passen sich die im Widget angezeigten Informationen an die Größe an, wenn die Größe der Kachel geändert wird.
+
+# FAQ
+
+>**Ich habe "Error on enedis json return"-Fehler in den Protokollen, die Daten sind jedoch auf der Enedis-Site sichtbar**
+>
+>Es kommt manchmal vor, dass Sie direkt auf die Enedis-Site gehen müssen, um die neuesten AGB zu validieren, um erneut auf die Daten zuzugreifen. Manchmal ist es auch notwendig, den Jeedom / Enedis-Link von der Plugin-Konfigurationsseite zu ersetzen.

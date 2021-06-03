@@ -1,10 +1,12 @@
 # Changelog Enedis
 
-# Plugin de registro de mudanças Enedis
-
 >**IMPORTANTE**
 >
 >Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto.
+
+# 03/06/2021
+
+- Correção para evitar que a programação automática seja interrompida em casos raros
 
 # 18/05/2021
 

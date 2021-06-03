@@ -96,3 +96,9 @@ Para activar esta opción, simplemente marque la casilla **Plantilla de widget**
 >**CONSEJO**
 >     
 >En la versión de escritorio, la información que se muestra en el widget se adapta en tamaño al cambiar el tamaño del mosaico.
+
+# FAQ
+
+>**Tengo errores de `Error en enedis json return` en los registros, pero los datos son visibles en el sitio de Enedis**
+>
+>A veces sucede que tienes que ir directamente al sitio de Enedis para validar los últimos TyC para acceder a los datos nuevamente. A veces también es necesario reemplazar el enlace Jeedom / Enedis de la página de configuración del complemento.

@@ -1,8 +1,9 @@
 {
     "changelog.md": {
         "Changelog Enedis": "Registro de cambios Enedis",
-        "Changelog plugin Enedis": "Complemento de registro de cambios Enedis",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto",
+        "03\/06\/2021": "03\/06\/2021",
+        "Correction pour éviter que l'auto-programmation soit stoppée dans de rares cas": "Corrección para evitar que la programación automática se detenga en casos excepcionales",
         "18\/05\/2021": "18\/05\/2021",
         "Mise en place d'un système d'auto-programmation": "Implementación de un sistema de autoprogramación",
         "Possibilité d'intégrer des historiques à la demande": "Posibilidad de integrar historias bajo demanda",
@@ -125,6 +126,9 @@
         "sur la page générale de l'équipement concerné": "en la página general del equipo en cuestión",
         "Une fois la case cochée, une option permet de sélectionner la couleur de fond du widget": "Una vez que la casilla está marcada, una opción le permite seleccionar el color de fondo del widget",
         "En version desktop, les informations affichées sur le widget s'adaptent en taille lors du redimensionnement de la tuile": "En la versión de escritorio, la información que se muestra en el widget se adapta en tamaño al cambiar el tamaño del mosaico",
+        "J'ai des erreurs `Error on enedis json return` dans les logs pourtant les données sont visibles sur le site Enedis": "Tengo errores de `Error en enedis json return` en los registros, pero los datos son visibles en el sitio de Enedis",
+        "Il arrive quelquefois qu'il faille se rendre  directement sur le site Enedis afin de valider les dernières CGU en date pour accéder à nouveau aux données": "A veces sucede que tienes que ir directamente al sitio de Enedis para validar los últimos TyC para acceder a los datos nuevamente",
+        "Il est également parfois nécessaire de remettre en place la liaison Jeedom\/Enedis depuis la page de configuration du plugin": "A veces también es necesario reemplazar el enlace Jeedom \/ Enedis de la página de configuración del complemento",
         " compte-client.": " cuenta cliente.",
         " compte-client?": " cuenta cliente?",
         "compte-client ": "cuenta cliente ",
@@ -250,6 +254,13 @@
         " ASTUCE]": " CONSEJO]",
         "[ASTUCE]": "[CONSEJO]",
         "*ASTUCE*": "*CONSEJO*",
-        " ASTUCE*": " CONSEJO*"
+        " ASTUCE*": " CONSEJO*",
+        " FAQ.": " Preguntas más frecuentes.",
+        " FAQ?": " Preguntas más frecuentes?",
+        "FAQ ": "Preguntas más frecuentes ",
+        " FAQ]": " Preguntas más frecuentes]",
+        "[FAQ]": "[Preguntas más frecuentes]",
+        "*FAQ*": "*Preguntas más frecuentes*",
+        " FAQ*": " Preguntas más frecuentes*"
     }
 }

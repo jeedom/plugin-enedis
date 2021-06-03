@@ -1,10 +1,12 @@
 # Registro de cambios Enedis
 
-# Complemento de registro de cambios Enedis
-
 >**Importante**
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto.
+
+# 03/06/2021
+
+- Corrección para evitar que la programación automática se detenga en casos excepcionales
 
 # 18/05/2021
 

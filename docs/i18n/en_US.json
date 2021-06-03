@@ -1,8 +1,9 @@
 {
     "changelog.md": {
         "Changelog Enedis": "Changelog Enedis",
-        "Changelog plugin Enedis": "Changelog plugin Enedis",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text",
+        "03\/06\/2021": "06\/03\/2021",
+        "Correction pour éviter que l'auto-programmation soit stoppée dans de rares cas": "Correction to prevent auto-programming from being stopped in rare cases",
         "18\/05\/2021": "05\/18\/2021",
         "Mise en place d'un système d'auto-programmation": "Implementation of an auto-programming system",
         "Possibilité d'intégrer des historiques à la demande": "Possibility of integrating histories on demand",
@@ -125,6 +126,9 @@
         "sur la page générale de l'équipement concerné": "on the general page of the equipment concerned",
         "Une fois la case cochée, une option permet de sélectionner la couleur de fond du widget": "Once the box is checked, an option allows you to select the background color of the widget",
         "En version desktop, les informations affichées sur le widget s'adaptent en taille lors du redimensionnement de la tuile": "In desktop version, the information displayed on the widget adapts in size when resizing the tile",
+        "J'ai des erreurs `Error on enedis json return` dans les logs pourtant les données sont visibles sur le site Enedis": "I have `Error on enedis json return` errors in the logs yet the data is visible on the Enedis site",
+        "Il arrive quelquefois qu'il faille se rendre  directement sur le site Enedis afin de valider les dernières CGU en date pour accéder à nouveau aux données": "It sometimes happens that you have to go directly to the Enedis site in order to validate the latest T & Cs to access the data again",
+        "Il est également parfois nécessaire de remettre en place la liaison Jeedom\/Enedis depuis la page de configuration du plugin": "It is also sometimes necessary to replace the Jeedom \/ Enedis link from the plugin configuration page",
         " compte-client.": " customer account.",
         " compte-client?": " customer account?",
         "compte-client ": "customer account ",
@@ -250,6 +254,13 @@
         " ASTUCE]": " TRICK]",
         "[ASTUCE]": "[TRICK]",
         "*ASTUCE*": "*TRICK*",
-        " ASTUCE*": " TRICK*"
+        " ASTUCE*": " TRICK*",
+        " FAQ.": " Faq.",
+        " FAQ?": " Faq?",
+        "FAQ ": "Faq ",
+        " FAQ]": " Faq]",
+        "[FAQ]": "[Faq]",
+        "*FAQ*": "*Faq*",
+        " FAQ*": " Faq*"
     }
 }

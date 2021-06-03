@@ -1,8 +1,9 @@
 {
     "changelog.md": {
         "Changelog Enedis": "Changelog Enedis",
-        "Changelog plugin Enedis": "Changelog Plugin Enedis",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt",
+        "03\/06\/2021": "06.03.2021",
+        "Correction pour éviter que l'auto-programmation soit stoppée dans de rares cas": "Korrektur, um zu verhindern, dass die automatische Programmierung in seltenen Fällen gestoppt wird",
         "18\/05\/2021": "18.05.2021",
         "Mise en place d'un système d'auto-programmation": "Implementierung eines automatischen Programmiersystems",
         "Possibilité d'intégrer des historiques à la demande": "Möglichkeit der Integration von Historien nach Bedarf",
@@ -125,6 +126,9 @@
         "sur la page générale de l'équipement concerné": "auf der allgemeinen Seite der betreffenden Ausrüstung",
         "Une fois la case cochée, une option permet de sélectionner la couleur de fond du widget": "Sobald das Kontrollkästchen aktiviert ist, können Sie mit einer Option die Hintergrundfarbe des Widgets auswählen",
         "En version desktop, les informations affichées sur le widget s'adaptent en taille lors du redimensionnement de la tuile": "In der Desktop-Version passen sich die im Widget angezeigten Informationen an die Größe an, wenn die Größe der Kachel geändert wird",
+        "J'ai des erreurs `Error on enedis json return` dans les logs pourtant les données sont visibles sur le site Enedis": "Ich habe \"Error on enedis json return\"-Fehler in den Protokollen, die Daten sind jedoch auf der Enedis-Site sichtbar",
+        "Il arrive quelquefois qu'il faille se rendre  directement sur le site Enedis afin de valider les dernières CGU en date pour accéder à nouveau aux données": "Es kommt manchmal vor, dass Sie direkt auf die Enedis-Site gehen müssen, um die neuesten AGB zu validieren, um erneut auf die Daten zuzugreifen",
+        "Il est également parfois nécessaire de remettre en place la liaison Jeedom\/Enedis depuis la page de configuration du plugin": "Manchmal ist es auch notwendig, den Jeedom \/ Enedis-Link von der Plugin-Konfigurationsseite zu ersetzen",
         " compte-client.": " Kundenkonto.",
         " compte-client?": " Kundenkonto?",
         "compte-client ": "Kundenkonto ",
@@ -250,6 +254,13 @@
         " ASTUCE]": " TIPP]",
         "[ASTUCE]": "[TIPP]",
         "*ASTUCE*": "*TIPP*",
-        " ASTUCE*": " TIPP*"
+        " ASTUCE*": " TIPP*",
+        " FAQ.": " FAQ.",
+        " FAQ?": " FAQ?",
+        "FAQ ": "FAQ ",
+        " FAQ]": " FAQ]",
+        "[FAQ]": "[FAQ]",
+        "*FAQ*": "*FAQ*",
+        " FAQ*": " FAQ*"
     }
 }

@@ -1,9 +1,10 @@
 {
     "changelog.md": {
         "Changelog Enedis": "Changelog Enedis",
-        "Changelog plugin Enedis": "Changelog plugin Enedis",
         "IMPORTANT": "IMPORTANT",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte",
+        "03\/06\/2021": "03\/06\/2021",
+        "Correction pour éviter que l'auto-programmation soit stoppée dans de rares cas": "Correction pour éviter que l'auto-programmation soit stoppée dans de rares cas",
         "18\/05\/2021": "18\/05\/2021",
         "Mise en place d'un système d'auto-programmation": "Mise en place d'un système d'auto-programmation",
         "Possibilité d'intégrer des historiques à la demande": "Possibilité d'intégrer des historiques à la demande",
@@ -136,6 +137,10 @@
         "sur la page générale de l'équipement concerné": "sur la page générale de l'équipement concerné",
         "Une fois la case cochée, une option permet de sélectionner la couleur de fond du widget": "Une fois la case cochée, une option permet de sélectionner la couleur de fond du widget",
         "ASTUCE": "ASTUCE",
-        "En version desktop, les informations affichées sur le widget s'adaptent en taille lors du redimensionnement de la tuile": "En version desktop, les informations affichées sur le widget s'adaptent en taille lors du redimensionnement de la tuile"
+        "En version desktop, les informations affichées sur le widget s'adaptent en taille lors du redimensionnement de la tuile": "En version desktop, les informations affichées sur le widget s'adaptent en taille lors du redimensionnement de la tuile",
+        "FAQ": "FAQ",
+        "J'ai des erreurs `Error on enedis json return` dans les logs pourtant les données sont visibles sur le site Enedis": "J'ai des erreurs `Error on enedis json return` dans les logs pourtant les données sont visibles sur le site Enedis",
+        "Il arrive quelquefois qu'il faille se rendre  directement sur le site Enedis afin de valider les dernières CGU en date pour accéder à nouveau aux données": "Il arrive quelquefois qu'il faille se rendre  directement sur le site Enedis afin de valider les dernières CGU en date pour accéder à nouveau aux données",
+        "Il est également parfois nécessaire de remettre en place la liaison Jeedom\/Enedis depuis la page de configuration du plugin": "Il est également parfois nécessaire de remettre en place la liaison Jeedom\/Enedis depuis la page de configuration du plugin"
     }
 }

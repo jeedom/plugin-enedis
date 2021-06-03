@@ -1,10 +1,12 @@
 # Changelog Enedis
 
-# Changelog plugin Enedis
-
 >**Important**
 >
 >As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text.
+
+# 06/03/2021
+
+- Correction to prevent auto-programming from being stopped in rare cases
 
 # 05/18/2021
 
