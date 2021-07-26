@@ -21,6 +21,8 @@ require_once __DIR__  . '/../../../../core/php/core.inc.php';
 
 class enedis extends eqLogic {
 
+  public static $_widgetPossibility = array('custom'  => true);
+
   public static function dependancy_info() {
     $return = array();
     $return['progress_file'] = jeedom::getTmpFolder(__CLASS__) . '/dependance';
