@@ -19,7 +19,7 @@ Il est possible d'accéder aux données de **consommation**, de **production** o
 >    
 >Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille.
 
-Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs Enedis toutes les heures entre 7h et 20h, autrement les appels sont suspendus jusqu'au lendemain.
+Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs Enedis toutes les 30 minutes entre 6h et 20h, autrement les appels sont suspendus jusqu'au lendemain.
 
 # Configuration
 
@@ -102,3 +102,7 @@ Pour activer cette option, il suffit de cocher la case **Template de widget** su
 >**J'ai des erreurs `Error on enedis json return` dans les logs pourtant les données sont visibles sur le site Enedis**
 >
 >Il arrive quelquefois qu'il faille se rendre  directement sur le site Enedis afin de valider les dernières CGU en date pour accéder à nouveau aux données. Il est également parfois nécessaire de remettre en place la liaison Jeedom/Enedis depuis la page de configuration du plugin.
+
+>**Je n'ai pas de données Jour/Mois/Année pour le 31 décembre 2021**
+>
+>Pour récupérer ces données il suffit de cliquer sur le bouton **Ajout historiques** de la commande **Consommation Jour** et de sélectionner la date du 1er janvier 2021 comme date de départ.  
