@@ -35,7 +35,7 @@ if (!isConnect('admin')) {
 			</label>
 			<div class="col-sm-4">
 				<a href="https://cloud.jeedom.com/frontend/login.html?service=enedis" target="_blank">
-					<img src="/plugins/enedis/docs/images/link_enedis.png">
+					<img src="/plugins/enedis/core/config/link_enedis.png">
 				</a>
 			</div>
 		</div>
