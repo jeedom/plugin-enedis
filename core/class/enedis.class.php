@@ -93,7 +93,7 @@ class enedis extends eqLogic {
       }
       else {
         $start_date = $start_date_load = $_startDate;
-        $end_date = date('Y-m-d', strtotime('first day of January'));
+        $end_date = date('Y-01-01');
         $end_date_load = date('Y-m-d', strtotime('+7 days '.$_startDate));
       }
 
