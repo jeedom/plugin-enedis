@@ -87,7 +87,7 @@ class enedis extends eqLogic {
       log::add(__CLASS__, 'debug', $this->getHumanName() . ' *** ' . __('Début d\'interrogation des serveurs Enedis',__FILE__) . ' ***');
       $usagePointId = $this->getConfiguration('usage_point_id');
       if (empty($_startDate)) {
-        $start_date = (date('z') > '0') ? date('Y-m-d', strtotime('first day of January')) : date('Y-m-d', strtotime('first day of January last year'));
+        $start_date = (date('z') > '0') ? date('Y-01-01') : date('Y-01-01', strtotime('-1 year'));
         $start_date_load = date('Y-m-d', strtotime('-7 days'));
         $end_date = $end_date_load = date('Y-m-d');
       }
