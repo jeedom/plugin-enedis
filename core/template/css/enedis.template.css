@@ -2,9 +2,6 @@
 	font-family: "Digital-7";
 	src:  url("fonts/digital-7.ttf") format("opentype");
 }
-.title {
-	color:var(--eqTitle-color)!important;
-}
 .enedis_template {
 	height:90%;
 	background-image:url("images/LinkyScreen.png");
