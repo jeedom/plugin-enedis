@@ -385,6 +385,7 @@ class enedis extends eqLogic {
 
       $replace['#' . $logical . '_id#'] = $cmd->getId();
       $replace['#' . $logical . '#'] = $cmd->execCmd();
+      $replace['#' . $logical . '_unite#'] = $cmd->getUnite();
       $replace['#' . $logical . '_collect#'] = $collectDate;
       $replace['#' . $logical . '_toDate#'] = ($collectDate >= $expectedCollectDate) ? 1 : 0;
     }
