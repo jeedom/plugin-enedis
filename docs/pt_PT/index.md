@@ -19,7 +19,7 @@ Plugin que permite a recuperação de dados de consumo de eletricidade de medido
 >    
 >Como os dados não são disponibilizados em tempo real, o plugin recupera os dados de consumo de eletricidade da véspera de cada dia.
 
-Enquanto o plug-in não recuperou todos os dados do dia anterior, ele continua a pesquisar os servidores Enedis a cada hora entre 7h e 20h, caso contrário, as chamadas serão suspensas até o dia seguinte.
+Enquanto o plug-in não recuperou todos os dados do dia anterior, ele continua a pesquisar os servidores Enedis a cada 30 minutos entre 6h e 20h, caso contrário, as chamadas serão suspensas até o dia seguinte.
 
 # Configuration
 
@@ -102,3 +102,7 @@ Para ativar esta opção, basta marcar a caixa **Template de widget** na página
 >**Tenho erros `Error on enedis json return` nos logs, mas os dados são visíveis no site da Enedis**
 >
 >Às vezes acontece que você precisa ir diretamente ao site da Enedis para validar os últimos T & Cs para acessar os dados novamente. Às vezes também é necessário substituir o link Jeedom / Enedis da página de configuração do plugin.
+
+>**Não tenho dados de Dia / Mês / Ano para 31 de dezembro de 2021**
+>
+>Para recuperar esses dados basta clicar no botão **Acréscimos históricos** da ordem **Dia do Consumo** e selecione a data de 1º de janeiro de 2021 como a data de partida.  

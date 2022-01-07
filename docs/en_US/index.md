@@ -19,7 +19,7 @@ It is possible to access data from **consumption**, of **production** or to the 
 >    
 >As the data is not made available in real time, the plugin retrieves the electricity consumption data from the day before each day.
 
-As long as the plugin has not retrieved all of the data from the day before, it continues to poll the Enedis servers every hour between 7 a.m. and 8 p.m., otherwise calls are suspended until the next day.
+As long as the plugin has not retrieved all of the data from the day before, it continues to poll the Enedis servers every 30 minutes between 6 a.m. and 8 p.m., otherwise calls are suspended until the next day.
 
 # Configuration
 
@@ -102,3 +102,7 @@ To activate this option, just check the box **Widget template** on the general p
 >**I have `Error on enedis json return` errors in the logs yet the data is visible on the Enedis site**
 >
 >It sometimes happens that you have to go directly to the Enedis site in order to validate the latest T & Cs to access the data again. It is also sometimes necessary to replace the Jeedom / Enedis link from the plugin configuration page.
+
+>**I don't have Day / Month / Year data for December 31, 2021**
+>
+>To recover this data just click on the button **Historical additions** of the order **Consumption Day** and select the date of January 1, 2021 as the departure date.  

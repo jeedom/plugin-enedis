@@ -3,6 +3,8 @@
         "Changelog Enedis": "Changelog Enedis",
         "IMPORTANT": "IMPORTANT",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte",
+        "05\/01\/2022": "05\/01\/2022",
+        "Correction d'un bug sur la collecte des données le 1er janvier": "Correction d'un bug sur la collecte des données le 1er janvier",
         "03\/06\/2021": "03\/06\/2021",
         "Correction pour éviter que l'auto-programmation soit stoppée dans de rares cas": "Correction pour éviter que l'auto-programmation soit stoppée dans de rares cas",
         "18\/05\/2021": "18\/05\/2021",
@@ -68,7 +70,7 @@
         "en kVA": "en kVA",
         "INFORMATION": "INFORMATION",
         "Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille": "Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille",
-        "Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs Enedis toutes les heures entre 7h et 20h, autrement les appels sont suspendus jusqu'au lendemain": "Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs Enedis toutes les heures entre 7h et 20h, autrement les appels sont suspendus jusqu'au lendemain",
+        "Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs Enedis toutes les 30 minutes entre 6h et 20h, autrement les appels sont suspendus jusqu'au lendemain": "Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs Enedis toutes les 30 minutes entre 6h et 20h, autrement les appels sont suspendus jusqu'au lendemain",
         "Configuration": "Configuration",
         "Comme tout plugin Jeedom, le plugin": "Comme tout plugin Jeedom, le plugin",
         "doit être activé après l'installation": "doit être activé après l'installation",
@@ -141,6 +143,11 @@
         "FAQ": "FAQ",
         "J'ai des erreurs `Error on enedis json return` dans les logs pourtant les données sont visibles sur le site Enedis": "J'ai des erreurs `Error on enedis json return` dans les logs pourtant les données sont visibles sur le site Enedis",
         "Il arrive quelquefois qu'il faille se rendre  directement sur le site Enedis afin de valider les dernières CGU en date pour accéder à nouveau aux données": "Il arrive quelquefois qu'il faille se rendre  directement sur le site Enedis afin de valider les dernières CGU en date pour accéder à nouveau aux données",
-        "Il est également parfois nécessaire de remettre en place la liaison Jeedom\/Enedis depuis la page de configuration du plugin": "Il est également parfois nécessaire de remettre en place la liaison Jeedom\/Enedis depuis la page de configuration du plugin"
+        "Il est également parfois nécessaire de remettre en place la liaison Jeedom\/Enedis depuis la page de configuration du plugin": "Il est également parfois nécessaire de remettre en place la liaison Jeedom\/Enedis depuis la page de configuration du plugin",
+        "Je n'ai pas de données Jour\/Mois\/Année pour le 31 décembre 2021": "Je n'ai pas de données Jour\/Mois\/Année pour le 31 décembre 2021",
+        "Consommation Jour": "Consommation Jour",
+        "Pour récupérer ces données il suffit de cliquer sur le bouton": "Pour récupérer ces données il suffit de cliquer sur le bouton",
+        "de la commande": "de la commande",
+        "et de sélectionner la date du 1er janvier 2021 comme date de départ": "et de sélectionner la date du 1er janvier 2021 comme date de départ"
     }
 }

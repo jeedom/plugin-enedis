@@ -19,7 +19,7 @@ Se reportan 5 datos para cada tipo de medición :
 >    
 >Como los datos no están disponibles en tiempo real, el complemento recupera los datos de consumo de electricidad del día anterior a cada día.
 
-Siempre que el complemento no haya recuperado todos los datos del día anterior, continúa sondeando los servidores de Enedis cada hora entre las 7 a.m. y las 8 p.m., de lo contrario, las llamadas se suspenden hasta el día siguiente.
+Mientras el complemento no haya recuperado todos los datos del día anterior, continúa sondeando los servidores de Enedis cada 30 minutos entre las 6 a.m. y las 8 p.m., de lo contrario, las llamadas se suspenden hasta el día siguiente.
 
 # Configuration
 
@@ -102,3 +102,7 @@ Para activar esta opción, simplemente marque la casilla **Plantilla de widget**
 >**Tengo errores de `Error en enedis json return` en los registros, pero los datos son visibles en el sitio de Enedis**
 >
 >A veces sucede que tienes que ir directamente al sitio de Enedis para validar los últimos TyC para acceder a los datos nuevamente. A veces también es necesario reemplazar el enlace Jeedom / Enedis de la página de configuración del complemento.
+
+>**No tengo datos de día / mes / año para el 31 de diciembre de 2021**
+>
+>Para recuperar estos datos simplemente haga clic en el botón **Adiciones históricas** De la orden **Día de consumo** y seleccione la fecha del 1 de enero de 2021 como fecha de salida.  

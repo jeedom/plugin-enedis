@@ -4,6 +4,10 @@
 >
 >Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt.
 
+# 01.05.2022
+
+- Fehler bei der Datenerfassung am 1. Januar behoben
+
 # 06.03.2021
 
 - Korrektur, um zu verhindern, dass die automatische Programmierung in seltenen Fällen gestoppt wird
@@ -31,18 +35,23 @@
 - Dokumentation neu schreiben
 
 # 09/10/2020
+
 - Ein Anzeigefehler in der mobilen Ansicht ohne die Widget-Vorlage wurde behoben.
 
 # 06/09/2020
+
 - Hinzufügen der Vorlage für die Dashboard-Version.
 - Hinzufügen der Vorlage für die mobile Version.
 - Optimierung der Anzahl der Anrufe an Enedis-Server.
 
 # 21.08.2020
+
 - Abrufen von Informationen in zufälliger Minute, um die Enedis-Server nicht zu überlasten.
 
 # 17.08.2020
+
 - Umstellung auf Stall.
 
 # 08/12/2020
+
 - Bereitstellung des Plugins in der Beta-Version.

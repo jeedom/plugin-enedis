@@ -19,7 +19,7 @@ Für jede Messart werden 5 Daten angegeben :
 >    
 >Da die Daten nicht in Echtzeit verfügbar sind, ruft das Plugin die Stromverbrauchsdaten vom Vortag ab.
 
-Solange das Plugin nicht alle Daten vom Vortag abgerufen hat, werden die Enedis-Server weiterhin stündlich zwischen 7.00 und 20.00 Uhr abgefragt. Andernfalls werden Anrufe bis zum nächsten Tag ausgesetzt.
+Solange das Plugin nicht alle Daten vom Vortag abgerufen hat, pollt es weiterhin alle 30 Minuten zwischen 6 und 20 Uhr die Enedis-Server, ansonsten werden die Anrufe bis zum nächsten Tag ausgesetzt.
 
 # Configuration
 
@@ -102,3 +102,7 @@ Um diese Option zu aktivieren, aktivieren Sie einfach das Kontrollkästchen **Wi
 >**Ich habe "Error on enedis json return"-Fehler in den Protokollen, die Daten sind jedoch auf der Enedis-Site sichtbar**
 >
 >Es kommt manchmal vor, dass Sie direkt auf die Enedis-Site gehen müssen, um die neuesten AGB zu validieren, um erneut auf die Daten zuzugreifen. Manchmal ist es auch notwendig, den Jeedom / Enedis-Link von der Plugin-Konfigurationsseite zu ersetzen.
+
+>**Ich habe keine Daten zu Tag/Monat/Jahr für den 31. Dezember 2021**
+>
+>Um diese Daten wiederherzustellen, klicken Sie einfach auf die Schaltfläche **Historische Ergänzungen** der Bestellung **Konsumtag** und wählen Sie als Abreisedatum den 1. Januar 2021.  

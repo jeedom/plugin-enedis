@@ -4,6 +4,10 @@
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto.
 
+# 05/01/2022
+
+- Se corrigió un error en la recopilación de datos el 1 de enero
+
 # 03/06/2021
 
 - Corrección para evitar que la programación automática se detenga en casos excepcionales
@@ -31,18 +35,23 @@
 - Reescritura de documentación
 
 # 10/09/2020
+
 - Se corrigió un error de visualización en la vista móvil sin la plantilla de widget.
 
 # 09/06/2020
+
 - Adición de la plantilla para la versión del tablero.
 - Adición de la plantilla para la versión móvil.
 - Optimización del número de llamadas a los servidores de Enedis.
 
 # 21/08/2020
+
 - Recuperación de información en un minuto aleatorio para no sobrecargar los servidores de Enedis.
 
 # 17/08/2020
+
 - Cambiar a estable.
 
 # 12/08/2020
+
 - Suministro del complemento en versión beta.
