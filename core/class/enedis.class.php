@@ -200,6 +200,7 @@ class enedis extends eqLogic {
       }
 
       if (empty($_startDate)) {
+        $this->refreshWidget();
         if (empty($to_refresh)) {
           log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Toutes les données ont été récupérées',__FILE__));
           $this->reschedule();
@@ -378,9 +379,14 @@ class enedis extends eqLogic {
     $version = jeedom::versionAlias($_version);
 
     foreach (($this->getCmd('info')) as $cmd) {
-      $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
-      $replace['#' . $cmd->getLogicalId() . '#'] = $cmd->execCmd();
-      $replace['#' . $cmd->getLogicalId() . '_collect#'] = $cmd->getCollectDate();
+      $logical = $cmd->getLogicalId();
+      $collectDate = $cmd->getCollectDate();
+      $expectedCollectDate = (in_array($logical, ['consumption_load_curve', 'production_load_curve'])) ? date('Y-m-d') : date('Y-m-d', strtotime('-1 day'));
+
+      $replace['#' . $logical . '_id#'] = $cmd->getId();
+      $replace['#' . $logical . '#'] = $cmd->execCmd();
+      $replace['#' . $logical . '_collect#'] = $collectDate;
+      $replace['#' . $logical . '_toDate#'] = ($collectDate >= $expectedCollectDate) ? 1 : 0;
     }
     $replace['#refresh_id#'] = $this->getCmd('action', 'refresh')->getId();
     $replace['#BGEnedis#'] = ($this->getConfiguration('widgetTransparent') == 1) ? 'transparent' : $this->getConfiguration('widgetBGColor');
@@ -397,8 +403,7 @@ class enedisCmd extends cmd {
 
   public function execute($_options = array()) {
     if ($this->getLogicalId() == 'refresh') {
-      $eqLogic = $this->getEqLogic();
-      return $eqLogic->refreshData();
+      return $this->getEqLogic()->refreshData();
     }
   }
 
