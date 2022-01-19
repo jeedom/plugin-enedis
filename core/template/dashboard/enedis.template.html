@@ -5,94 +5,112 @@
       <i class='#alert_icon#'></i>
     </span>
     <span class="cmd refresh pull-right cursor" data-cmd_id="#refresh_id#">
-      <i class="fas fa-sync"></i>
+      <i class="fas fa-sync" style="color:var(--eqTitle-color)!important;"></i>
     </span>
     <span class="reportModeVisible">#name_display# <span class="object_name">#object_name#</span></span>
-    <a href="#eqLink#" class="reportModeHidden">#name_display# <span class="object_name">#object_name#</span></a>
+    <a href="#eqLink#" class="reportModeHidden" style="color:var(--eqTitle-color)!important;">#name_display# <span class="object_name">#object_name#</span></a>
   </div>
   <div class="enedis_template text-center">
     <div id="consumption">
-      <div class="enedisTitle">CONSOMMATION</div>
-      <div class="history cursor" data-cmd_id="#yearly_consumption_id#" title="#yearly_consumption_collect#">
+      <div class="enedisTitle">CONSOMMATION <i class="fas fa-circle enedisTitleIcon"></i></div>
+      <div class="history cursor" data-cmd_id="#yearly_consumption_id#" data-up_to_date="#yearly_consumption_toDate#" title="#yearly_consumption_collect#">
         <div class="enedisCdc">ANNUELLE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#yearly_consumption#</span><span class="enedisUnite"> kWh</span></div>
+        <div class="enedisValueUnite"><span class="enedisValue">#yearly_consumption#</span><span class="enedisUnite"> #yearly_consumption_unite#</span></div>
       </div>
-      <div class="history cursor" data-cmd_id="#monthly_consumption_id#" title="#monthly_consumption_collect#">
+      <div class="history cursor" data-cmd_id="#monthly_consumption_id#" data-up_to_date="#monthly_consumption_toDate#" title="#monthly_consumption_collect#">
         <div class="enedisCdc">MENSUELLE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#monthly_consumption#</span><span class="enedisUnite"> kWh</span></div>
+        <div class="enedisValueUnite"><span class="enedisValue">#monthly_consumption#</span><span class="enedisUnite"> #monthly_consumption_unite#</span></div>
       </div>
-      <div class="history cursor" data-cmd_id="#daily_consumption_id#" title="#daily_consumption_collect#">
+      <div class="history cursor" data-cmd_id="#daily_consumption_id#" data-up_to_date="#daily_consumption_toDate#" title="#daily_consumption_collect#">
         <div class="enedisCdc">QUOTIDIENNE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#daily_consumption#</span><span class="enedisUnite"> kWh</span></div>
+        <div class="enedisValueUnite"><span class="enedisValue">#daily_consumption#</span><span class="enedisUnite"> #daily_consumption_unite#</span></div>
       </div>
-      <div class="history cursor" data-cmd_id="#consumption_load_curve_id#" title="#consumption_load_curve_collect#">
+      <div class="history cursor" data-cmd_id="#consumption_load_curve_id#" data-up_to_date="#consumption_load_curve_toDate#" title="#consumption_load_curve_collect#">
         <div class="enedisCdc">HORAIRE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#consumption_load_curve#</span><span class="enedisUnite"> kW</span></div>
+        <div class="enedisValueUnite"><span class="enedisValue">#consumption_load_curve#</span><span class="enedisUnite"> #consumption_load_curve_unite#</span></div>
       </div>
-      <div class="history cursor" data-cmd_id="#daily_consumption_max_power_id#" title="#daily_consumption_max_power_collect#">
+      <div class="history cursor" data-cmd_id="#daily_consumption_max_power_id#" data-up_to_date="#daily_consumption_max_power_toDate#" title="#daily_consumption_max_power_collect#">
         <div class="enedisCdc">PUISSANCE MAX</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#daily_consumption_max_power#</span><span class="enedisUnite"> kVA</span></div>
+        <div class="enedisValueUnite"><span class="enedisValue">#daily_consumption_max_power#</span><span class="enedisUnite"> #daily_consumption_max_power_unite#</span></div>
       </div>
     </div>
     <div id="production" style="display:none;">
-      <div class="enedisTitle">PRODUCTION</div>
-      <div class="history cursor" data-cmd_id="#yearly_production_id#" title="#yearly_production_collect#">
+      <div class="enedisTitle">PRODUCTION <i class="fas fa-circle enedisTitleIcon"></i></div>
+      <div class="history cursor" data-cmd_id="#yearly_production_id#" data-up_to_date="#yearly_production_toDate#" title="#yearly_production_collect#">
         <div class="enedisCdc">ANNUELLE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#yearly_production#</span><span class="enedisUnite"> kWh</span></div>
+        <div class="enedisValueUnite"><span class="enedisValue">#yearly_production#</span><span class="enedisUnite"> #yearly_production_unite#</span></div>
       </div>
-      <div class="history cursor" data-cmd_id="#monthly_production_id#" title="#monthly_production_collect#">
+      <div class="history cursor" data-cmd_id="#monthly_production_id#" data-up_to_date="#monthly_production_toDate#" title="#monthly_production_collect#">
         <div class="enedisCdc">MENSUELLE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#monthly_production#</span><span class="enedisUnite"> kWh</span></div>
+        <div class="enedisValueUnite"><span class="enedisValue">#monthly_production#</span><span class="enedisUnite"> #monthly_production_unite#</span></div>
       </div>
-      <div class="history cursor" data-cmd_id="#daily_production_id#" title="#daily_production_collect#">
+      <div class="history cursor" data-cmd_id="#daily_production_id#" data-up_to_date="#daily_production_toDate#" title="#daily_production_collect#">
         <div class="enedisCdc">QUOTIDIENNE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#daily_production#</span><span class="enedisUnite"> kWh</span></div>
+        <div class="enedisValueUnite"><span class="enedisValue">#daily_production#</span><span class="enedisUnite"> #daily_production_unite#</span></div>
       </div>
-      <div class="history cursor" data-cmd_id="#production_load_curve_id#" title="#production_load_curve_collect#">
+      <div class="history cursor" data-cmd_id="#production_load_curve_id#" data-up_to_date="#production_load_curve_toDate#" title="#production_load_curve_collect#">
         <div class="enedisCdc">HORAIRE</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#production_load_curve#</span><span class="enedisUnite"> kW</span></div>
+        <div class="enedisValueUnite"><span class="enedisValue">#production_load_curve#</span><span class="enedisUnite"> #production_load_curve_unite#</span></div>
       </div>
-      <div class="history cursor" data-cmd_id="#daily_production_max_power_id#" title="#daily_production_max_power_collect#">
+      <div class="history cursor" data-cmd_id="#daily_production_max_power_id#" data-up_to_date="#daily_production_max_power_toDate#" title="#daily_production_max_power_collect#">
         <div class="enedisCdc">PUISSANCE MAX</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#daily_production_max_power#</span><span class="enedisUnite"> kVA</span></div>
+        <div class="enedisValueUnite"><span class="enedisValue">#daily_production_max_power#</span><span class="enedisUnite"> #daily_production_max_power_unite#</span></div>
       </div>
     </div>
   </div>
   <div style="margin:-25% 0 0 20%;height:10%;width:60%;" class="toggleMeasure"></div>
 
   <script>
-    var eqLogic = $('.eqLogic[data-eqLogic_uid=#uid#]');
+    var eqLogic = $('.eqLogic[data-eqLogic_uid=#uid#]')
     if ('#BGEnedis#' != 'transparent') {
-      eqLogic.find('.widget-name').attr('style', 'background-color:#BGEnedis#!important');
+      eqLogic.find('.widget-name').attr('style', 'background-color:#BGEnedis#!important')
     }
 
-    var measureType = '#measureType#';
+    var measureType = '#measureType#'
     if (measureType === 'consumption') {
-      eqLogic.find('#consumption').show();
-      eqLogic.find('#production').hide();
+      isUpToDate('#consumption', eqLogic.find('#consumption .history[data-up_to_date=1]').length)
+      eqLogic.find('#consumption').show()
+      eqLogic.find('#production').hide()
     }
     else if (measureType === 'production') {
-      eqLogic.find('#consumption').hide();
-      eqLogic.find('#production').show();
+      isUpToDate('#production', eqLogic.find('#production .history[data-up_to_date=1]').length)
+      eqLogic.find('#consumption').hide()
+      eqLogic.find('#production').show()
     }
     else if (measureType === 'both') {
-      eqLogic.find('.toggleMeasure').addClass('cursor');
+      isUpToDate('#consumption', eqLogic.find('#consumption .history[data-up_to_date=1]').length)
+      isUpToDate('#production', eqLogic.find('#production .history[data-up_to_date=1]').length)
+      eqLogic.find('.toggleMeasure').addClass('cursor')
       eqLogic.find('.toggleMeasure').on('click', function () {
-        eqLogic.find('#consumption').toggle();
-        eqLogic.find('#production').toggle();
+        eqLogic.find('#consumption').toggle()
+        eqLogic.find('#production').toggle()
       })
     }
 
-    var eqlogic_height = eqLogic.height();
-    eqLogic.find('.enedisCdc').css('font-size', (eqlogic_height*0.05)+'px');
-    eqLogic.find('.enedisValue, .enedisTitle').css('font-size', (eqlogic_height*0.06)+'px');
-    eqLogic.find('.enedisUnite').css('font-size', (eqlogic_height*0.04)+'px');
-    if ('#refresh_id#' != ''){
-      $('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
-        jeedom.cmd.execute({id: '#refresh_id#'});
-      });
-    }else{
-      $('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove();
+    var eqlogic_height = eqLogic.height()
+    eqLogic.find('.enedisCdc').css('font-size', (eqlogic_height*0.05)+'px')
+    eqLogic.find('.enedisValue, .enedisTitle').css('font-size', (eqlogic_height*0.06)+'px')
+    eqLogic.find('.enedisUnite, .enedisTitleIcon').css('font-size', (eqlogic_height*0.04)+'px')
+
+    if ('#refresh_id#' != '') {
+      $('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function() {
+        jeedom.cmd.execute({id: '#refresh_id#'})
+      })
+    }
+    else {
+      $('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove()
+    }
+
+    function isUpToDate(_type, _toDate) {
+      if (_toDate == 0) {
+        eqLogic.find(_type+' .enedisTitleIcon').attr({'style':'color:red;opacity:var(--opacity);vertical-align: middle;', 'title':'Aucune donnée à jour'})
+      }
+      else if (_toDate == 5) {
+        eqLogic.find(_type+' .enedisTitleIcon').attr({'style':'color:green;opacity:var(--opacity);vertical-align: middle;', 'title':'Toutes les données sont à jour'})
+      }
+      else {
+        eqLogic.find(_type+' .enedisTitleIcon').attr({'style':'color:orange;opacity:var(--opacity);vertical-align: middle;', 'title':'Certaines données ne sont pas à jour'})
+      }
     }
   </script>
 </div>
