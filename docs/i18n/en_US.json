@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Enedis": "Changelog Enedis",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text",
+        "24\/01\/2022": "01\/24\/2022",
+        "Suppression de la commande \"Production Puissance Max": "Removal of the \"Maximum Power Production\" command",
         "05\/01\/2022": "01\/05\/2022",
         "Correction d'un bug sur la collecte des données le 1er janvier": "Fixed a bug on data collection on January 1st",
         "vert = OK, rouge = KO, orange = certaines données KO": "green = OK, red = KO, orange = some data KO",
