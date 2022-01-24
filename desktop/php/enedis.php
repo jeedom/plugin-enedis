@@ -25,7 +25,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 		<legend><i class="fas fa-charging-station"></i> {{Mes compteurs}}</legend>
 		<?php
 		if (count($eqLogics) == 0) {
-			echo '<br><div class="text-center" style="font-size:1.2em;font-weight:bold;">{{Aucun compteur Enedis n\'est paramétré, cliquer sur "Ajouter" pour commencer}}</div>';
+			echo '<br><div class="text-center" style="font-size:1.2em;font-weight:bold;">{{Aucun compteur Enedis trouvé, cliquer sur "Ajouter" pour commencer}}</div>';
 		}
 		else {
 			echo '<div class="input-group" style="margin:5px;">';
@@ -43,6 +43,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 				echo '<br>';
 				echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
 				echo '<span class="hiddenAsCard displayTableRight hidden">';
+				echo ($eqLogic->getConfiguration('usage_point_id', '') != '') ? '<span class="label label-info">'.$eqLogic->getConfiguration('usage_point_id').'</span>':'';
 				echo ($eqLogic->getIsVisible() == 1) ? ' <i class="fas fa-eye" title="{{Equipement visible}}"></i>' : ' <i class="fas fa-eye-slash" title="{{Equipement non visible}}"></i>';
 				echo '</span>';
 				echo '</div>';
@@ -171,12 +172,10 @@ $eqLogics = eqLogic::byType($plugin->getId());
 					<table id="table_cmd" class="table table-bordered table-condensed">
 						<thead>
 							<tr>
-								<th>{{Id}}</th>
-								<th>{{Nom}}</th>
-								<th>{{Type}}</th>
-								<th>{{Unité}}</th>
-								<th>{{Options}}</th>
-								<th>{{Action}}</th>
+								<th class="hidden-xs" style="min-width:50px;width:70px;">ID</th>
+								<th style="min-width:200px;width:300px;">{{Nom}}</th>
+								<th style="min-width:200px;">{{Options}}</th>
+								<th style="min-width:100px;width:250px;">{{Actions}}</th>
 							</tr>
 						</thead>
 						<tbody>

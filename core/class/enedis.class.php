@@ -173,28 +173,30 @@ class enedis extends eqLogic {
           }
         }
 
-        $dailyMaxCmd = $this->getCmd('info', 'daily_'.$measureType.'_max_power');
-        $dailyMaxCmd->execCmd();
-        if (empty($_startDate) && $dailyMaxCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
-          log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Données de puissance déjà enregistrées pour le',__FILE__) . ' ' . date('d/m/Y', strtotime('-1 day')));
-        }
-        else if (empty($_toRefresh) || $_toRefresh['daily_'.$measureType.'_max_power']) {
-          log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données de puissance',__FILE__));
-          $to_refresh['daily_'.$measureType.'_max_power'] = true;
-          $data = $this->callEnedis('/metering_data/daily_'.$measureType.'_max_power?start='.$start_date.'&end='.$end_date.'&usage_point_id='.$usagePointId);
-          if(isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])){
-            foreach ($data['meter_reading']['interval_reading'] as $value) {
-              if (empty($_startDate) && $value['date'] >= date('Y-m-d', strtotime('-1 day '.$end_date))) {
-                $to_refresh = $this->cleanArray($to_refresh, 'daily_'.$measureType.'_max_power');
-                $this->recordData($dailyMaxCmd, $value['value'], $value['date'], 'event');
-              }
-              else {
-                $this->recordData($dailyMaxCmd, $value['value'], $value['date']);
+        if ($measureType == 'consumption') {
+          $dailyMaxCmd = $this->getCmd('info', 'daily_'.$measureType.'_max_power');
+          $dailyMaxCmd->execCmd();
+          if (empty($_startDate) && $dailyMaxCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
+            log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Données de puissance déjà enregistrées pour le',__FILE__) . ' ' . date('d/m/Y', strtotime('-1 day')));
+          }
+          else if (empty($_toRefresh) || $_toRefresh['daily_'.$measureType.'_max_power']) {
+            log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données de puissance',__FILE__));
+            $to_refresh['daily_'.$measureType.'_max_power'] = true;
+            $data = $this->callEnedis('/metering_data/daily_'.$measureType.'_max_power?start='.$start_date.'&end='.$end_date.'&usage_point_id='.$usagePointId);
+            if(isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])){
+              foreach ($data['meter_reading']['interval_reading'] as $value) {
+                if (empty($_startDate) && $value['date'] >= date('Y-m-d', strtotime('-1 day '.$end_date))) {
+                  $to_refresh = $this->cleanArray($to_refresh, 'daily_'.$measureType.'_max_power');
+                  $this->recordData($dailyMaxCmd, $value['value'], $value['date'], 'event');
+                }
+                else {
+                  $this->recordData($dailyMaxCmd, $value['value'], $value['date']);
+                }
               }
             }
-          }
-          else if (isset($data['error'])) {
-            log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données de puissance',__FILE__) . ' : ' . $data['error'] . ' ' . $data['error_description']);
+            else if (isset($data['error'])) {
+              log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données de puissance',__FILE__) . ' : ' . $data['error'] . ' ' . $data['error_description']);
+            }
           }
         }
       }

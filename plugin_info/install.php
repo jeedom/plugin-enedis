@@ -49,6 +49,9 @@ function enedis_update() {
       $eqLogic->setIsEnable(0);
       $eqLogic->save(true);
     }
+    if (is_object($prodMaxPower = $eqLogic->getCmd('info', 'daily_production_max_power'))) {
+      $prodMaxPower->remove();
+    }
   }
 }
 

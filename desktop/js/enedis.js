@@ -33,10 +33,12 @@ function addCmdToTable(_cmd) {
     _cmd.configuration = {}
   }
   var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">'
-  tr += '<td style="min-width:50px;width:70px;">'
+  tr += '<td class="hidden-xs">'
   tr += '<span class="cmdAttr" data-l1key="id"></span>'
+  tr += '<input class="cmdAttr form-control input-sm" data-l1key="type" value="info" style="display:none;">'
+  tr += '<input class="cmdAttr form-control input-sm" data-l1key="subType" value="numeric" style="display:none;">'
   tr += '</td>'
-  tr += '<td style="min-width:250px;width:330px;">'
+  tr += '<td>'
   tr += '<div class="input-group">'
   tr += '<input class="cmdAttr form-control input-sm roundedLeft" data-l1key="name" placeholder="{{Nom de la commande}}">'
   tr += '<span class="input-group-btn">'
@@ -45,19 +47,12 @@ function addCmdToTable(_cmd) {
   tr += '<span class="cmdAttr input-group-addon roundedRight" data-l1key="display" data-l2key="icon" style="font-size:19px;padding:0 5px 0 0!important;"></span>'
   tr += '</div>'
   tr += '</td>'
-  tr += '<td style="min-width:120px;width:140px;">'
-  tr += '<span class="type" type="' + init(_cmd.type) + '">' + jeedom.cmd.availableType() + '</span>'
-  tr += '<span class="subType" subType="' + init(_cmd.subType) + '"></span>'
+  tr += '<td>'
+  tr += '<label class="checkbox-inline"><input type="checkbox" class="cmdAttr" data-l1key="isVisible" checked>{{Afficher}}</label> '
+  tr += '<label class="checkbox-inline"><input type="checkbox" class="cmdAttr" data-l1key="isHistorized" checked>{{Historiser}}</label> '
+  tr += '<input class="tooltips cmdAttr form-control input-sm" data-l1key="unite" placeholder="Unité" title="{{Unité}}" style="width:30%;max-width:80px;margin-top:7px;">'
   tr += '</td>'
   tr += '<td>'
-  tr += '<input class="cmdAttr form-control input-sm" data-l1key="unite" placeholder="{{Unité}}" title="{{Unité}}" style="min-width:60px;max-width:100px;">'
-  tr += '</td>'
-  tr += '<td style="min-width:260px;width:300px;">'
-  tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isVisible" checked>{{Afficher}}</label></span> '
-  tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked>{{Historiser}}</label></span> '
-  tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="display" data-l2key="invertBinary">{{Inverser}}</label></span> '
-  tr += '</td>'
-  tr += '<td style="max-width:260px;width:300px;">'
   if (is_numeric(_cmd.id)) {
     tr += '<a class="btn btn-default btn-xs cmdAction" data-action="configure"><i class="fas fa-cogs"></i></a> '
     tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fas fa-rss"></i> Tester</a>'
@@ -65,7 +60,7 @@ function addCmdToTable(_cmd) {
       tr += ' <a class="btn btn-primary btn-xs cmdAction" data-action="addEnedisData" data-logicalId="'+_cmd.logicalId+'"><i class="fas fa-calendar-plus"></i> {{Ajout historiques}}</a>'
     }
   }
-  tr += '<i class="fas fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i></td>'
+  tr += '<i class="fas fa-minus-circle pull-right cmdAction cursor" data-action="remove" title="{{Supprimer la commande}}"></i></td>'
   tr += '</tr>'
   $('#table_cmd tbody').append(tr)
   var tr = $('#table_cmd tbody tr').last()
@@ -91,7 +86,7 @@ function addCmdToTable(_cmd) {
       var max = d.getFullYear()+'-01-01'
     }
     else {
-      var message = '<p>{{Intégrer les consommations horaires jusqu\'à 7 jours après la date choisie}}</p>'
+      var message = '<p>{{Intégrer les historiques horaires jusqu\'à 7 jours après la date choisie}}</p>'
       var loadDate = d.getDate() - 7
       d.setDate(loadDate)
       var max = d.getFullYear()+'-'+("0" + (d.getMonth() + 1)).slice(-2)+'-'+("0" + d.getDate()).slice(-2)
