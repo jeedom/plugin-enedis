@@ -101,7 +101,7 @@
       if (_toDate == 0) {
         eqLogic.find(_type+' .enedisTitleIcon').attr({'style':'color:red;opacity:var(--opacity);vertical-align: middle;', 'title':'Aucune donnée à jour'})
       }
-      else if (_toDate == 5) {
+      else if ((_type == '#production' && _toDate == 4) || (_type == '#consumption' &&_toDate == 5)) {
         eqLogic.find(_type+' .enedisTitleIcon').attr({'style':'color:green;opacity:var(--opacity);vertical-align: middle;', 'title':'Toutes les données sont à jour'})
       }
       else {
