@@ -52,10 +52,6 @@
         <div class="enedisCdc">HORAIRE</div>
         <div class="enedisValueUnite"><span class="enedisValue">#production_load_curve#</span><span class="enedisUnite"> #production_load_curve_unite#</span></div>
       </div>
-      <div class="history cursor" data-cmd_id="#daily_production_max_power_id#" data-up_to_date="#daily_production_max_power_toDate#" title="#daily_production_max_power_collect#">
-        <div class="enedisCdc">PUISSANCE MAX</div>
-        <div class="enedisValueUnite"><span class="enedisValue">#daily_production_max_power#</span><span class="enedisUnite"> #daily_production_max_power_unite#</span></div>
-      </div>
     </div>
   </div>
   <div style="margin:-25% 0 0 20%;height:10%;width:60%;" class="toggleMeasure"></div>
@@ -105,7 +101,7 @@
       if (_toDate == 0) {
         eqLogic.find(_type+' .enedisTitleIcon').attr({'style':'color:red;opacity:var(--opacity);vertical-align: middle;', 'title':'Aucune donnée à jour'})
       }
-      else if (_toDate == 5) {
+      else if ((_type == '#production' && _toDate == 4) || (_type == '#consumption' &&_toDate == 5)) {
         eqLogic.find(_type+' .enedisTitleIcon').attr({'style':'color:green;opacity:var(--opacity);vertical-align: middle;', 'title':'Toutes les données sont à jour'})
       }
       else {

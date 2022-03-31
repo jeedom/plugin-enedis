@@ -126,21 +126,6 @@
       "order":10,
       "graphType":"areaspline",
       "logicalId": "production_load_curve"
-    },
-    {
-      "name": "Production Puissance Max",
-      "isVisible": 1,
-      "isHistorized": 1,
-      "unite":"kVA",
-      "configuration":{
-        "calculValueOffset":"#value#\/1000",
-        "historizeMode": "none",
-        "historizeRound":"2"
-      },
-      "generic_type":"POWER",
-      "order":11,
-      "graphType":"column",
-      "logicalId": "daily_production_max_power"
     }
   ]
 }

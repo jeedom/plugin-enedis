@@ -1,7 +1,9 @@
 {
     "changelog.md": {
         "Changelog Enedis": "Registro de cambios Enedis",
-        "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto",
+        "S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Si no hay información sobre la actualización, significa que se trata solo de la actualización de la documentación, la traducción o el texto",
+        "24\/01\/2022": "24\/01\/2022",
+        "Suppression de la commande \"Production Puissance Max": "Eliminación del comando \"Máxima producción de energía\"",
         "05\/01\/2022": "05\/01\/2022",
         "Correction d'un bug sur la collecte des données le 1er janvier": "Se corrigió un error en la recopilación de datos el 1 de enero",
         "vert = OK, rouge = KO, orange = certaines données KO": "verde = OK, rojo = KO, naranja = algunos datos KO",
