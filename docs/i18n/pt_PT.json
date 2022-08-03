@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Enedis": "Changelog Enedis",
         "S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Se não houver informação sobre a atualização, significa que se trata apenas da atualização da documentação, tradução ou texto",
+        "02\/08\/2022": "02\/08\/2022",
+        "Optimisation des appels aux serveurs Enedis": "Otimização de chamadas para servidores Enedis",
         "24\/01\/2022": "24\/01\/2022",
         "Suppression de la commande \"Production Puissance Max": "Remoção do comando \"Produção máxima de energia\"",
         "05\/01\/2022": "05\/01\/2022",
@@ -72,7 +74,7 @@
         "puissance max": "poder maximo",
         "en kVA": "em kVA",
         "Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille": "Como os dados não são disponibilizados em tempo real, o plugin recupera os dados de consumo de eletricidade da véspera de cada dia",
-        "Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs Enedis toutes les 30 minutes entre 7h et 20h, autrement les appels sont suspendus jusqu'au lendemain": "Enquanto o plug-in não recuperou todos os dados do dia anterior, ele continua a pesquisar os servidores Enedis a cada 30 minutos entre 7h e 20h, caso contrário, as chamadas serão suspensas até o dia seguinte",
+        "Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs Enedis toutes les 30 minutes, autrement les appels sont suspendus jusqu'au lendemain": "Enquanto o plugin não tiver recuperado todos os dados do dia anterior, ele continua consultando os servidores da Enedis a cada 30 minutos, caso contrário as chamadas ficam suspensas até o dia seguinte",
         "Comme tout plugin Jeedom, le plugin": "Como qualquer plugin Jeedom, o plugin",
         "doit être activé après l'installation": "deve ser ativado após a instalação",
         "Gestion des dépendances": "Gerenciamento de dependências",
