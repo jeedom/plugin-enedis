@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Enedis": "Changelog Enedis",
         "S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "If there is no information on the update, it means that it concerns only the update of documentation, translation or text",
+        "02\/08\/2022": "02\/08\/2022",
+        "Optimisation des appels aux serveurs Enedis": "Optimization of calls to Enedis servers",
         "24\/01\/2022": "01\/24\/2022",
         "Suppression de la commande \"Production Puissance Max": "Removal of the \"Maximum Power Production\" command",
         "05\/01\/2022": "01\/05\/2022",
@@ -72,7 +74,7 @@
         "puissance max": "max power",
         "en kVA": "in kVA",
         "Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille": "As the data is not made available in real time, the plugin retrieves the electricity consumption data from the day before each day",
-        "Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs Enedis toutes les 30 minutes entre 7h et 20h, autrement les appels sont suspendus jusqu'au lendemain": "As long as the plugin has not retrieved all of the data from the day before, it continues to poll the Enedis servers every 30 minutes between 7 a.m. and 8 p.m., otherwise calls are suspended until the next day",
+        "Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs Enedis toutes les 30 minutes, autrement les appels sont suspendus jusqu'au lendemain": "As long as the plugin has not retrieved all the data from the previous day, it continues to query the Enedis servers every 30 minutes, otherwise the calls are suspended until the next day",
         "Comme tout plugin Jeedom, le plugin": "Like any Jeedom plugin, the plugin",
         "doit être activé après l'installation": "must be activated after installation",
         "Gestion des dépendances": "Dependency management",

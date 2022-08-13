@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Enedis": "Registro de cambios Enedis",
         "S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Si no hay información sobre la actualización, significa que se trata solo de la actualización de la documentación, la traducción o el texto",
+        "02\/08\/2022": "08\/02\/2022",
+        "Optimisation des appels aux serveurs Enedis": "Optimización de llamadas a servidores de Enedis",
         "24\/01\/2022": "24\/01\/2022",
         "Suppression de la commande \"Production Puissance Max": "Eliminación del comando \"Máxima producción de energía\"",
         "05\/01\/2022": "05\/01\/2022",
@@ -72,7 +74,7 @@
         "puissance max": "máximo poder",
         "en kVA": "en kVA",
         "Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille": "Como los datos no están disponibles en tiempo real, el complemento recupera los datos de consumo de electricidad del día anterior a cada día",
-        "Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs Enedis toutes les 30 minutes entre 7h et 20h, autrement les appels sont suspendus jusqu'au lendemain": "Mientras el complemento no haya recuperado todos los datos del día anterior, continúa sondeando los servidores de Enedis cada 30 minutos entre las 7 a.m. y las 8 p.m., de lo contrario, las llamadas se suspenden hasta el día siguiente",
+        "Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs Enedis toutes les 30 minutes, autrement les appels sont suspendus jusqu'au lendemain": "Mientras el complemento no haya recuperado todos los datos del día anterior, continúa consultando los servidores de Enedis cada 30 minutos, de lo contrario, las llamadas se suspenden hasta el día siguiente",
         "Comme tout plugin Jeedom, le plugin": "Como cualquier complemento de Jeedom, el complemento",
         "doit être activé après l'installation": "debe activarse después de la instalación",
         "Gestion des dépendances": "Gestión de la dependencia",
