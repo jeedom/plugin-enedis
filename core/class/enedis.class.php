@@ -62,7 +62,7 @@ class enedis extends eqLogic {
 
   public function reschedule($options = array()) {
     if (empty($options)) {
-      $next_launch = strtotime('+1 day ' . date('Y-m-d ' . mt_rand(3, 6) . ':' . mt_rand(1, 29)));
+      $next_launch = strtotime('+1 day ' . date('Y-m-d ' . mt_rand(3, 6) . ':' . mt_rand(1, 59)));
     } else {
       $next_launch = strtotime('+30 minutes ' . date('Y-m-d H:i'));
     }
