@@ -1,40 +1,47 @@
 @font-face {
 	font-family: "Digital-7";
-	src:  url("fonts/digital-7.ttf") format("opentype");
+	src: url("fonts/digital-7.ttf") format("opentype");
 }
+
 .enedis_template {
-	height:85%;
-	background-image:url("images/LinkyScreen.png");
+	height: 85%;
+	background-image: url("images/LinkyScreen.png");
 	background-repeat: no-repeat;
 	background-position: center 0%;
 	font-family: "Digital-7";
-	color: black!important;
+	color: black !important;
 	background-size: 85% 95%;
 }
+
 .enedis_template div.enedisTitle {
-	line-height:1;
-	font-weight:bold;
-	color:#505050;
+	line-height: 1;
+	font-weight: bold;
+	color: #505050;
 }
-.enedis_template div.enedisCdc{
-	font-size: 14px!important;
+
+.enedis_template div.enedisCdc {
+	font-size: 14px !important;
 	letter-spacing: 1px;
-	color:#505050;
+	color: #505050;
 	line-height: 1;
 }
-.enedis_template div.enedisUnite{
+
+.enedis_template div.enedisUnite {
 	letter-spacing: 1px;
-	color:#505050;
+	color: #505050;
 }
+
 .enedis_template .enedisValue {
 	letter-spacing: 1px;
-	font-weight:bold;
+	font-weight: bold;
 }
+
 .enedis_template div.enedisValueUnite {
 	line-height: 1;
 }
-.enedis_template #consumption,
-.enedis_template #production {
+
+.enedis_template .consumption,
+.enedis_template .production {
 	padding-top: 28px;
 	display: flex;
 	flex-direction: column;
