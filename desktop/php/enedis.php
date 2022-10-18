@@ -9,7 +9,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 
 <div class="row row-overflow">
 	<div class="col-xs-12 eqLogicThumbnailDisplay">
-		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
+		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 		<div class="eqLogicThumbnailContainer">
 			<div class="cursor eqLogicAction logoPrimary" data-action="add">
 				<i class="fas fa-plus-circle"></i>
@@ -26,8 +26,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 		<?php
 		if (count($eqLogics) == 0) {
 			echo '<br><div class="text-center" style="font-size:1.2em;font-weight:bold;">{{Aucun compteur Enedis trouvé, cliquer sur "Ajouter" pour commencer}}</div>';
-		}
-		else {
+		} else {
 			echo '<div class="input-group" style="margin:5px;">';
 			echo '<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchEqlogic">';
 			echo '<div class="input-group-btn">';
@@ -38,12 +37,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
 			echo '<div class="eqLogicThumbnailContainer">';
 			foreach ($eqLogics as $eqLogic) {
 				$opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
-				echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '">';
+				echo '<div class="eqLogicDisplayCard cursor ' . $opacity . '" data-eqLogic_id="' . $eqLogic->getId() . '">';
 				echo '<img src="' . $plugin->getPathImgIcon() . '">';
 				echo '<br>';
 				echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
 				echo '<span class="hiddenAsCard displayTableRight hidden">';
-				echo ($eqLogic->getConfiguration('usage_point_id', '') != '') ? '<span class="label label-info">'.$eqLogic->getConfiguration('usage_point_id').'</span>':'';
+				echo ($eqLogic->getConfiguration('usage_point_id', '') != '') ? '<span class="label label-info">' . $eqLogic->getConfiguration('usage_point_id') . '</span>' : '';
 				echo ($eqLogic->getIsVisible() == 1) ? ' <i class="fas fa-eye" title="{{Equipement visible}}"></i>' : ' <i class="fas fa-eye-slash" title="{{Equipement non visible}}"></i>';
 				echo '</span>';
 				echo '</div>';
@@ -57,7 +56,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
 				<a class="btn btn-sm btn-default eqLogicAction roundedLeft" data-action="configure"><i class="fas fa-cogs"></i><span class="hidden-xs"> {{Configuration avancée}}</span>
-				</a><a class="btn btn-sm btn-default eqLogicAction" data-action="copy"><i class="fas fa-copy"></i><span class="hidden-xs">  {{Dupliquer}}</span>
+				</a><a class="btn btn-sm btn-default eqLogicAction" data-action="copy"><i class="fas fa-copy"></i><span class="hidden-xs"> {{Dupliquer}}</span>
 				</a><a class="btn btn-sm btn-success eqLogicAction" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
 				</a><a class="btn btn-danger btn-sm eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
@@ -76,16 +75,16 @@ $eqLogics = eqLogic::byType($plugin->getId());
 							<div class="form-group">
 								<label class="col-sm-4 control-label">{{Nom du compteur}}</label>
 								<div class="col-sm-6">
-									<input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" >
+									<input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;">
 									<input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom du compteur}}">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" >{{Objet parent}}</label>
+								<label class="col-sm-4 control-label">{{Objet parent}}</label>
 								<div class="col-sm-6">
 									<select id="sel_object" class="eqLogicAttr form-control" data-l1key="object_id">
 										<option value="">{{Aucun}}</option>
-										<?php	$options = '';
+										<?php $options = '';
 										foreach ((jeeObject::buildTree(null, false)) as $object) {
 											$options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object->getConfiguration('parentNumber')) . $object->getName() . '</option>';
 										}
@@ -175,6 +174,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 								<th class="hidden-xs" style="min-width:50px;width:70px;">ID</th>
 								<th style="min-width:200px;width:300px;">{{Nom}}</th>
 								<th style="min-width:200px;">{{Options}}</th>
+								<th>{{Etat}}</th>
 								<th style="min-width:100px;width:250px;">{{Actions}}</th>
 							</tr>
 						</thead>
@@ -188,5 +188,5 @@ $eqLogics = eqLogic::byType($plugin->getId());
 	</div>
 </div>
 
-<?php include_file('desktop', 'enedis', 'js', 'enedis');?>
-<?php include_file('core', 'plugin.template', 'js');?>
+<?php include_file('desktop', 'enedis', 'js', 'enedis'); ?>
+<?php include_file('core', 'plugin.template', 'js'); ?>

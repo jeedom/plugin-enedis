@@ -16,7 +16,7 @@
 */
 
 $('.eqLogicAttr[data-l2key=widgetTemplate]').on('change', function() {
-  if( $(this).is(':checked')){
+  if ($(this).is(':checked')) {
     $('#templateParams').show()
   }
   else {
@@ -24,10 +24,10 @@ $('.eqLogicAttr[data-l2key=widgetTemplate]').on('change', function() {
   }
 })
 
-$("#table_cmd").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true})
+$("#table_cmd").sortable({ axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true })
 function addCmdToTable(_cmd) {
   if (!isset(_cmd)) {
-    var _cmd = {configuration: {}}
+    var _cmd = { configuration: {} }
   }
   if (!isset(_cmd.configuration)) {
     _cmd.configuration = {}
@@ -53,11 +53,14 @@ function addCmdToTable(_cmd) {
   tr += '<input class="tooltips cmdAttr form-control input-sm" data-l1key="unite" placeholder="Unité" title="{{Unité}}" style="width:30%;max-width:80px;margin-top:7px;">'
   tr += '</td>'
   tr += '<td>'
+  tr += '<span class="cmdAttr" data-l1key="htmlstate"></span>'
+  tr += '</td>'
+  tr += '<td>'
   if (is_numeric(_cmd.id)) {
     tr += '<a class="btn btn-default btn-xs cmdAction" data-action="configure"><i class="fas fa-cogs"></i></a> '
     tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fas fa-rss"></i> Tester</a>'
     if ((_cmd.logicalId).includes('daily') || (_cmd.logicalId).includes('load')) {
-      tr += ' <a class="btn btn-primary btn-xs cmdAction" data-action="addEnedisData" data-logicalId="'+_cmd.logicalId+'"><i class="fas fa-calendar-plus"></i> {{Ajout historiques}}</a>'
+      tr += ' <a class="btn btn-primary btn-xs cmdAction" data-action="addEnedisData" data-logicalId="' + _cmd.logicalId + '"><i class="fas fa-calendar-plus"></i> {{Ajout historiques}}</a>'
     }
   }
   tr += '<i class="fas fa-minus-circle pull-right cmdAction cursor" data-action="remove" title="{{Supprimer la commande}}"></i></td>'
@@ -65,12 +68,12 @@ function addCmdToTable(_cmd) {
   $('#table_cmd tbody').append(tr)
   var tr = $('#table_cmd tbody tr').last()
   jeedom.eqLogic.builSelectCmd({
-    id:  $('.eqLogicAttr[data-l1key=id]').value(),
-    filter: {type: 'info'},
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    id: $('.eqLogicAttr[data-l1key=id]').value(),
+    filter: { type: 'info' },
+    error: function(error) {
+      $('#div_alert').showAlert({ message: error.message, level: 'danger' })
     },
-    success: function (result) {
+    success: function(result) {
       tr.find('.cmdAttr[data-l1key=value]').append(result)
       tr.setValues(_cmd, '.cmdAttr')
       jeedom.cmd.changeType(tr, init(_cmd.subType))
@@ -80,28 +83,28 @@ function addCmdToTable(_cmd) {
   $('.cmdAction[data-action=addEnedisData]').off().on('click', function() {
     var tr = $(this).closest('tr')
     var d = new Date()
-    var min = (d.getFullYear()-3)+'-'+("0" + (d.getMonth() + 1)).slice(-2)+'-'+("0" + d.getDate()).slice(-2)
+    var min = (d.getFullYear() - 3) + '-' + ("0" + (d.getMonth() + 1)).slice(-2) + '-' + ("0" + d.getDate()).slice(-2)
     if ($(this).attr('data-logicalId').includes('daily')) {
-      var message = '<p>{{Intégrer les historiques de la date choisie jusqu\'au 1er janvier}} '+d.getFullYear()+'</p>'
-      var max = d.getFullYear()+'-01-01'
+      var message = '<p>{{Intégrer les historiques de la date choisie jusqu\'au 1er janvier}} ' + d.getFullYear() + '</p>'
+      var max = d.getFullYear() + '-01-01'
     }
     else {
       var message = '<p>{{Intégrer les historiques horaires jusqu\'à 7 jours après la date choisie}}</p>'
       var loadDate = d.getDate() - 7
       d.setDate(loadDate)
-      var max = d.getFullYear()+'-'+("0" + (d.getMonth() + 1)).slice(-2)+'-'+("0" + d.getDate()).slice(-2)
+      var max = d.getFullYear() + '-' + ("0" + (d.getMonth() + 1)).slice(-2) + '-' + ("0" + d.getDate()).slice(-2)
     }
     message += '{{Choisir la date de début}}'
     bootbox.prompt({
-      title: '{{Ajout de données}} '+tr.find('.cmdAttr[data-l1key=name]').value(),
+      title: '{{Ajout de données}} ' + tr.find('.cmdAttr[data-l1key=name]').value(),
       message: message,
       inputType: 'date',
       min: min,
       max: max,
       size: 'small',
-      callback: function (result) {
+      callback: function(result) {
         if (result) {
-          $('#div_alert').showAlert({message: '{{En cours d\'intégration d\'historiques...}}', level: 'warning'})
+          $('#div_alert').showAlert({ message: '{{En cours d\'intégration d\'historiques...}}', level: 'warning' })
           $.ajax({
             type: "POST",
             url: "plugins/enedis/core/ajax/enedis.ajax.php",
@@ -111,11 +114,11 @@ function addCmdToTable(_cmd) {
               start: result,
             },
             dataType: 'json',
-            error: function (request, status, error) {
+            error: function(request, status, error) {
               handleAjaxError(request, status, error, $('#div_alert'))
             },
-            success: function (data) {
-              $('#div_alert').showAlert({message: '{{Historiques intégrés avec succès}}', level: 'success'})
+            success: function(data) {
+              $('#div_alert').showAlert({ message: '{{Historiques intégrés avec succès}}', level: 'success' })
             }
           })
         }
