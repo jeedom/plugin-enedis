@@ -1,5 +1,6 @@
-<div class="eqLogic eqLogic-widget allowResize #eqLogic_class# #class#" data-eqType="#eqType#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="width:#width#;height:#height#;background-color:#BGEnedis#!important;">
-  <link rel="stylesheet" href="plugins/enedis/core/template/css/enedis.template.css"/>
+<div class="eqLogic eqLogic-widget allowResize #eqLogic_class# #class#" data-eqType="#eqType#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#"
+  data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="width:#width#;height:#height#;background-color:#BGEnedis#!important;">
+  <link rel="stylesheet" href="plugins/enedis/core/template/css/enedis.template.css" />
   <div class="text-center widget-name">
     <span class="warning" title="#alert_name#">
       <i class='#alert_icon#'></i>
@@ -11,7 +12,7 @@
     <a href="#eqLink#" class="reportModeHidden" style="color:var(--eqTitle-color)!important;">#name_display# <span class="object_name">#object_name#</span></a>
   </div>
   <div class="enedis_template text-center">
-    <div id="consumption">
+    <div class="consumption">
       <div class="enedisTitle">CONSOMMATION <i class="fas fa-circle enedisTitleIcon"></i></div>
       <div class="history cursor" data-cmd_id="#yearly_consumption_id#" data-up_to_date="#yearly_consumption_toDate#" title="#yearly_consumption_collect#">
         <div class="enedisCdc">ANNUELLE</div>
@@ -29,12 +30,13 @@
         <div class="enedisCdc">HORAIRE</div>
         <div class="enedisValueUnite"><span class="enedisValue">#consumption_load_curve#</span><span class="enedisUnite"> #consumption_load_curve_unite#</span></div>
       </div>
-      <div class="history cursor" data-cmd_id="#daily_consumption_max_power_id#" data-up_to_date="#daily_consumption_max_power_toDate#" title="#daily_consumption_max_power_collect#">
+      <div class="history cursor" data-cmd_id="#daily_consumption_max_power_id#" data-up_to_date="#daily_consumption_max_power_toDate#"
+        title="#daily_consumption_max_power_collect#">
         <div class="enedisCdc">PUISSANCE MAX</div>
         <div class="enedisValueUnite"><span class="enedisValue">#daily_consumption_max_power#</span><span class="enedisUnite"> #daily_consumption_max_power_unite#</span></div>
       </div>
     </div>
-    <div id="production" style="display:none;">
+    <div class="production" style="display:none;">
       <div class="enedisTitle">PRODUCTION <i class="fas fa-circle enedisTitleIcon"></i></div>
       <div class="history cursor" data-cmd_id="#yearly_production_id#" data-up_to_date="#yearly_production_toDate#" title="#yearly_production_collect#">
         <div class="enedisCdc">ANNUELLE</div>
@@ -64,33 +66,33 @@
 
     var measureType = '#measureType#'
     if (measureType === 'consumption') {
-      isUpToDate('#consumption', eqLogic.find('#consumption .history[data-up_to_date=1]').length)
-      eqLogic.find('#consumption').show()
-      eqLogic.find('#production').hide()
+      isUpToDate('.consumption', eqLogic.find('.consumption .history[data-up_to_date=1]').length)
+      eqLogic.find('.consumption').show()
+      eqLogic.find('.production').hide()
     }
     else if (measureType === 'production') {
-      isUpToDate('#production', eqLogic.find('#production .history[data-up_to_date=1]').length)
-      eqLogic.find('#consumption').hide()
-      eqLogic.find('#production').show()
+      isUpToDate('.production', eqLogic.find('.production .history[data-up_to_date=1]').length)
+      eqLogic.find('.consumption').hide()
+      eqLogic.find('.production').show()
     }
     else if (measureType === 'both') {
-      isUpToDate('#consumption', eqLogic.find('#consumption .history[data-up_to_date=1]').length)
-      isUpToDate('#production', eqLogic.find('#production .history[data-up_to_date=1]').length)
+      isUpToDate('.consumption', eqLogic.find('.consumption .history[data-up_to_date=1]').length)
+      isUpToDate('.production', eqLogic.find('.production .history[data-up_to_date=1]').length)
       eqLogic.find('.toggleMeasure').addClass('cursor')
-      eqLogic.find('.toggleMeasure').on('click', function () {
-        eqLogic.find('#consumption').toggle()
-        eqLogic.find('#production').toggle()
+      eqLogic.find('.toggleMeasure').on('click', function() {
+        eqLogic.find('.consumption').toggle()
+        eqLogic.find('.production').toggle()
       })
     }
 
     var eqlogic_height = eqLogic.height()
-    eqLogic.find('.enedisCdc').css('font-size', (eqlogic_height*0.05)+'px')
-    eqLogic.find('.enedisValue, .enedisTitle').css('font-size', (eqlogic_height*0.06)+'px')
-    eqLogic.find('.enedisUnite, .enedisTitleIcon').css('font-size', (eqlogic_height*0.04)+'px')
+    eqLogic.find('.enedisCdc').css('font-size', (eqlogic_height * 0.05) + 'px')
+    eqLogic.find('.enedisValue, .enedisTitle').css('font-size', (eqlogic_height * 0.06) + 'px')
+    eqLogic.find('.enedisUnite, .enedisTitleIcon').css('font-size', (eqlogic_height * 0.04) + 'px')
 
     if ('#refresh_id#' != '') {
       $('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function() {
-        jeedom.cmd.execute({id: '#refresh_id#'})
+        jeedom.cmd.execute({ id: '#refresh_id#' })
       })
     }
     else {
@@ -99,13 +101,13 @@
 
     function isUpToDate(_type, _toDate) {
       if (_toDate == 0) {
-        eqLogic.find(_type+' .enedisTitleIcon').attr({'style':'color:red;opacity:var(--opacity);vertical-align: middle;', 'title':'Aucune donnée à jour'})
+        eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:red;opacity:var(--opacity);vertical-align: middle;', 'title': 'Aucune donnée à jour' })
       }
-      else if ((_type == '#production' && _toDate == 4) || (_type == '#consumption' &&_toDate == 5)) {
-        eqLogic.find(_type+' .enedisTitleIcon').attr({'style':'color:green;opacity:var(--opacity);vertical-align: middle;', 'title':'Toutes les données sont à jour'})
+      else if ((_type == '.production' && _toDate == 4) || (_type == '.consumption' && _toDate == 5)) {
+        eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:green;opacity:var(--opacity);vertical-align: middle;', 'title': 'Toutes les données sont à jour' })
       }
       else {
-        eqLogic.find(_type+' .enedisTitleIcon').attr({'style':'color:orange;opacity:var(--opacity);vertical-align: middle;', 'title':'Certaines données ne sont pas à jour'})
+        eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:orange;opacity:var(--opacity);vertical-align: middle;', 'title': 'Certaines données ne sont pas à jour' })
       }
     }
   </script>
