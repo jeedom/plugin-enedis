@@ -43,6 +43,7 @@
         "Transparent": "Transparent",
         "Cocher la case pour un fond transparent": "Cocher la case pour un fond transparent",
         "Nom": "İsim",
+        "Etat": "Etat",
         "Actions": "Actions"
     },
     "plugins\/enedis\/desktop\/js\/enedis.js": {

@@ -43,6 +43,7 @@
         "Transparent": "Transparent",
         "Cocher la case pour un fond transparent": "Check the box for a transparent background",
         "Nom": "Name",
+        "Etat": "State",
         "Actions": "Actions"
     },
     "plugins\/enedis\/desktop\/js\/enedis.js": {

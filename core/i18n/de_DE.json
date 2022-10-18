@@ -43,6 +43,7 @@
         "Transparent": "Transparent",
         "Cocher la case pour un fond transparent": "Aktivieren Sie das Kontrollkästchen für einen transparenten Hintergrund",
         "Nom": "Name",
+        "Etat": "Bundesland",
         "Actions": "Anteile"
     },
     "plugins\/enedis\/desktop\/js\/enedis.js": {

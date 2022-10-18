@@ -43,6 +43,7 @@
         "Transparent": "Transparente",
         "Cocher la case pour un fond transparent": "Marque la casilla para ver un fondo transparente",
         "Nom": "Nombre",
+        "Etat": "Estado",
         "Actions": "Comparte"
     },
     "plugins\/enedis\/desktop\/js\/enedis.js": {

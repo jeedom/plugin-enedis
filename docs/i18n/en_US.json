@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Enedis": "Changelog Enedis",
         "S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "If there is no information on the update, it means that it concerns only the update of documentation, translation or text",
+        "18\/10\/2022": "10\/18\/2022",
+        "Mise à jour de la liste des commandes pour Jeedom v4.3": "Updated command list for Jeedom v4.3",
         "15\/08\/2022": "08\/15\/2022",
         "Correction d'un bug d'affichage des données de production en cas de plusieurs widgets sur la page": "Fixed a production data display bug in case of multiple widgets on the page",
         "02\/08\/2022": "02\/08\/2022",
