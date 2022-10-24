@@ -377,7 +377,10 @@ class enedis extends eqLogic {
     $replace['#noLoadCurve#'] = $this->getConfiguration('no_load_curve', 0);
 
     if ($this->getConfiguration('defaultTitle') == 1) {
-      $replace['#BGTitle#'] = 'default';
+      $replace['#BGTitle#'] = 'rgba(var(--eq-bg-color), var(--opacity)) !important;';
+      if (config::byKey('interface::advance::coloredcats') == 1) {
+        $replace['#BGTitle#'] = 'rgba(var(--cat-energy-color), var(--opacity)) !important;';
+      }
     }
 
     return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'enedis.template', __CLASS__)));

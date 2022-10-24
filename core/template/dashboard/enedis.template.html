@@ -1,15 +1,15 @@
 <div class="eqLogic eqLogic-widget allowResize #eqLogic_class# #class#" data-eqType="#eqType#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#"
   data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="width:#width#;height:#height#;background-color:#BGEnedis#!important;">
   <link rel="stylesheet" href="plugins/enedis/core/template/css/enedis.template.css">
-  <div class="text-center widget-name">
+  <div class="text-center widget-name" style="background-color:#BGTitle#!important;">
     <span class="warning" title="#alert_name#">
       <i class='#alert_icon#'></i>
     </span>
     <span class="cmd refresh pull-right cursor" data-cmd_id="#refresh_id#">
-      <i class="fas fa-sync"></i>
+      <i class="fas fa-sync" style="color:var(--eqTitle-color)!important;"></i>
     </span>
     <span class="reportModeVisible">#name_display# <span class="object_name">#object_name#</span></span>
-    <a href="#eqLink#" class="reportModeHidden">#name_display# <span class="object_name">#object_name#</span></a>
+    <a href="#eqLink#" class="reportModeHidden" style="color:var(--eqTitle-color)!important;">#name_display# <span class="object_name">#object_name#</span></a>
   </div>
   <div class="enedis_template text-center">
     <div class="consumption">
@@ -60,9 +60,6 @@
 
   <script>
     var eqLogic = $('.eqLogic[data-eqLogic_uid=#uid#]')
-    if ('#BGTitle#' != 'default') {
-      eqLogic.find('.widget-name').attr('style', 'background-color:#BGTitle#!important')
-    }
     if ('#noLoadCurve#' == 1) {
       eqLogic.find('.history:nth-child(5)').remove()
     }
