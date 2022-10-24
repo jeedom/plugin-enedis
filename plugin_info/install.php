@@ -36,7 +36,7 @@ function enedis_update() {
     if ($eqLogic->getConfiguration('widgetBGColor') != '') {
       if ($eqLogic->getConfiguration('widgetTemplate') == 1) {
         $params = $eqLogic->getdisplay('parameters', array());
-        $params['style'] = hex2rgb($eqLogic->getConfiguration('widgetBGColor'));
+        $params['style'] = 'background-color:rgb(' . implode(',', hex2rgb($eqLogic->getConfiguration('widgetBGColor'))) . ') !important;';
         $eqLogic->setDisplay('parameters', $params);
       }
       $eqLogic->setConfiguration('widgetBGColor', null);

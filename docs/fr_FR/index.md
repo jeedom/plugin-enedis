@@ -94,8 +94,9 @@ Le plugin offre la possibilité d'afficher les données de consommation et/ou de
 ![Template de widget](../images/enedis_screenshot1.png)
 
 Pour activer cette option, il suffit de cocher la case **Activer** de la section **Template de widget** sur la page générale de l'équipement concerné. Une fois le template de widget activé, rendez-vous à l'onglet **Affichage** de la configuration de l'équipement pour personnaliser la couleur de fond du widget via l'ajout d'un **paramètre optionnel sur la tuile** :
-Nom | Valeur
-`style` | `background-color:rgb(163,204,40)!important;`
+| Nom | Valeur|
+| --- | --- |
+| `style` | `background-color:rgb(163,204,40)!important;` |
 
 >**ASTUCE**
 >
