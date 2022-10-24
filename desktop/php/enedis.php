@@ -146,17 +146,14 @@ $eqLogics = eqLogic::byType($plugin->getId());
 									<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="widgetTemplate">
 								</div>
 							</div>
-							<br>
-							<div class="form-group" id="templateParams">
-								<label class="col-sm-4 control-label">{{Couleur de fond}}
-									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner la couleur de fond du template de widget}}"></i></sup>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">{{Barre de titre}}
 								</label>
-								<div class="col-sm-4">
-									<input type="color" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="widgetBGColor">
+								<div class="col-sm-6">
+									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="defaultTitle">{{Affichage par défaut}}
+										<sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case pour conserver la barre de titre Jeedom par défaut}}"></i></sup>
+									</label>
 								</div>
-								<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="widgetTransparent">{{Transparent}}
-									<sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case pour un fond transparent}}"></i></sup>
-								</label>
 							</div>
 						</div>
 

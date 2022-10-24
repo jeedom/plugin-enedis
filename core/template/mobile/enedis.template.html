@@ -4,12 +4,12 @@
 		<i class="fas fa-sync" style="color:var(--eqTitle-color)!important;"></i>
 	</span>
 	<center>
-		<link rel="stylesheet" href="plugins/enedis/core/template/css/enedis.mobile.css" />
+		<link rel="stylesheet" href="plugins/enedis/core/template/css/enedis.mobile.css">
 		<span class="widget-name">
 			<span class="warning" title="#alert_name#">
 				<i class='#alert_icon#'></i>
 			</span>
-			<span style="color:var(--eqTitle-color)!important;">#name_display# <span class="object_name">#object_name#</span></span><br />
+			<span>#name_display# <span class="object_name">#object_name#</span></span><br>
 		</span>
 		<div class="enedis_template text-center" style="height:220px;">
 			<div class="consumption">
@@ -59,8 +59,8 @@
 		</div>
 		<script>
 			var eqLogic = $('.eqLogic[data-eqLogic_uid=#uid#]')
-			if ('#BGEnedis#' != 'transparent') {
-				eqLogic.find('.widget-name').attr('style', 'background-color:#BGEnedis#!important')
+			if ('#BGTitle#' != 'default') {
+				eqLogic.find('.widget-name').attr('style', 'background-color:#BGTitle#!important')
 			}
 
 			var measureType = '#measureType#'

@@ -21,7 +21,25 @@ require_once __DIR__  . '/../../../../core/php/core.inc.php';
 
 class enedis extends eqLogic {
 
-  public static $_widgetPossibility = array('custom' => true);
+  public static $_widgetPossibility = array(
+    'custom' => true,
+    'parameters' => array(
+      'BGEnedis' => array(
+        'name' => 'Template : background-color',
+        'type' => 'color',
+        'default' => '#A3CC28',
+        'allow_transparent' => true,
+        'allow_displayType' => true
+      ),
+      'BGTitle' => array(
+        'name' => 'Template : titlebar-color',
+        'type' => 'color',
+        'default' => 'transparent',
+        'allow_transparent' => true,
+        'allow_displayType' => true
+      )
+    )
+  );
 
   public static function dependancy_info() {
     $return = array();
@@ -265,7 +283,6 @@ class enedis extends eqLogic {
     $this->setIsEnable(1);
     $this->setIsVisible(1);
     $this->setConfiguration('widgetTemplate', 1);
-    $this->setConfiguration('widgetBGColor', '#A3CC28');
   }
 
   public function preUpdate() {
@@ -368,13 +385,13 @@ class enedis extends eqLogic {
       $replace['#' . $logical . '_collect#'] = $collectDate;
       $replace['#' . $logical . '_toDate#'] = ($collectDate >= $expectedCollectDate) ? 1 : 0;
     }
-    $replace['#refresh_id#'] = $this->getCmd('action', 'refresh')->getId();
-    $replace['#BGEnedis#'] = ($this->getConfiguration('widgetTransparent') == 1) ? 'transparent' : $this->getConfiguration('widgetBGColor');
     $replace['#measureType#'] = $this->getConfiguration('measure_type');
 
-    $html = template_replace($replace, getTemplate('core', $version, 'enedis.template', __CLASS__));
-    cache::set('widgetHtml' . $_version . $this->getId(), $html, 0);
-    return $html;
+    if ($this->getConfiguration('defaultTitle') == 1) {
+      $replace['#BGTitle#'] = 'default';
+    }
+
+    return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'enedis.template', __CLASS__)));
   }
 }
 

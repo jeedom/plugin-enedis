@@ -15,6 +15,10 @@ Il est possible d'accéder aux données de **consommation**, de **production** o
 - la **consommation annuelle** *(en kWh)*.
 - la **puissance max** *(en kVA)*.
 
+>**IMPORTANT**
+>
+>Il est nécessaire d'avoir activé **l'enregistrement et la collecte de la consommation horaire** sur votre compte Enedis pour récupérer la **consommation horaire** par demi-heure dans Jeedom.
+
 >**INFORMATION**
 >
 >Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille.
@@ -67,7 +71,9 @@ Lors de la 1ère sauvegarde d'un équipement actif et configuré, le plugin va a
 >
 >Les données de consommation horaire sont quand à elles récupérées sur les 7 derniers jours au maximum.
 
-# Ajout de données
+# Commandes
+
+## Ajout de données
 
 Il est possible d'intégrer des historiques à la demande, jusqu'à 3 années en arrière, directement depuis le site Enedis. Pour se faire, il suffit de cliquer sur le bouton bleu **Ajout historiques** depuis l’onglet **Commandes** d’un équipement, dans la colonne **Action** de la commande concernée :
 
@@ -91,7 +97,11 @@ Le plugin offre la possibilité d'afficher les données de consommation et/ou de
 
 ![Template de widget](../images/enedis_screenshot1.png)
 
-Pour activer cette option, il suffit de cocher la case **Template de widget** sur la page générale de l'équipement concerné. Une fois la case cochée, une option permet de sélectionner la couleur de fond du widget *(163, 204, 40 par défaut)*.
+Pour activer cette option, il suffit de cocher la case **Activer** de la section **Template de widget** sur la page générale de l'équipement concerné. Il est possible de conserver l'affichage de la barre de titre par défaut en cochant la case correspondante.
+
+Une fois le template de widget activé, rendez-vous à l'onglet **Affichage** de la configuration de l'équipement pour choisir la couleur de fond du widget (`Template : background-color`) et/ou la couleur du titre (`Template : titlebar-color`) en fonction de la version d'accès à Jeedom *(bureau ou mobile)*.
+
+![Personnaliser le widget](../images/enedis_customizeWidget.png)
 
 >**ASTUCE**
 >
