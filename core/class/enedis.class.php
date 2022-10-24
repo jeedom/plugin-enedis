@@ -141,25 +141,27 @@ class enedis extends eqLogic {
           }
         }
 
-        $loadCmd = $this->getCmd('info', $measureType . '_load_curve');
-        $loadCmd->execCmd();
-        if (empty($_startDate) && $loadCmd->getCollectDate() >= date('Y-m-d')) {
-          log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Données horaires déjà enregistrées pour le', __FILE__) . ' ' . date('d/m/Y', strtotime('-1 day')));
-        } else if (empty($_toRefresh) || $_toRefresh[$measureType . '_load_curve']) {
-          log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données horaires', __FILE__));
-          $to_refresh[$measureType . '_load_curve'] = true;
-          $data = $this->callEnedis('/metering_data/' . $measureType . '_load_curve?start=' . $start_date_load . '&end=' . $end_date_load . '&usage_point_id=' . $usagePointId);
-          if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
-            foreach ($data['meter_reading']['interval_reading'] as $value) {
-              if (empty($_startDate) && $value['date'] >= $end_date_load) {
-                $to_refresh = $this->cleanArray($to_refresh, $measureType . '_load_curve');
-                $this->recordData($loadCmd, $value['value'], $value['date'], 'event');
-              } else {
-                $this->recordData($loadCmd, $value['value'], $value['date']);
+        if ($this->getConfiguration('no_load_curve', 0) != 1) {
+          $loadCmd = $this->getCmd('info', $measureType . '_load_curve');
+          $loadCmd->execCmd();
+          if (empty($_startDate) && $loadCmd->getCollectDate() >= date('Y-m-d')) {
+            log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Données horaires déjà enregistrées pour le', __FILE__) . ' ' . date('d/m/Y', strtotime('-1 day')));
+          } else if (empty($_toRefresh) || $_toRefresh[$measureType . '_load_curve']) {
+            log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données horaires', __FILE__));
+            $to_refresh[$measureType . '_load_curve'] = true;
+            $data = $this->callEnedis('/metering_data/' . $measureType . '_load_curve?start=' . $start_date_load . '&end=' . $end_date_load . '&usage_point_id=' . $usagePointId);
+            if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
+              foreach ($data['meter_reading']['interval_reading'] as $value) {
+                if (empty($_startDate) && $value['date'] >= $end_date_load) {
+                  $to_refresh = $this->cleanArray($to_refresh, $measureType . '_load_curve');
+                  $this->recordData($loadCmd, $value['value'], $value['date'], 'event');
+                } else {
+                  $this->recordData($loadCmd, $value['value'], $value['date']);
+                }
               }
+            } else if (isset($data['error'])) {
+              log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données horaires', __FILE__) . ' : ' . $data['error'] . ' ' . $data['error_description']);
             }
-          } else if (isset($data['error'])) {
-            log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données horaires', __FILE__) . ' : ' . $data['error'] . ' ' . $data['error_description']);
           }
         }
 
@@ -316,6 +318,9 @@ class enedis extends eqLogic {
 
   public function createCommands($type) {
     foreach ($type as $cmd2create) {
+      if ($this->getConfiguration('no_load_curve', 0) == 1 && in_array($cmd2create['logicalId'], ['consumption_load_curve', 'production_load_curve'])) {
+        continue;
+      }
       $cmd = $this->getCmd(null, $cmd2create['logicalId']);
       if (!is_object($cmd)) {
         log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Création commande', __FILE__) . ' : ' . $cmd2create['logicalId'] . '/' . $cmd2create['name']);
@@ -369,6 +374,7 @@ class enedis extends eqLogic {
       $replace['#' . $logical . '_toDate#'] = ($collectDate >= $expectedCollectDate) ? 1 : 0;
     }
     $replace['#measureType#'] = $this->getConfiguration('measure_type');
+    $replace['#noLoadCurve#'] = $this->getConfiguration('no_load_curve', 0);
 
     if ($this->getConfiguration('defaultTitle') == 1) {
       $replace['#BGTitle#'] = 'default';

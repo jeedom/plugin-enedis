@@ -130,8 +130,16 @@ $eqLogics = eqLogic::byType($plugin->getId());
 									<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="measure_type">
 										<option value="consumption">{{Consommation}}</option>
 										<option value="production">{{Production}}</option>
-										<option value="both">{{Consommation & Production}}</option>
+										<option value="both">{{Consommation}} + {{Production}}</option>
 									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">{{Données horaires}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case si vous n'avez pas activé l'enregistrement et la collecte de la consommation horaire sur votre compte Enedis}}"></i></sup>
+								</label>
+								<div class="col-sm-6">
+									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="no_load_curve">{{Désactiver}}</label>
 								</div>
 							</div>
 						</div>

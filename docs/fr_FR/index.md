@@ -15,10 +15,6 @@ Il est possible d'accéder aux données de **consommation**, de **production** o
 - la **consommation annuelle** *(en kWh)*.
 - la **puissance max** *(en kVA)*.
 
->**IMPORTANT**
->
->Il est nécessaire d'avoir activé **l'enregistrement et la collecte de la consommation horaire** sur votre compte Enedis pour récupérer la **consommation horaire** par demi-heure dans Jeedom.
-
 >**INFORMATION**
 >
 >Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille.
@@ -71,9 +67,9 @@ Lors de la 1ère sauvegarde d'un équipement actif et configuré, le plugin va a
 >
 >Les données de consommation horaire sont quand à elles récupérées sur les 7 derniers jours au maximum.
 
-# Commandes
+Si vous n'avez pas activé **l'enregistrement et la collecte de la consommation horaire** sur votre compte Enedis, il faudra cocher la case **Données horaires : Désactiver** pour que les commandes correspondantes ne soient pas créées.
 
-## Ajout de données
+# Ajout de données
 
 Il est possible d'intégrer des historiques à la demande, jusqu'à 3 années en arrière, directement depuis le site Enedis. Pour se faire, il suffit de cliquer sur le bouton bleu **Ajout historiques** depuis l’onglet **Commandes** d’un équipement, dans la colonne **Action** de la commande concernée :
 
