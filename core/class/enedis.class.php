@@ -21,25 +21,7 @@ require_once __DIR__  . '/../../../../core/php/core.inc.php';
 
 class enedis extends eqLogic {
 
-  public static $_widgetPossibility = array(
-    'custom' => true,
-    'parameters' => array(
-      'BGEnedis' => array(
-        'name' => 'Template : background-color',
-        'type' => 'color',
-        'default' => '#A3CC28',
-        'allow_transparent' => true,
-        'allow_displayType' => true
-      ),
-      'BGTitle' => array(
-        'name' => 'Template : titlebar-color',
-        'type' => 'color',
-        'default' => 'transparent',
-        'allow_transparent' => true,
-        'allow_displayType' => true
-      )
-    )
-  );
+  public static $_widgetPossibility = array('custom' => true,);
 
   public static function cleanCrons($eqLogicId) {
     $crons = cron::searchClassAndFunction(__CLASS__, 'pull', '"enedis_id":' . $eqLogicId);
@@ -375,13 +357,6 @@ class enedis extends eqLogic {
     }
     $replace['#measureType#'] = $this->getConfiguration('measure_type');
     $replace['#noLoadCurve#'] = $this->getConfiguration('no_load_curve', 0);
-
-    if ($this->getConfiguration('defaultTitle') == 1) {
-      $replace['#BGTitle#'] = 'rgba(var(--eq-bg-color), var(--opacity)) !important;';
-      if (config::byKey('interface::advance::coloredcats') == 1) {
-        $replace['#BGTitle#'] = 'rgba(var(--cat-energy-color), var(--opacity)) !important;';
-      }
-    }
 
     return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'enedis.template', __CLASS__)));
   }

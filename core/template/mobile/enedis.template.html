@@ -1,11 +1,11 @@
 <div class="eqLogic eqLogic-widget #class#" data-eqLogic_id="#id#" data-eqType="#eqType#" data-version="#version#" data-eqLogic_uid="#uid#"
-	data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="background-color:#BGEnedis#!important;">
+	data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="#style#">
 	<span class="cmd refresh pull-right cursor" data-cmd_id="#refresh_id#">
 		<i class="fas fa-sync"></i>
 	</span>
 	<center>
 		<link rel="stylesheet" href="plugins/enedis/core/template/css/enedis.mobile.css">
-		<span class="widget-name" style="background-color:#BGTitle#!important;">
+		<span class="widget-name">
 			<span class="warning" title="#alert_name#">
 				<i class='#alert_icon#'></i>
 			</span>
@@ -63,18 +63,17 @@
 				eqLogic.find('.history:nth-child(5)').remove()
 			}
 
-			var measureType = '#measureType#'
-			if (measureType === 'consumption') {
+			if ('#measureType#' === 'consumption') {
 				isUpToDate('.consumption', eqLogic.find('.consumption .history[data-up_to_date=1]').length)
 				eqLogic.find('.consumption').show()
 				eqLogic.find('.production').hide()
 			}
-			else if (measureType === 'production') {
+			else if ('#measureType#' === 'production') {
 				isUpToDate('.production', eqLogic.find('.production .history[data-up_to_date=1]').length)
 				eqLogic.find('.consumption').hide()
 				eqLogic.find('.production').show()
 			}
-			else if (measureType === 'both') {
+			else if ('#measureType#' === 'both') {
 				isUpToDate('.consumption', eqLogic.find('.consumption .history[data-up_to_date=1]').length)
 				isUpToDate('.production', eqLogic.find('.production .history[data-up_to_date=1]').length)
 				eqLogic.find('.toggleMeasure').addClass('cursor')

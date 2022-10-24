@@ -34,15 +34,10 @@ function enedis_update() {
       $eqLogic->refreshData();
     }
     if ($eqLogic->getConfiguration('widgetBGColor') != '') {
-      if ($eqLogic->getConfiguration('widgetBGColor') != '#a3cc28') {
-        $eqLogic->setDisplay('advanceWidgetParameterBGEnedisdashboard-default', 0);
-        $eqLogic->setDisplay('advanceWidgetParameterBGEnedisdashboard', $eqLogic->getConfiguration('widgetBGColor'));
-        $eqLogic->setDisplay('advanceWidgetParameterBGEnedismobile-default', 0);
-        $eqLogic->setDisplay('advanceWidgetParameterBGEnedismobile', $eqLogic->getConfiguration('widgetBGColor'));
-      }
-      if ($eqLogic->getConfiguration('widgetTransparent') == 1) {
-        $eqLogic->setDisplay('advanceWidgetParameterBGEnedisdashboard-transparent', 1);
-        $eqLogic->setDisplay('advanceWidgetParameterBGEnedismobile-transparent', 1);
+      if ($eqLogic->getConfiguration('widgetTemplate') == 1) {
+        $params = $eqLogic->getdisplay('parameters', array());
+        $params['style'] = hex2rgb($eqLogic->getConfiguration('widgetBGColor'));
+        $eqLogic->setDisplay('parameters', $params);
       }
       $eqLogic->setConfiguration('widgetBGColor', null);
       $eqLogic->setConfiguration('widgetTransparent', null);

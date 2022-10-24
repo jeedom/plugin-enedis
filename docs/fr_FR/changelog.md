@@ -8,7 +8,7 @@
 
 - Ajout d'une option pour désactiver les données horaires
 - Transfert de la gestion des dépendances au core
-- Les paramètres de couleur du template de widget sont dorénavant dans la configuration de l'équipement, onglet Affichage section Widget
+- La sélection de la couleur de fond du template de widget se fait dorénavant par paramètre optionnel dans la configuration de l'équipement
 
 # 18/10/2022
 

@@ -1,7 +1,7 @@
-<div class="eqLogic eqLogic-widget allowResize #eqLogic_class# #class#" data-eqType="#eqType#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#"
-  data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="width:#width#;height:#height#;background-color:#BGEnedis#!important;">
+<div class="eqLogic eqLogic-widget allowResize #class#" data-eqType="#eqType#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#"
+  data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="width: #width#;height: #height#;#style#">
   <link rel="stylesheet" href="plugins/enedis/core/template/css/enedis.template.css">
-  <div class="text-center widget-name" style="background-color:#BGTitle#!important;">
+  <div class="text-center widget-name">
     <span class="warning" title="#alert_name#">
       <i class='#alert_icon#'></i>
     </span>
@@ -64,18 +64,17 @@
       eqLogic.find('.history:nth-child(5)').remove()
     }
 
-    var measureType = '#measureType#'
-    if (measureType === 'consumption') {
+    if ('#measureType#' === 'consumption') {
       isUpToDate('.consumption', eqLogic.find('.consumption .history[data-up_to_date=1]').length)
       eqLogic.find('.consumption').show()
       eqLogic.find('.production').hide()
     }
-    else if (measureType === 'production') {
+    else if ('#measureType#' === 'production') {
       isUpToDate('.production', eqLogic.find('.production .history[data-up_to_date=1]').length)
       eqLogic.find('.consumption').hide()
       eqLogic.find('.production').show()
     }
-    else if (measureType === 'both') {
+    else if ('#measureType#' === 'both') {
       isUpToDate('.consumption', eqLogic.find('.consumption .history[data-up_to_date=1]').length)
       isUpToDate('.production', eqLogic.find('.production .history[data-up_to_date=1]').length)
       eqLogic.find('.toggleMeasure').addClass('cursor')
