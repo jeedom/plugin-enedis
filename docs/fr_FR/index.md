@@ -95,7 +95,7 @@ Pour activer cette option, il suffit de cocher la case **Activer** de la section
 
 >**ASTUCE**
 >
->En version desktop, les informations affichées sur le widget s'adaptent en taille lors du redimensionnement de la tuile.
+>La case "Défaut" permet de conserver les couleurs par défaut de la tuile.
 
 # FAQ
 
