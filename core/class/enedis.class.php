@@ -268,6 +268,14 @@ class enedis extends eqLogic {
     $this->setIsEnable(1);
     $this->setIsVisible(1);
     $this->setConfiguration('widgetTemplate', 1);
+    $this->setDisplay('advanceWidgetParameterBGEnedisdashboard-default', 0);
+    $this->setDisplay('advanceWidgetParameterBGEnedismobile-default', 0);
+    $this->setDisplay('advanceWidgetParameterBGTitledashboard-default', 0);
+    $this->setDisplay('advanceWidgetParameterBGTitlemobile-default', 0);
+    $this->setDisplay('advanceWidgetParameterBGEnedisdashboard', '#a3cc28');
+    $this->setDisplay('advanceWidgetParameterBGEnedismobile', '#a3cc28');
+    $this->setDisplay('advanceWidgetParameterBGTitledashboard-transparent', 1);
+    $this->setDisplay('advanceWidgetParameterBGTitlemobile-transparent', 1);
   }
 
   public function preUpdate() {
