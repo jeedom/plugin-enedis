@@ -21,7 +21,25 @@ require_once __DIR__  . '/../../../../core/php/core.inc.php';
 
 class enedis extends eqLogic {
 
-  public static $_widgetPossibility = array('custom' => true,);
+  public static $_widgetPossibility = array(
+    'custom' => true,
+    'parameters' => array(
+      'BGEnedis' => array(
+        'name' => 'Template : background-color',
+        'type' => 'color',
+        'default' => '',
+        'allow_transparent' => true,
+        'allow_displayType' => true
+      ),
+      'BGTitle' => array(
+        'name' => 'Template : titlebar-color',
+        'type' => 'color',
+        'default' => '',
+        'allow_transparent' => true,
+        'allow_displayType' => true
+      )
+    )
+  );
 
   public static function cleanCrons($eqLogicId) {
     $crons = cron::searchClassAndFunction(__CLASS__, 'pull', '"enedis_id":' . $eqLogicId);
@@ -363,7 +381,6 @@ class enedis extends eqLogic {
 }
 
 class enedisCmd extends cmd {
-
   public function execute($_options = array()) {
     if ($this->getLogicalId() == 'refresh') {
       return $this->getEqLogic()->refreshData();

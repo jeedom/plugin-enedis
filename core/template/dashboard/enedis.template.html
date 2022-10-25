@@ -1,5 +1,5 @@
 <div class="eqLogic eqLogic-widget allowResize #class#" data-eqType="#eqType#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#"
-  data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="width: #width#;height: #height#;#style#">
+  data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="width: #width#;height: #height#;">
   <link rel="stylesheet" href="plugins/enedis/core/template/css/enedis.template.css">
   <div class="text-center widget-name">
     <span class="warning" title="#alert_name#">
@@ -60,6 +60,12 @@
 
   <script>
     var eqLogic = $('.eqLogic[data-eqLogic_uid=#uid#]')
+    if ('#BGEnedis#' != '') {
+      eqLogic.attr('style', eqLogic.attr('style') + 'background-color:#BGEnedis#!important;')
+    }
+    if ('#BGTitle#' != '') {
+      eqLogic.find('.widget-name').attr('style', 'color:var(--eqTitle-color)!important;background-color:#BGTitle#!important;')
+    }
     if ('#noLoadCurve#' == 1) {
       eqLogic.find('.history:nth-child(5)').remove()
     }

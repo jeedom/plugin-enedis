@@ -1,5 +1,5 @@
 <div class="eqLogic eqLogic-widget #class#" data-eqLogic_id="#id#" data-eqType="#eqType#" data-version="#version#" data-eqLogic_uid="#uid#"
-	data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="#style#">
+	data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#">
 	<span class="cmd refresh pull-right cursor" data-cmd_id="#refresh_id#">
 		<i class="fas fa-sync"></i>
 	</span>
@@ -59,6 +59,12 @@
 		</div>
 		<script>
 			var eqLogic = $('.eqLogic[data-eqLogic_uid=#uid#]')
+			if ('#BGEnedis#' != '') {
+				eqLogic.attr('style', eqLogic.attr('style') + 'background-color:#BGEnedis#!important;')
+			}
+			if ('#BGTitle#' != '') {
+				eqLogic.find('.widget-name').attr('style', 'color:var(--eqTitle-color)!important;background-color:#BGTitle#!important;')
+			}
 			if ('#noLoadCurve#' == 1) {
 				eqLogic.find('.history:nth-child(5)').remove()
 			}

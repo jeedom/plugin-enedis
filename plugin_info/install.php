@@ -34,14 +34,19 @@ function enedis_update() {
       $eqLogic->refreshData();
     }
     if ($eqLogic->getConfiguration('widgetBGColor') != '') {
+      $eqLogic->setDisplay('advanceWidgetParameterBGEnedisdashboard', $eqLogic->getConfiguration('widgetBGColor'));
+      $eqLogic->setDisplay('advanceWidgetParameterBGEnedismobile', $eqLogic->getConfiguration('widgetBGColor'));
       if ($eqLogic->getConfiguration('widgetTemplate') == 1) {
-        $params = $eqLogic->getdisplay('parameters', array());
-        if ($eqLogic->getConfiguration('widgetTransparent') == 1) {
-          $params['style'] = 'background-color:transparent!important;';
-        } else {
-          $params['style'] = 'background-color:rgb(' . implode(',', hex2rgb($eqLogic->getConfiguration('widgetBGColor'))) . ')!important;';
-        }
-        $eqLogic->setDisplay('parameters', $params);
+        $eqLogic->setDisplay('advanceWidgetParameterBGEnedisdashboard-default', 0);
+        $eqLogic->setDisplay('advanceWidgetParameterBGEnedismobile-default', 0);
+        $eqLogic->setDisplay('advanceWidgetParameterBGTitledashboard-default', 0);
+        $eqLogic->setDisplay('advanceWidgetParameterBGTitlemobile-default', 0);
+        $eqLogic->setDisplay('advanceWidgetParameterBGTitledashboard-transparent', 1);
+        $eqLogic->setDisplay('advanceWidgetParameterBGTitlemobile-transparent', 1);
+      }
+      if ($eqLogic->getConfiguration('widgetTransparent') == 1) {
+        $eqLogic->setDisplay('advanceWidgetParameterBGEnedisdashboard-transparent', 1);
+        $eqLogic->setDisplay('advanceWidgetParameterBGEnedismobile-transparent', 1);
       }
       $eqLogic->setConfiguration('widgetBGColor', null);
       $eqLogic->setConfiguration('widgetTransparent', null);
