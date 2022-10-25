@@ -64,7 +64,7 @@
       eqLogic.attr('style', eqLogic.attr('style') + 'background-color:#BGEnedis#!important;')
     }
     if ('#BGTitle#' != '') {
-      eqLogic.find('.widget-name').attr('style', 'color:var(--eqTitle-color)!important;background-color:#BGTitle#!important;')
+      eqLogic.find('.widget-name').attr('style', 'background-color:#BGTitle#!important;').find('a, i.fa-sync').attr('style', 'color:var(--eqTitle-color)!important;')
     }
     if ('#noLoadCurve#' == 1) {
       eqLogic.find('.history:nth-child(5)').remove()
