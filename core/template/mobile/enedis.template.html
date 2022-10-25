@@ -100,18 +100,18 @@
 
 			function isUpToDate(_type, _toDate) {
 				if (_toDate == 0) {
-					eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:red;font-size:9px;opacity:var(--opacity);vertical-align: middle;', 'title': 'Aucune donnée à jour' })
+					eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:red;', 'title': 'Aucune donnée à jour' })
 				}
 				else if ('#noLoadCurve#' == 1) {
 					if ((_type == '.production' && _toDate == 3) || (_type == '.consumption' && _toDate == 4)) {
-						eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:green;opacity:var(--opacity);vertical-align: middle;', 'title': 'Toutes les données sont à jour' })
+						eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:green;', 'title': 'Toutes les données sont à jour' })
 					}
 				}
 				else if ((_type == '.production' && _toDate == 4) || (_type == '.consumption' && _toDate == 5)) {
-					eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:green;font-size:9px;opacity:var(--opacity);vertical-align: middle;', 'title': 'Toutes les données sont à jour' })
+					eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:green;', 'title': 'Toutes les données sont à jour' })
 				}
 				else {
-					eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:orange;font-size:9px;opacity:var(--opacity);vertical-align: middle;', 'title': 'Certaines données ne sont pas à jour' })
+					eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:orange;', 'title': 'Certaines données ne sont pas à jour' })
 				}
 			}
 		</script>
