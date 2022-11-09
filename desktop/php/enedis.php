@@ -158,7 +158,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
 
 					</fieldset>
 				</form>
-				<hr>
 			</div>
 
 			<div role="tabpanel" class="tab-pane" id="commandtab">
@@ -169,8 +168,8 @@ $eqLogics = eqLogic::byType($plugin->getId());
 							<tr>
 								<th class="hidden-xs" style="min-width:50px;width:70px;">ID</th>
 								<th style="min-width:200px;width:300px;">{{Nom}}</th>
-								<th style="min-width:200px;">{{Options}}</th>
 								<th>{{Etat}}</th>
+								<th style="min-width:200px;width:250px;">{{Options}}</th>
 								<th style="min-width:100px;width:250px;">{{Actions}}</th>
 							</tr>
 						</thead>
