@@ -108,7 +108,7 @@ class enedis extends eqLogic {
           $yearlyCmd = $this->getCmd('info', 'yearly_' . $measureType);
           $returnMonthValue = $returnYearValue = 0;
 
-          $data = $this->callEnedis('/metering_data/daily_' . $measureType . '?start=' . $start_date . '&end=' . $end_date . '&usage_point_id=' . $usagePointId);
+          $data = $this->callEnedis('/metering_data_dc/v5/daily_' . $measureType . '?start=' . $start_date . '&end=' . $end_date . '&usage_point_id=' . $usagePointId);
           if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
             foreach ($data['meter_reading']['interval_reading'] as $value) {
               $valueTimestamp = strtotime($value['date']);
@@ -149,7 +149,7 @@ class enedis extends eqLogic {
           } else if (empty($_toRefresh) || $_toRefresh[$measureType . '_load_curve']) {
             log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données horaires', __FILE__));
             $to_refresh[$measureType . '_load_curve'] = true;
-            $data = $this->callEnedis('/metering_data/' . $measureType . '_load_curve?start=' . $start_date_load . '&end=' . $end_date_load . '&usage_point_id=' . $usagePointId);
+            $data = $this->callEnedis('/metering_data_clc/v5/' . $measureType . '_load_curve?start=' . $start_date_load . '&end=' . $end_date_load . '&usage_point_id=' . $usagePointId);
             if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
               foreach ($data['meter_reading']['interval_reading'] as $value) {
                 if (empty($_startDate) && $value['date'] >= $end_date_load) {
@@ -173,7 +173,7 @@ class enedis extends eqLogic {
           } else if (empty($_toRefresh) || $_toRefresh['daily_' . $measureType . '_max_power']) {
             log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données de puissance', __FILE__));
             $to_refresh['daily_' . $measureType . '_max_power'] = true;
-            $data = $this->callEnedis('/metering_data/daily_' . $measureType . '_max_power?start=' . $start_date . '&end=' . $end_date . '&usage_point_id=' . $usagePointId);
+            $data = $this->callEnedis('/metering_data_dcmp/v5/daily_' . $measureType . '_max_power?start=' . $start_date . '&end=' . $end_date . '&usage_point_id=' . $usagePointId);
             if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
               foreach ($data['meter_reading']['interval_reading'] as $value) {
                 if (empty($_startDate) && $value['date'] >= date('Y-m-d', strtotime('-1 day ' . $end_date))) {
@@ -209,7 +209,7 @@ class enedis extends eqLogic {
 
   public function callEnedis($_path) {
     try {
-      $url = config::byKey('service::cloud::url') . '/service/enedis?path=' . urlencode($_path);
+      $url = config::byKey('service::cloud::url') . '/service/enedis2?path=' . urlencode($_path);
       $request_http = new com_http($url);
       $request_http->setHeader(array('Content-Type: application/json', 'Autorization: ' . sha512(mb_strtolower(config::byKey('market::username')) . ':' . config::byKey('market::password'))));
       $result = json_decode($request_http->exec(30, 1), true);
