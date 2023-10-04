@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Enedis": "Changelog Enedis",
         "S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Wenn es keine Informationen über die Aktualisierung gibt, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt",
+        "04\/10\/2023": "10.04.2023",
+        "Mise à jour des appels pour être compatibles avec l'api V5 Enedis Data-Connect": "Aktualisierte Aufrufe, um mit der V5 Enedis Data-Connect API kompatibel zu sein",
         "24\/10\/2022": "24.10.2022",
         "Ajout d'une option pour désactiver les données horaires": "Option hinzugefügt, um stündliche Daten zu deaktivieren",
         "Suppression des dépendances déjà nécessaires pour le core": "Entfernte Abhängigkeiten, die bereits für den Kern benötigt wurden",
