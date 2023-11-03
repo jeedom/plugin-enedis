@@ -83,7 +83,7 @@ class enedis extends eqLogic {
   public function refreshData($_startDate = null, $_toRefresh = array()) {
     if ($this->getIsEnable() == 1) {
       log::add(__CLASS__, 'debug', $this->getHumanName() . ' -----------------------------------------------------------------------');
-      log::add(__CLASS__, 'debug', $this->getHumanName() . ' *** ' . __('Début d\'interrogation des serveurs Enedis', __FILE__) . ' ***');
+      log::add(__CLASS__, 'debug', $this->getHumanName() . ' *** ' . __("Début d'interrogation des serveurs Enedis", __FILE__) . ' ***');
       $usagePointId = $this->getConfiguration('usage_point_id');
       if (empty($_startDate)) {
         $start_date = (date('z') > '0') ? date('Y-01-01') : date('Y-01-01', strtotime('-1 year'));
@@ -102,12 +102,12 @@ class enedis extends eqLogic {
         if (empty($_startDate) && $dailyCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
           log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Données journalières déjà enregistrées pour le', __FILE__) . ' ' . date('d/m/Y', strtotime('-1 day')));
         } else if (empty($_toRefresh) || $_toRefresh['daily_' . $measureType]) {
-          log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données journalières', __FILE__));
           $to_refresh['daily_' . $measureType] = true;
           $monthlyCmd = $this->getCmd('info', 'monthly_' . $measureType);
           $yearlyCmd = $this->getCmd('info', 'yearly_' . $measureType);
           $returnMonthValue = $returnYearValue = 0;
 
+          log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données journalières', __FILE__) . ' : ' . $measureType . '?start=' . $start_date . '&end=' . $end_date);
           $data = $this->callEnedis('/metering_data_d' . $measureType[0] . '/v5/daily_' . $measureType . '?start=' . $start_date . '&end=' . $end_date . '&usage_point_id=' . $usagePointId);
           if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
             foreach ($data['meter_reading']['interval_reading'] as $value) {
@@ -137,7 +137,7 @@ class enedis extends eqLogic {
               }
             }
           } else if (isset($data['error'])) {
-            log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données journalières', __FILE__) . ' : '  . $data['error'] . ' ' . $data['error_description']);
+            log::add(__CLASS__, 'warning', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données journalières', __FILE__) . ' : '  . $data['error'] . ' ' . $data['error_description']);
           }
         }
 
@@ -147,8 +147,9 @@ class enedis extends eqLogic {
           if (empty($_startDate) && $loadCmd->getCollectDate() >= date('Y-m-d')) {
             log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Données horaires déjà enregistrées pour le', __FILE__) . ' ' . date('d/m/Y', strtotime('-1 day')));
           } else if (empty($_toRefresh) || $_toRefresh[$measureType . '_load_curve']) {
-            log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données horaires', __FILE__));
             $to_refresh[$measureType . '_load_curve'] = true;
+
+            log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données horaires', __FILE__) . ' : ' . $measureType . '?start=' . $start_date . '&end=' . $end_date);
             $data = $this->callEnedis('/metering_data_' . $measureType[0] . 'lc/v5/' . $measureType . '_load_curve?start=' . $start_date_load . '&end=' . $end_date_load . '&usage_point_id=' . $usagePointId);
             if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
               foreach ($data['meter_reading']['interval_reading'] as $value) {
@@ -160,7 +161,7 @@ class enedis extends eqLogic {
                 }
               }
             } else if (isset($data['error'])) {
-              log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données horaires', __FILE__) . ' : ' . $data['error'] . ' ' . $data['error_description']);
+              log::add(__CLASS__, 'warning', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données horaires', __FILE__) . ' : ' . $data['error'] . ' ' . $data['error_description']);
             }
           }
         }
@@ -171,8 +172,9 @@ class enedis extends eqLogic {
           if (empty($_startDate) && $dailyMaxCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
             log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Données de puissance déjà enregistrées pour le', __FILE__) . ' ' . date('d/m/Y', strtotime('-1 day')));
           } else if (empty($_toRefresh) || $_toRefresh['daily_' . $measureType . '_max_power']) {
-            log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données de puissance', __FILE__));
             $to_refresh['daily_' . $measureType . '_max_power'] = true;
+
+            log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données de puissance', __FILE__) . ' : ' . $measureType . '?start=' . $start_date . '&end=' . $end_date);
             $data = $this->callEnedis('/metering_data_dcmp/v5/daily_' . $measureType . '_max_power?start=' . $start_date . '&end=' . $end_date . '&usage_point_id=' . $usagePointId);
             if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
               foreach ($data['meter_reading']['interval_reading'] as $value) {
@@ -184,7 +186,7 @@ class enedis extends eqLogic {
                 }
               }
             } else if (isset($data['error'])) {
-              log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données de puissance', __FILE__) . ' : ' . $data['error'] . ' ' . $data['error_description']);
+              log::add(__CLASS__, 'warning', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données de puissance', __FILE__) . ' : ' . $data['error'] . ' ' . $data['error_description']);
             }
           }
         }
@@ -199,11 +201,11 @@ class enedis extends eqLogic {
           log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Arrêt des appels aux serveurs Enedis', __FILE__));
           $this->reschedule();
         } else {
-          log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Certaines données n\'ont pas été récupérées : ', __FILE__) . implode(' ', array_keys($to_refresh)));
+          log::add(__CLASS__, 'warning', $this->getHumanName() . ' ' . __("Certaines données n'ont pas été récupérées", __FILE__) . ' : ' . implode(' ', array_keys($to_refresh)));
           $this->reschedule($to_refresh);
         }
       }
-      log::add(__CLASS__, 'debug', $this->getHumanName() . ' *** ' . __('Fin d\'interrogation des serveurs Enedis', __FILE__) . ' ***');
+      log::add(__CLASS__, 'debug', $this->getHumanName() . ' *** ' . __("Fin d'interrogation des serveurs Enedis", __FILE__) . ' ***');
     }
   }
 
@@ -268,6 +270,7 @@ class enedis extends eqLogic {
     $this->setIsEnable(1);
     $this->setIsVisible(1);
     $this->setConfiguration('widgetTemplate', 1);
+    $this->setDisplay('widgetTmpl', 1);
     $this->setDisplay('advanceWidgetParameterBGEnedisdashboard-default', 0);
     $this->setDisplay('advanceWidgetParameterBGEnedismobile-default', 0);
     $this->setDisplay('advanceWidgetParameterBGTitledashboard-default', 0);
@@ -282,10 +285,10 @@ class enedis extends eqLogic {
     if ($this->getIsEnable() == 1) {
       $usagePointId = $this->getConfiguration('usage_point_id');
       if (empty($usagePointId)) {
-        throw new Exception(__('L\'identifiant du point de livraison (PDL) doit être renseigné', __FILE__));
+        throw new Exception(__("L'identifiant du point de livraison (PDL) doit être renseigné", __FILE__));
       }
       if (strlen($usagePointId) != 14) {
-        throw new Exception(__('L\'identifiant du point de livraison (PDL) doit contenir 14 caractères', __FILE__));
+        throw new Exception(__("L'identifiant du point de livraison (PDL) doit contenir 14 caractères", __FILE__));
       }
     }
   }
