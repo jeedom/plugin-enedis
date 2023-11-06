@@ -60,13 +60,13 @@
         "Historiques intégrés avec succès": "Histórias integradas com sucesso"
     },
     "plugins\/enedis\/core\/ajax\/enedis.ajax.php": {
-        "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
+        "Accès non autorisé": "Acesso não autorizado",
+        "Aucune méthode correspondante à": "Nenhum método correspondente a"
     },
     "plugins\/enedis\/core\/class\/enedis.class.php": {
         "Tâche supprimée car équipement non trouvé": "Tarefa excluída porque o equipamento não foi encontrado",
         "Prochaine programmation": "Próximo programa",
-        "Début d\\'interrogation des serveurs Enedis": "Início do interrogatório dos servidores Enedis",
+        "Début d'interrogation des serveurs Enedis": "Início da votação dos servidores Enedis",
         "Données journalières déjà enregistrées pour le": "Dados diários já registrados para o",
         "Récupération des données journalières": "Recuperação de dados diária",
         "Erreur lors de la récupération des données journalières": "Erro ao recuperar dados diários",
@@ -78,12 +78,12 @@
         "Erreur lors de la récupération des données de puissance": "Erro ao recuperar dados de energia",
         "Toutes les données ont été récupérées": "Todos os dados foram recuperados",
         "Arrêt des appels aux serveurs Enedis": "Interrompendo chamadas para servidores Enedis",
-        "Certaines données n\\'ont pas été récupérées : ": "Alguns dados não foram recuperados:",
-        "Fin d\\'interrogation des serveurs Enedis": "Fim do interrogatório dos servidores Enedis",
+        "Certaines données n'ont pas été récupérées": "Alguns dados não foram recuperados",
+        "Fin d'interrogation des serveurs Enedis": "Fim da votação dos servidores Enedis",
         "Mise à jour de la valeur": "Valor de atualização",
         "Enregistrement historique": "Registro histórico",
-        "L\\'identifiant du point de livraison (PDL) doit être renseigné": "O identificador do ponto de entrega (PDL) deve ser inserido",
-        "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères": "O identificador do ponto de entrega (PDL) deve conter 14 caracteres",
+        "L'identifiant du point de livraison (PDL) doit être renseigné": "O identificador do ponto de entrega (PDL) deve ser inserido",
+        "L'identifiant du point de livraison (PDL) doit contenir 14 caractères": "O identificador do ponto de entrega (PDL) deve conter 14 caracteres",
         "Fichier de création de commandes non trouvé": "Arquivo de criação de pedido não encontrado",
         "Création commande : refresh\/Rafraîchir": "Criação de comando: atualizar \/ atualizar",
         "Rafraîchir": "Refrescar",

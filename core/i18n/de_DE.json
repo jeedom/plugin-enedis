@@ -60,13 +60,13 @@
         "Historiques intégrés avec succès": "Erfolgreich integrierte Geschichten"
     },
     "plugins\/enedis\/core\/ajax\/enedis.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
+        "Accès non autorisé": "Unautorisierter Zugriff",
+        "Aucune méthode correspondante à": "Keine entsprechende Methode"
     },
     "plugins\/enedis\/core\/class\/enedis.class.php": {
         "Tâche supprimée car équipement non trouvé": "Aufgabe gelöscht, weil Gerät nicht gefunden",
         "Prochaine programmation": "Nächstes Programm",
-        "Début d\\'interrogation des serveurs Enedis": "Beginn der Abfrage der Enedis-Server",
+        "Début d'interrogation des serveurs Enedis": "Beginn der Abfrage der Enedis-Server",
         "Données journalières déjà enregistrées pour le": "Bereits erfasste Tagesdaten für die",
         "Récupération des données journalières": "Tägliche Datenwiederherstellung",
         "Erreur lors de la récupération des données journalières": "Fehler beim Abrufen der Tagesdaten",
@@ -78,12 +78,12 @@
         "Erreur lors de la récupération des données de puissance": "Fehler beim Abrufen der Leistungsdaten",
         "Toutes les données ont été récupérées": "Alle Daten wurden wiederhergestellt",
         "Arrêt des appels aux serveurs Enedis": "Stoppen von Anrufen an Enedis-Server",
-        "Certaines données n\\'ont pas été récupérées : ": "Einige Daten wurden nicht wiederhergestellt:",
-        "Fin d\\'interrogation des serveurs Enedis": "Ende der Abfrage der Enedis-Server",
+        "Certaines données n'ont pas été récupérées": "Einige Daten wurden nicht wiederhergestellt",
+        "Fin d'interrogation des serveurs Enedis": "Ende der Abfrage der Enedis-Server",
         "Mise à jour de la valeur": "Wert aktualisieren",
         "Enregistrement historique": "Historische Aufnahme",
-        "L\\'identifiant du point de livraison (PDL) doit être renseigné": "Die Zustellpunktkennung (PDL) muss eingegeben werden",
-        "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères": "Die Zustellpunktkennung (PDL) muss 14 Zeichen enthalten",
+        "L'identifiant du point de livraison (PDL) doit être renseigné": "Die Zustellpunktkennung (PDL) muss eingegeben werden",
+        "L'identifiant du point de livraison (PDL) doit contenir 14 caractères": "Die Lieferpunktkennung (PDL) muss 14 Zeichen enthalten",
         "Fichier de création de commandes non trouvé": "Auftragserstellungsdatei nicht gefunden",
         "Création commande : refresh\/Rafraîchir": "Befehlserstellung: Aktualisieren \/ Aktualisieren",
         "Rafraîchir": "Aktualisierung",

@@ -60,13 +60,13 @@
         "Historiques intégrés avec succès": "Historiques intégrés avec succès"
     },
     "plugins\/enedis\/core\/ajax\/enedis.ajax.php": {
-        "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à :"
+        "Accès non autorisé": "Accès non autorisé",
+        "Aucune méthode correspondante à": "Aucune méthode correspondante à"
     },
     "plugins\/enedis\/core\/class\/enedis.class.php": {
         "Tâche supprimée car équipement non trouvé": "Tâche supprimée car équipement non trouvé",
         "Prochaine programmation": "Prochaine programmation",
-        "Début d\\'interrogation des serveurs Enedis": "Début d\\'interrogation des serveurs Enedis",
+        "Début d'interrogation des serveurs Enedis": "Début d'interrogation des serveurs Enedis",
         "Données journalières déjà enregistrées pour le": "Données journalières déjà enregistrées pour le",
         "Récupération des données journalières": "Récupération des données journalières",
         "Erreur lors de la récupération des données journalières": "Erreur lors de la récupération des données journalières",
@@ -78,12 +78,12 @@
         "Erreur lors de la récupération des données de puissance": "Erreur lors de la récupération des données de puissance",
         "Toutes les données ont été récupérées": "Toutes les données ont été récupérées",
         "Arrêt des appels aux serveurs Enedis": "Arrêt des appels aux serveurs Enedis",
-        "Certaines données n\\'ont pas été récupérées : ": "Certaines données n\\'ont pas été récupérées :",
-        "Fin d\\'interrogation des serveurs Enedis": "Fin d\\'interrogation des serveurs Enedis",
+        "Certaines données n'ont pas été récupérées": "Certaines données n'ont pas été récupérées",
+        "Fin d'interrogation des serveurs Enedis": "Fin d'interrogation des serveurs Enedis",
         "Mise à jour de la valeur": "Mise à jour de la valeur",
         "Enregistrement historique": "Enregistrement historique",
-        "L\\'identifiant du point de livraison (PDL) doit être renseigné": "L\\'identifiant du point de livraison (PDL) doit être renseigné",
-        "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères": "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères",
+        "L'identifiant du point de livraison (PDL) doit être renseigné": "L'identifiant du point de livraison (PDL) doit être renseigné",
+        "L'identifiant du point de livraison (PDL) doit contenir 14 caractères": "L'identifiant du point de livraison (PDL) doit contenir 14 caractères",
         "Fichier de création de commandes non trouvé": "Fichier de création de commandes non trouvé",
         "Création commande : refresh\/Rafraîchir": "Création commande : refresh\/Rafraîchir",
         "Rafraîchir": "Rafraîchir",
