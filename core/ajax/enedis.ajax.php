@@ -21,19 +21,19 @@ try {
   include_file('core', 'authentification', 'php');
 
   if (!isConnect('admin')) {
-    throw new Exception(__('401 - Accès non autorisé', __FILE__));
+    throw new Exception('401 - ' . __('Accès non autorisé', __FILE__));
   }
 
   ajax::init();
 
   if (init('action') == 'addEnedisHistory') {
     $cmd = cmd::byId(init('cmd_id'));
-    $cmd->getEqLogic()->refreshData(init('start'), [$cmd->getLogicalId()=>true]);
+    $cmd->getEqLogic()->refreshData(init('start'), [$cmd->getLogicalId() => true]);
     history::archive();
     ajax::success();
   }
 
-  throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+  throw new Exception(__('Aucune méthode correspondante à', __FILE__) . ' : ' . init('action'));
   /*     * *********Catch exeption*************** */
 } catch (Exception $e) {
   ajax::error(displayException($e), $e->getCode());

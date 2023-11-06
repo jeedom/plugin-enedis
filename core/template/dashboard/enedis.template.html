@@ -1,15 +1,15 @@
-<div class="eqLogic eqLogic-widget allowResize #eqLogic_class# #class#" data-eqType="#eqType#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#"
-  data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="width:#width#;height:#height#;background-color:#BGEnedis#!important;">
-  <link rel="stylesheet" href="plugins/enedis/core/template/css/enedis.template.css" />
+<div class="eqLogic eqLogic-widget allowResize #class#" data-eqType="#eqType#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#"
+  data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="width: #width#;height: #height#;">
+  <link rel="stylesheet" href="plugins/enedis/core/template/css/enedis.template.css">
   <div class="text-center widget-name">
     <span class="warning" title="#alert_name#">
       <i class='#alert_icon#'></i>
     </span>
     <span class="cmd refresh pull-right cursor" data-cmd_id="#refresh_id#">
-      <i class="fas fa-sync" style="color:var(--eqTitle-color)!important;"></i>
+      <i class="fas fa-sync"></i>
     </span>
     <span class="reportModeVisible">#name_display# <span class="object_name">#object_name#</span></span>
-    <a href="#eqLink#" class="reportModeHidden" style="color:var(--eqTitle-color)!important;">#name_display# <span class="object_name">#object_name#</span></a>
+    <a href="#eqLink#" class="reportModeHidden">#name_display# <span class="object_name">#object_name#</span></a>
   </div>
   <div class="enedis_template text-center">
     <div class="consumption">
@@ -60,22 +60,27 @@
 
   <script>
     var eqLogic = $('.eqLogic[data-eqLogic_uid=#uid#]')
-    if ('#BGEnedis#' != 'transparent') {
-      eqLogic.find('.widget-name').attr('style', 'background-color:#BGEnedis#!important')
+    if ('#BGEnedis#' != '') {
+      eqLogic.attr('style', eqLogic.attr('style') + 'background-color:#BGEnedis#!important;')
+    }
+    if ('#BGTitle#' != '') {
+      eqLogic.find('.widget-name').attr('style', 'background-color:#BGTitle#!important;').find('a, i.fa-sync').attr('style', 'color:var(--eqTitle-color)!important;')
+    }
+    if ('#noLoadCurve#' == 1) {
+      eqLogic.find('.history:nth-child(5)').remove()
     }
 
-    var measureType = '#measureType#'
-    if (measureType === 'consumption') {
+    if ('#measureType#' === 'consumption') {
       isUpToDate('.consumption', eqLogic.find('.consumption .history[data-up_to_date=1]').length)
       eqLogic.find('.consumption').show()
       eqLogic.find('.production').hide()
     }
-    else if (measureType === 'production') {
+    else if ('#measureType#' === 'production') {
       isUpToDate('.production', eqLogic.find('.production .history[data-up_to_date=1]').length)
       eqLogic.find('.consumption').hide()
       eqLogic.find('.production').show()
     }
-    else if (measureType === 'both') {
+    else if ('#measureType#' === 'both') {
       isUpToDate('.consumption', eqLogic.find('.consumption .history[data-up_to_date=1]').length)
       isUpToDate('.production', eqLogic.find('.production .history[data-up_to_date=1]').length)
       eqLogic.find('.toggleMeasure').addClass('cursor')
@@ -101,13 +106,18 @@
 
     function isUpToDate(_type, _toDate) {
       if (_toDate == 0) {
-        eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:red;opacity:var(--opacity);vertical-align: middle;', 'title': 'Aucune donnée à jour' })
+        eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:red;', 'title': 'Aucune donnée à jour' })
+      }
+      else if ('#noLoadCurve#' == 1) {
+        if ((_type == '.production' && _toDate == 3) || (_type == '.consumption' && _toDate == 4)) {
+          eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:green;', 'title': 'Toutes les données sont à jour' })
+        }
       }
       else if ((_type == '.production' && _toDate == 4) || (_type == '.consumption' && _toDate == 5)) {
-        eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:green;opacity:var(--opacity);vertical-align: middle;', 'title': 'Toutes les données sont à jour' })
+        eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:green;', 'title': 'Toutes les données sont à jour' })
       }
       else {
-        eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:orange;opacity:var(--opacity);vertical-align: middle;', 'title': 'Certaines données ne sont pas à jour' })
+        eqLogic.find(_type + ' .enedisTitleIcon').attr({ 'style': 'color:orange;', 'title': 'Certaines données ne sont pas à jour' })
       }
     }
   </script>

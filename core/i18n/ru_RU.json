@@ -35,14 +35,13 @@
         "Indiquer le type de mesure à récupérer (consommation, production ou les deux)": "Indiquer le type de mesure à récupérer (consommation, production ou les deux)",
         "Consommation": "Consommation",
         "Production": "Production",
-        "Consommation & Production": "Consommation & Production",
+        "Données horaires": "Données horaires",
+        "Cocher la case si vous n'avez pas activé l'enregistrement et la collecte de la consommation horaire sur votre compte Enedis": "Cocher la case si vous n'avez pas activé l'enregistrement et la collecte de la consommation horaire sur votre compte Enedis",
+        "Désactiver": "Désactiver",
         "Template de Widget": "Template de widget",
         "Cocher la case pour utiliser le template de widget représentant le compteur Linky": "Cocher la case pour utiliser le template de widget représentant le compteur Linky",
-        "Couleur de fond": "Couleur de fond",
-        "Sélectionner la couleur de fond du template de widget": "Sélectionner la couleur de fond du template de widget",
-        "Transparent": "Transparent",
-        "Cocher la case pour un fond transparent": "Cocher la case pour un fond transparent",
         "Nom": "Имя",
+        "Etat": "Etat",
         "Actions": "Actions"
     },
     "plugins\/enedis\/desktop\/js\/enedis.js": {
@@ -61,13 +60,13 @@
         "Historiques intégrés avec succès": "Historiques intégrés avec succès"
     },
     "plugins\/enedis\/core\/ajax\/enedis.ajax.php": {
-        "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à :"
+        "Accès non autorisé": "Accès non autorisé",
+        "Aucune méthode correspondante à": "Aucune méthode correspondante à"
     },
     "plugins\/enedis\/core\/class\/enedis.class.php": {
         "Tâche supprimée car équipement non trouvé": "Tâche supprimée car équipement non trouvé",
         "Prochaine programmation": "Prochaine programmation",
-        "Début d\\'interrogation des serveurs Enedis": "Début d\\'interrogation des serveurs Enedis",
+        "Début d'interrogation des serveurs Enedis": "Début d'interrogation des serveurs Enedis",
         "Données journalières déjà enregistrées pour le": "Données journalières déjà enregistrées pour le",
         "Récupération des données journalières": "Récupération des données journalières",
         "Erreur lors de la récupération des données journalières": "Erreur lors de la récupération des données journalières",
@@ -79,12 +78,12 @@
         "Erreur lors de la récupération des données de puissance": "Erreur lors de la récupération des données de puissance",
         "Toutes les données ont été récupérées": "Toutes les données ont été récupérées",
         "Arrêt des appels aux serveurs Enedis": "Arrêt des appels aux serveurs Enedis",
-        "Certaines données n\\'ont pas été récupérées : ": "Certaines données n\\'ont pas été récupérées :",
-        "Fin d\\'interrogation des serveurs Enedis": "Fin d\\'interrogation des serveurs Enedis",
+        "Certaines données n'ont pas été récupérées": "Certaines données n'ont pas été récupérées",
+        "Fin d'interrogation des serveurs Enedis": "Fin d'interrogation des serveurs Enedis",
         "Mise à jour de la valeur": "Mise à jour de la valeur",
         "Enregistrement historique": "Enregistrement historique",
-        "L\\'identifiant du point de livraison (PDL) doit être renseigné": "L\\'identifiant du point de livraison (PDL) doit être renseigné",
-        "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères": "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères",
+        "L'identifiant du point de livraison (PDL) doit être renseigné": "L'identifiant du point de livraison (PDL) doit être renseigné",
+        "L'identifiant du point de livraison (PDL) doit contenir 14 caractères": "L'identifiant du point de livraison (PDL) doit contenir 14 caractères",
         "Fichier de création de commandes non trouvé": "Fichier de création de commandes non trouvé",
         "Création commande : refresh\/Rafraîchir": "Création commande : refresh\/Rafraîchir",
         "Rafraîchir": "Rafraîchir",

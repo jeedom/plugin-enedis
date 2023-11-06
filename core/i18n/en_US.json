@@ -35,14 +35,13 @@
         "Indiquer le type de mesure à récupérer (consommation, production ou les deux)": "Indicate the type of measure to be recovered (consumption, production or both)",
         "Consommation": "Consumption",
         "Production": "Production",
-        "Consommation & Production": "Consumption & Production",
+        "Données horaires": "Hourly data",
+        "Cocher la case si vous n'avez pas activé l'enregistrement et la collecte de la consommation horaire sur votre compte Enedis": "Check the box if you have not activated the recording and collection of hourly consumption on your Enedis account",
+        "Désactiver": "Disable",
         "Template de Widget": "Widget template",
         "Cocher la case pour utiliser le template de widget représentant le compteur Linky": "Check the box to use the widget template representing the Linky counter",
-        "Couleur de fond": "Background color",
-        "Sélectionner la couleur de fond du template de widget": "Select the background color of the widget template",
-        "Transparent": "Transparent",
-        "Cocher la case pour un fond transparent": "Check the box for a transparent background",
         "Nom": "Name",
+        "Etat": "State",
         "Actions": "Actions"
     },
     "plugins\/enedis\/desktop\/js\/enedis.js": {
@@ -61,13 +60,13 @@
         "Historiques intégrés avec succès": "Successfully integrated histories"
     },
     "plugins\/enedis\/core\/ajax\/enedis.ajax.php": {
-        "401 - Accès non autorisé": "401 - Unauthorized Access",
-        "Aucune méthode correspondante à : ": "No method corresponding to:"
+        "Accès non autorisé": "Unauthorized access",
+        "Aucune méthode correspondante à": "No method corresponding to"
     },
     "plugins\/enedis\/core\/class\/enedis.class.php": {
         "Tâche supprimée car équipement non trouvé": "Task deleted because equipment not found",
         "Prochaine programmation": "Next programming",
-        "Début d\\'interrogation des serveurs Enedis": "Start interrogation of Enedis servers",
+        "Début d'interrogation des serveurs Enedis": "Start of polling of Enedis servers",
         "Données journalières déjà enregistrées pour le": "Daily data already recorded for the",
         "Récupération des données journalières": "Daily data retrieval",
         "Erreur lors de la récupération des données journalières": "Error retrieving daily data",
@@ -79,12 +78,12 @@
         "Erreur lors de la récupération des données de puissance": "Error retrieving power data",
         "Toutes les données ont été récupérées": "All data has been recorded",
         "Arrêt des appels aux serveurs Enedis": "Stopping calls to Enedis servers",
-        "Certaines données n\\'ont pas été récupérées : ": "Some data was not recorded :",
-        "Fin d\\'interrogation des serveurs Enedis": "End of interrogation of Enedis servers",
+        "Certaines données n'ont pas été récupérées": "Some data was not recovered",
+        "Fin d'interrogation des serveurs Enedis": "End of polling of Enedis servers",
         "Mise à jour de la valeur": "Update value",
         "Enregistrement historique": "Recording history",
-        "L\\'identifiant du point de livraison (PDL) doit être renseigné": "The delivery point identifier (PDL) must be entered",
-        "L\\'identifiant du point de livraison (PDL) doit contenir 14 caractères": "The delivery point identifier (PDL) must contain 14 characters",
+        "L'identifiant du point de livraison (PDL) doit être renseigné": "The delivery point identifier (PDL) must be entered",
+        "L'identifiant du point de livraison (PDL) doit contenir 14 caractères": "The delivery point identifier (PDL) must contain 14 characters",
         "Fichier de création de commandes non trouvé": "Commands creation file not found",
         "Création commande : refresh\/Rafraîchir": "Command creation: refresh \/ Refresh",
         "Rafraîchir": "Refresh",

@@ -130,8 +130,16 @@ $eqLogics = eqLogic::byType($plugin->getId());
 									<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="measure_type">
 										<option value="consumption">{{Consommation}}</option>
 										<option value="production">{{Production}}</option>
-										<option value="both">{{Consommation & Production}}</option>
+										<option value="both">{{Consommation}} + {{Production}}</option>
 									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">{{Données horaires}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case si vous n'avez pas activé l'enregistrement et la collecte de la consommation horaire sur votre compte Enedis}}"></i></sup>
+								</label>
+								<div class="col-sm-6">
+									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="no_load_curve">{{Désactiver}}</label>
 								</div>
 							</div>
 						</div>
@@ -146,23 +154,10 @@ $eqLogics = eqLogic::byType($plugin->getId());
 									<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="widgetTemplate">
 								</div>
 							</div>
-							<br>
-							<div class="form-group" id="templateParams">
-								<label class="col-sm-4 control-label">{{Couleur de fond}}
-									<sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner la couleur de fond du template de widget}}"></i></sup>
-								</label>
-								<div class="col-sm-4">
-									<input type="color" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="widgetBGColor">
-								</div>
-								<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="widgetTransparent">{{Transparent}}
-									<sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case pour un fond transparent}}"></i></sup>
-								</label>
-							</div>
 						</div>
 
 					</fieldset>
 				</form>
-				<hr>
 			</div>
 
 			<div role="tabpanel" class="tab-pane" id="commandtab">
@@ -173,8 +168,8 @@ $eqLogics = eqLogic::byType($plugin->getId());
 							<tr>
 								<th class="hidden-xs" style="min-width:50px;width:70px;">ID</th>
 								<th style="min-width:200px;width:300px;">{{Nom}}</th>
-								<th style="min-width:200px;">{{Options}}</th>
 								<th>{{Etat}}</th>
+								<th style="min-width:200px;width:250px;">{{Options}}</th>
 								<th style="min-width:100px;width:250px;">{{Actions}}</th>
 							</tr>
 						</thead>

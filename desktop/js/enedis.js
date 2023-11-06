@@ -15,16 +15,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-$('.eqLogicAttr[data-l2key=widgetTemplate]').on('change', function() {
-  if ($(this).is(':checked')) {
-    $('#templateParams').show()
-  }
-  else {
-    $('#templateParams').hide()
-  }
-})
-
 $("#table_cmd").sortable({ axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true })
+
 function addCmdToTable(_cmd) {
   if (!isset(_cmd)) {
     var _cmd = { configuration: {} }
@@ -48,12 +40,12 @@ function addCmdToTable(_cmd) {
   tr += '</div>'
   tr += '</td>'
   tr += '<td>'
+  tr += '<span class="cmdAttr" data-l1key="htmlstate"></span>'
+  tr += '</td>'
+  tr += '<td>'
   tr += '<label class="checkbox-inline"><input type="checkbox" class="cmdAttr" data-l1key="isVisible" checked>{{Afficher}}</label> '
   tr += '<label class="checkbox-inline"><input type="checkbox" class="cmdAttr" data-l1key="isHistorized" checked>{{Historiser}}</label> '
   tr += '<input class="tooltips cmdAttr form-control input-sm" data-l1key="unite" placeholder="Unité" title="{{Unité}}" style="width:30%;max-width:80px;margin-top:7px;">'
-  tr += '</td>'
-  tr += '<td>'
-  tr += '<span class="cmdAttr" data-l1key="htmlstate"></span>'
   tr += '</td>'
   tr += '<td>'
   if (is_numeric(_cmd.id)) {
@@ -67,11 +59,11 @@ function addCmdToTable(_cmd) {
   tr += '</tr>'
   $('#table_cmd tbody').append(tr)
   var tr = $('#table_cmd tbody tr').last()
-  jeedom.eqLogic.builSelectCmd({
+  jeedom.eqLogic.buildSelectCmd({
     id: $('.eqLogicAttr[data-l1key=id]').value(),
     filter: { type: 'info' },
     error: function(error) {
-      $('#div_alert').showAlert({ message: error.message, level: 'danger' })
+      $.fn.showAlert({ message: error.message, level: 'danger' })
     },
     success: function(result) {
       tr.find('.cmdAttr[data-l1key=value]').append(result)
@@ -104,7 +96,7 @@ function addCmdToTable(_cmd) {
       size: 'small',
       callback: function(result) {
         if (result) {
-          $('#div_alert').showAlert({ message: '{{En cours d\'intégration d\'historiques...}}', level: 'warning' })
+          $.fn.showAlert({ message: '{{En cours d\'intégration d\'historiques...}}', level: 'warning' })
           $.ajax({
             type: "POST",
             url: "plugins/enedis/core/ajax/enedis.ajax.php",
@@ -114,11 +106,12 @@ function addCmdToTable(_cmd) {
               start: result,
             },
             dataType: 'json',
-            error: function(request, status, error) {
-              handleAjaxError(request, status, error, $('#div_alert'))
+            error: function(error) {
+              $.fn.showAlert({ message: error.message, level: 'danger' })
             },
             success: function(data) {
-              $('#div_alert').showAlert({ message: '{{Historiques intégrés avec succès}}', level: 'success' })
+              $.hideAlert()
+              $.fn.showAlert({ message: '{{Historiques intégrés avec succès}}', level: 'success' })
             }
           })
         }

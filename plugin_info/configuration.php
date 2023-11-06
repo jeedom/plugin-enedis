@@ -23,7 +23,7 @@ if (!isConnect('admin')) {
 ?>
 <style>
 	#bt_savePluginConfig {
-		display:none;
+		display: none;
 	}
 </style>
 
@@ -34,7 +34,7 @@ if (!isConnect('admin')) {
 				<sup><i class="fas fa-question-circle tooltips" title="{{Cliquez sur l'image pour autoriser la liaison entre votre compte market Jeedom et Enedis}}"></i></sup>
 			</label>
 			<div class="col-sm-4">
-				<a href="https://cloud.jeedom.com/frontend/login.html?service=enedis" target="_blank">
+				<a href="https://cloud.jeedom.com/frontend/login.html?service=enedis2" target="_blank">
 					<img src="/plugins/enedis/core/config/link_enedis.png">
 				</a>
 			</div>

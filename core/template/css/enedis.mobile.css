@@ -19,6 +19,13 @@
 	color: #505050;
 }
 
+.enedis_template div.enedisTitle>.enedisTitleIcon {
+	opacity: 0.75;
+	filter: blur(1px);
+	vertical-align: middle;
+	font-size: 9px !important;
+}
+
 .enedis_template div.enedisCdc {
 	font-size: 14px !important;
 	letter-spacing: 1px;
