@@ -18,42 +18,42 @@
 
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
-// Fonction exécutée automatiquement après l'installation du plugin
 function enedis_install() {
-     $cronMinute = config::byKey('cronMinute', 'enedis');
-    if (empty($cronMinute)) {
-      $randMinute = rand(3, 59);
-      config::save('cronMinute', $randMinute, 'enedis');
-    }
-}
-
-// Fonction exécutée automatiquement après la mise à jour du plugin
-function enedis_update() {
-   $cronMinute = config::byKey('cronMinute', 'enedis');
-    if (empty($cronMinute)) {
-      $randMinute = rand(3, 59);
-      config::save('cronMinute', $randMinute, 'enedis');
-    }
-
-  $eqLogics = eqLogic::byType('enedis');
-  foreach ($eqLogics as $eqLogic) {
-    if (!empty($eqLogic->getConfiguration('login'))) {
-      $eqLogic->setConfiguration('login', null);
-      $update = true;
-    }
-    if (!empty($eqLogic->getConfiguration('password'))) {
-      $eqLogic->setConfiguration('password', null);
-      $update = true;
-    }
-    if (isset($update) && $update === true) {
-      $eqLogic->setIsEnable(0);
-      $eqLogic->save(true);
+  foreach (eqLogic::byType('enedis') as $eqLogic) {
+    $crons = cron::searchClassAndFunction('enedis', 'pull', '"enedis_id":' . intval($eqLogic->getId()));
+    if ($eqLogic->getIsEnable() == 1 && empty($crons)) {
+      $eqLogic->refreshData();
     }
   }
 }
 
-// Fonction exécutée automatiquement après la suppression du plugin
-function enedis_remove() {
+function enedis_update() {
+  foreach (eqLogic::byType('enedis') as $eqLogic) {
+    $crons = cron::searchClassAndFunction('enedis', 'pull', '"enedis_id":' . intval($eqLogic->getId()));
+    if ($eqLogic->getIsEnable() == 1 && empty($crons)) {
+      $eqLogic->refreshData();
+    }
+    if ($eqLogic->getConfiguration('widgetBGColor') != '') {
+      $eqLogic->setDisplay('advanceWidgetParameterBGEnedisdashboard', $eqLogic->getConfiguration('widgetBGColor'));
+      $eqLogic->setDisplay('advanceWidgetParameterBGEnedismobile', $eqLogic->getConfiguration('widgetBGColor'));
+      if ($eqLogic->getConfiguration('widgetTemplate') == 1) {
+        $eqLogic->setDisplay('advanceWidgetParameterBGEnedisdashboard-default', 0);
+        $eqLogic->setDisplay('advanceWidgetParameterBGEnedismobile-default', 0);
+        $eqLogic->setDisplay('advanceWidgetParameterBGTitledashboard-default', 0);
+        $eqLogic->setDisplay('advanceWidgetParameterBGTitlemobile-default', 0);
+        $eqLogic->setDisplay('advanceWidgetParameterBGTitledashboard-transparent', 1);
+        $eqLogic->setDisplay('advanceWidgetParameterBGTitlemobile-transparent', 1);
+      }
+      if ($eqLogic->getConfiguration('widgetTransparent') == 1) {
+        $eqLogic->setDisplay('advanceWidgetParameterBGEnedisdashboard-transparent', 1);
+        $eqLogic->setDisplay('advanceWidgetParameterBGEnedismobile-transparent', 1);
+      }
+      $eqLogic->setConfiguration('widgetBGColor', null);
+      $eqLogic->setConfiguration('widgetTransparent', null);
+      $eqLogic->save(true);
+    }
+    if (is_object($prodMaxPower = $eqLogic->getCmd('info', 'daily_production_max_power'))) {
+      $prodMaxPower->remove();
+    }
+  }
 }
-
-?>

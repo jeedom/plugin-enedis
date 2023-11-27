@@ -21,14 +21,22 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
+<style>
+	#bt_savePluginConfig {
+		display: none;
+	}
+</style>
+
 <form class="form-horizontal">
 	<fieldset>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">{{Récupération des données à la minute}}
-				<sup><i class="fas fa-question-circle tooltips" title="{{Afin de ne pas surcharger les serveurs Enedis, les données sont vérifiées une fois par heure à une minute aléatoire}}"></i></sup>
+			<label class="col-sm-4 control-label">{{Autoriser l'accès aux serveurs Enedis}}
+				<sup><i class="fas fa-question-circle tooltips" title="{{Cliquez sur l'image pour autoriser la liaison entre votre compte market Jeedom et Enedis}}"></i></sup>
 			</label>
-			<div class="col-sm-3">
-				<input type="number" class="configKey form-control" data-l1key="cronMinute"/>
+			<div class="col-sm-4">
+				<a href="https://cloud.jeedom.com/frontend/login.html?service=enedis2" target="_blank">
+					<img src="/plugins/enedis/core/config/link_enedis.png">
+				</a>
 			</div>
 		</div>
 	</fieldset>
