@@ -91,8 +91,8 @@ class enedis extends eqLogic {
         $end_date = $end_date_load = date('Y-m-d');
       } else {
         $start_date = $start_date_load = $_startDate;
-        $end_date = date('Y-01-01');
-        $end_date_load = date('Y-m-d', strtotime('+7 days ' . $_startDate));
+        $end_date = date('Y-m-d', strtotime('+7 days ' . $_startDate));
+        $end_date_load = $end_date;
       }
 
       $measureTypes = ($this->getConfiguration('measure_type') != 'both') ? [$this->getConfiguration('measure_type')] : ['consumption', 'production'];
