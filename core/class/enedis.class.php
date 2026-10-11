@@ -90,8 +90,10 @@ class enedis extends eqLogic {
         $start_date_load = date('Y-m-d', strtotime('-7 days'));
         $end_date = $end_date_load = date('Y-m-d');
       } else {
-        $start_date = $start_date_load = $_startDate;
-        $end_date = date('Y-01-01');
+        // Les données journalières démarrent au 1er janvier de l'année demandée pour que les cumuls mensuels et annuels soient complets
+        $start_date = date('Y-01-01', strtotime($_startDate));
+        $start_date_load = $_startDate;
+        $end_date = date('Y-m-d');
         $end_date_load = date('Y-m-d', strtotime('+7 days ' . $_startDate));
       }
 
@@ -101,7 +103,7 @@ class enedis extends eqLogic {
         $dailyCmd->execCmd();
         if (empty($_startDate) && $dailyCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
           log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Données journalières déjà enregistrées pour le', __FILE__) . ' ' . date('d/m/Y', strtotime('-1 day')));
-        } else if (empty($_toRefresh) || $_toRefresh['daily_' . $measureType]) {
+        } else if (empty($_toRefresh) || !empty($_toRefresh['daily_' . $measureType])) {
           $to_refresh['daily_' . $measureType] = true;
           $monthlyCmd = $this->getCmd('info', 'monthly_' . $measureType);
           $yearlyCmd = $this->getCmd('info', 'yearly_' . $measureType);
@@ -146,7 +148,7 @@ class enedis extends eqLogic {
           $loadCmd->execCmd();
           if (empty($_startDate) && $loadCmd->getCollectDate() >= date('Y-m-d')) {
             log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Données horaires déjà enregistrées pour le', __FILE__) . ' ' . date('d/m/Y', strtotime('-1 day')));
-          } else if (empty($_toRefresh) || $_toRefresh[$measureType . '_load_curve']) {
+          } else if (empty($_toRefresh) || !empty($_toRefresh[$measureType . '_load_curve'])) {
             $to_refresh[$measureType . '_load_curve'] = true;
 
             log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données horaires', __FILE__) . ' : ' . $measureType . '?start=' . $start_date . '&end=' . $end_date);
@@ -171,7 +173,7 @@ class enedis extends eqLogic {
           $dailyMaxCmd->execCmd();
           if (empty($_startDate) && $dailyMaxCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
             log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Données de puissance déjà enregistrées pour le', __FILE__) . ' ' . date('d/m/Y', strtotime('-1 day')));
-          } else if (empty($_toRefresh) || $_toRefresh['daily_' . $measureType . '_max_power']) {
+          } else if (empty($_toRefresh) || !empty($_toRefresh['daily_' . $measureType . '_max_power'])) {
             $to_refresh['daily_' . $measureType . '_max_power'] = true;
 
             log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données de puissance', __FILE__) . ' : ' . $measureType . '?start=' . $start_date . '&end=' . $end_date);
