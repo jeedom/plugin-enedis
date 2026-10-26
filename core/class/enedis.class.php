@@ -105,7 +105,7 @@ class enedis extends eqLogic {
           $to_refresh['daily_' . $measureType] = true;
           $monthlyCmd = $this->getCmd('info', 'monthly_' . $measureType);
           $yearlyCmd = $this->getCmd('info', 'yearly_' . $measureType);
-          $returnMonthValue = $returnYearValue = 0;
+          $currentMonth = $currentYear = '';
 
           log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données journalières', __FILE__) . ' : ' . $measureType . '?start=' . $start_date . '&end=' . $end_date);
           $data = $this->callEnedis('/metering_data_d' . $measureType[0] . '/v5/daily_' . $measureType . '?start=' . $start_date . '&end=' . $end_date . '&usage_point_id=' . $usagePointId);
@@ -113,17 +113,16 @@ class enedis extends eqLogic {
             foreach ($data['meter_reading']['interval_reading'] as $value) {
               $valueTimestamp = strtotime($value['date']);
 
-              if ($value['date'] == date('Y-m-01', $valueTimestamp)) {
-                $returnMonthValue = $value['value'];
-              } else {
-                $returnMonthValue += $value['value'];
+              if (date('Y-m', $valueTimestamp) != $currentMonth) {
+                $currentMonth = date('Y-m', $valueTimestamp);
+                $returnMonthValue = 0;
               }
-
-              if ($value['date'] == date('Y-01-01', $valueTimestamp)) {
-                $returnYearValue = $value['value'];
-              } else {
-                $returnYearValue += $value['value'];
+              if (date('Y', $valueTimestamp) != $currentYear) {
+                $currentYear = date('Y', $valueTimestamp);
+                $returnYearValue = 0;
               }
+              $returnMonthValue += $value['value'];
+              $returnYearValue += $value['value'];
 
               if (empty($_startDate) && date('Y-m-d', $valueTimestamp) >= date('Y-m-d', strtotime('-1 day ' . $end_date))) {
                 $to_refresh = $this->cleanArray($to_refresh, 'daily_' . $measureType);
