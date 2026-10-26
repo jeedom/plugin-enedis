@@ -15,11 +15,9 @@ Il est possible d'accéder aux données de **consommation**, de **production** o
 - la **consommation annuelle** *(en kWh)*.
 - la **puissance max** *(en kVA)*.
 
->**INFORMATION**
->
->Les données n'étant pas mises à disposition en temps réel, le plugin récupère chaque jour les données de consommation électrique de la veille.
+Les données n'étant pas mises à disposition en temps réel par Enedis, le plugin récupère chaque jour celles de la veille. Tant qu'il ne les a pas toutes récupérées, il interroge à nouveau les serveurs Enedis toutes les 30 minutes jusqu'à 19h, puis reprend le lendemain matin.
 
-Tant que le plugin n'a pas récupéré l'intégralité des données de la veille, il continue d'interroger les serveurs Enedis toutes les 30 minutes, autrement les appels sont suspendus jusqu'au lendemain.
+À chaque récupération, les données jour, mois, année et puissance max sont interrogées depuis le 1er janvier de l'année en cours, et les données horaires sur les 7 derniers jours. Les historiques déjà enregistrés sont réalignés sur les données Enedis : une donnée fournie en retard ou corrigée par Enedis met à jour les valeurs concernées.
 
 # Configuration
 
@@ -58,10 +56,6 @@ Pour accéder aux différents équipements **Enedis**, dirigez-vous vers le menu
 Une fois le partage des données autorisé depuis la page de configuration du plugin, il ne reste plus qu'à renseigner **le numéro d'identification du Point de Livraison** concerné *(PDL)* et le **type de mesure** à récupérer.
 
 Lors de la 1ère sauvegarde d'un équipement actif et configuré, le plugin va automatiquement créer les commandes nécessaires et intégrer les historiques disponibles sur le site Enedis depuis le 1er janvier de l'année en cours. Ce processus est susceptible de durer plusieurs minutes, vous pouvez en suivre l'avancée depuis le menu **Analyse → Logs** *(logs en ``debug``)*.
-
->**INFORMATION**
->
->Les données de consommation horaire sont quand à elles récupérées sur les 7 derniers jours au maximum.
 
 Si vous n'avez pas activé **l'enregistrement et la collecte de la consommation horaire** sur votre compte Enedis, il faudra cocher la case **Données horaires : Désactiver** pour que les commandes correspondantes ne soient pas créées.
 

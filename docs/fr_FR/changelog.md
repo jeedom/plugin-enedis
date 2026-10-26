@@ -12,6 +12,7 @@
 - L'ajout d'historiques des données jour, mois, année et puissance max se fait désormais par année entière, pour des cumuls mensuels et annuels justes
 - Correction des cumuls mensuels et annuels lorsqu'Enedis ne fournit pas la donnée du 1er du mois
 - Correction des dates affichées dans les logs lors de la récupération des données horaires
+- Les historiques jour, mois, année et puissance max déjà enregistrés sont désormais corrigés lorsqu'une donnée Enedis arrive en retard ou est modifiée
 
 # 06/11/2023
 

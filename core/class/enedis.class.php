@@ -222,6 +222,7 @@ class enedis extends eqLogic {
 
   public function recordData($cmd, $value, $date, $function = 'addHistoryValue') {
     $record = false;
+    $formattedValue = $cmd->formatValue($value);
     if (strpos($cmd->getLogicalId(), 'load') !== false) {
       if (date('Gi', strtotime($date)) == 2330) {
         if (!is_object(history::byCmdIdDatetime($cmd->getId(), date('Y-m-d 00:00:00', strtotime('+1 day ' . $date))))) {
@@ -234,8 +235,16 @@ class enedis extends eqLogic {
       } else if (empty($cmd->getHistory($date, date('Y-m-d 23:59:59', strtotime($date))))) {
         $record = true;
       }
-    } else if (empty($cmd->getHistory(date('Y-m-d 00:00:00', strtotime($date)), date('Y-m-d 23:59:59', strtotime($date))))) {
-      $record = true;
+    } else {
+      $day = date('Y-m-d', strtotime($date));
+      $histories = $cmd->getHistory($day . ' 00:00:00', $day . ' 23:59:59');
+      if (empty($histories)) {
+        $record = true;
+      } else if (count($histories) > 1 || $histories[0]->getValue() != $formattedValue) {
+        log::add(__CLASS__, 'debug', $cmd->getHumanName() . ' ' . __("Correction de l'historique", __FILE__) . ' : ' . $day . ' => ' . $histories[0]->getValue() . ' > ' . $formattedValue);
+        history::removes($cmd->getId(), $day . ' 00:00:00', $day . ' 23:59:59');
+        $record = true;
+      }
     }
 
     if ($record) {
@@ -243,12 +252,8 @@ class enedis extends eqLogic {
         log::add(__CLASS__, 'debug', $cmd->getHumanName() . ' ' . __('Mise à jour de la valeur', __FILE__) . ' : ' . $date . ' => ' . $value);
         $cmd->event($value, $date);
       } else {
-        log::add(__CLASS__, 'debug', $cmd->getHumanName() . ' ' . __('Enregistrement historique', __FILE__) . ' : ' . $date . ' => ' . $value);
-        $valueOffset = $cmd->getConfiguration('calculValueOffset', '');
-        if (!empty($valueOffset) && strpos($valueOffset, '#value#') !== false) {
-          $value = jeedom::evaluateExpression(str_replace('#value#', $value, $valueOffset));
-        }
-        $cmd->addHistoryValue($value, $date);
+        log::add(__CLASS__, 'debug', $cmd->getHumanName() . ' ' . __('Enregistrement historique', __FILE__) . ' : ' . $date . ' => ' . $formattedValue);
+        $cmd->addHistoryValue($formattedValue, $date);
       }
     }
   }
