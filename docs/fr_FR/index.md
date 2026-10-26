@@ -71,9 +71,9 @@ Il est possible d'intégrer des historiques à la demande, jusqu'à 3 années en
 
 ![Ajout d'historiques](../images/enedis_addHistory.png)
 
-Choisissez ensuite la date de début puis cliquez sur **OK** pour initier le processus.
+Choisissez ensuite l'année de début *(données jour, mois, année et puissance max)* ou la date de début *(données horaires)* puis cliquez sur **OK** pour initier le processus.
 
-Les données jour, mois, année et puissance max seront intégrées de la date choisie jusqu'au 1er janvier de l'année en cours. Les données horaires, quand à elles, seront intégrées jusqu’à 7 jours après la date choisie.
+Les données jour, mois, année et puissance max seront intégrées du 1er janvier de l'année choisie jusqu'au 1er janvier de l'année en cours. Les données horaires, quand à elles, seront intégrées jusqu’à 7 jours après la date choisie.
 
 >**INFORMATION**
 >
@@ -105,4 +105,4 @@ Le template de widget est activé par défaut. Pour revenir au widget standard d
 
 >**Je n'ai pas de données Jour/Mois/Année pour le 31 décembre 2021**
 >
->Pour récupérer ces données il suffit de cliquer sur le bouton **Ajout historiques** de la commande **Consommation Jour** et de sélectionner la date du 1er janvier 2021 comme date de départ.
+>Pour récupérer ces données il suffit de cliquer sur le bouton **Ajout historiques** de la commande **Consommation Jour** et de sélectionner l'année 2021 comme année de début.
