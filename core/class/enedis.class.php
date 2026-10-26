@@ -56,7 +56,7 @@ class enedis extends eqLogic {
       self::cleanCrons($options['enedis_id']);
       throw new Exception(__('Tâche supprimée car équipement non trouvé', __FILE__) . ' (ID) : ' . $options['enedis_id']);
     }
-    $options = $eqLogic->cleanArray($options, 'enedis_id');
+    unset($options['enedis_id']);
     sleep(mt_rand(1, 59));
     $eqLogic->refreshData(null, $options);
   }
@@ -86,7 +86,7 @@ class enedis extends eqLogic {
       log::add(__CLASS__, 'debug', $this->getHumanName() . ' *** ' . __("Début d'interrogation des serveurs Enedis", __FILE__) . ' ***');
       $usagePointId = $this->getConfiguration('usage_point_id');
       if (empty($_startDate)) {
-        $start_date = (date('z') > '0') ? date('Y-01-01') : date('Y-01-01', strtotime('-1 year'));
+        $start_date = date('Y-01-01', strtotime('-1 day'));
         $start_date_load = date('Y-m-d', strtotime('-7 days'));
         $end_date = $end_date_load = date('Y-m-d');
       } else {
@@ -125,7 +125,7 @@ class enedis extends eqLogic {
               $returnYearValue += $value['value'];
 
               if (empty($_startDate) && date('Y-m-d', $valueTimestamp) >= date('Y-m-d', strtotime('-1 day ' . $end_date))) {
-                $to_refresh = $this->cleanArray($to_refresh, 'daily_' . $measureType);
+                unset($to_refresh['daily_' . $measureType]);
                 $this->recordData($dailyCmd, $value['value'], date('Y-m-d 00:00:00', $valueTimestamp), 'event');
                 $this->recordData($monthlyCmd, $returnMonthValue, date('Y-m-d 00:00:00', $valueTimestamp), 'event');
                 $this->recordData($yearlyCmd, $returnYearValue, date('Y-m-d 00:00:00', $valueTimestamp), 'event');
@@ -153,7 +153,7 @@ class enedis extends eqLogic {
             if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
               foreach ($data['meter_reading']['interval_reading'] as $value) {
                 if (empty($_startDate) && $value['date'] >= $end_date_load) {
-                  $to_refresh = $this->cleanArray($to_refresh, $measureType . '_load_curve');
+                  unset($to_refresh[$measureType . '_load_curve']);
                   $this->recordData($loadCmd, $value['value'], $value['date'], 'event');
                 } else {
                   $this->recordData($loadCmd, $value['value'], $value['date']);
@@ -178,7 +178,7 @@ class enedis extends eqLogic {
             if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
               foreach ($data['meter_reading']['interval_reading'] as $value) {
                 if (empty($_startDate) && $value['date'] >= date('Y-m-d', strtotime('-1 day ' . $end_date))) {
-                  $to_refresh = $this->cleanArray($to_refresh, 'daily_' . $measureType . '_max_power');
+                  unset($to_refresh['daily_' . $measureType . '_max_power']);
                   $this->recordData($dailyMaxCmd, $value['value'], $value['date'], 'event');
                 } else {
                   $this->recordData($dailyMaxCmd, $value['value'], $value['date']);
@@ -251,15 +251,6 @@ class enedis extends eqLogic {
         $cmd->addHistoryValue($value, $date);
       }
     }
-  }
-
-  public function cleanArray($array, $logical) {
-    if (count($array) > 1) {
-      unset($array[$logical]);
-    } else {
-      $array = array();
-    }
-    return $array;
   }
 
   public function preInsert() {
