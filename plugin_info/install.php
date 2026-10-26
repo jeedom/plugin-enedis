@@ -33,23 +33,11 @@ function enedis_update() {
     if ($eqLogic->getIsEnable() == 1 && empty($crons)) {
       $eqLogic->refreshData();
     }
-    if ($eqLogic->getConfiguration('widgetBGColor') != '') {
-      $eqLogic->setDisplay('advanceWidgetParameterBGEnedisdashboard', $eqLogic->getConfiguration('widgetBGColor'));
-      $eqLogic->setDisplay('advanceWidgetParameterBGEnedismobile', $eqLogic->getConfiguration('widgetBGColor'));
-      if ($eqLogic->getConfiguration('widgetTemplate') == 1) {
-        $eqLogic->setDisplay('advanceWidgetParameterBGEnedisdashboard-default', 0);
-        $eqLogic->setDisplay('advanceWidgetParameterBGEnedismobile-default', 0);
-        $eqLogic->setDisplay('advanceWidgetParameterBGTitledashboard-default', 0);
-        $eqLogic->setDisplay('advanceWidgetParameterBGTitlemobile-default', 0);
-        $eqLogic->setDisplay('advanceWidgetParameterBGTitledashboard-transparent', 1);
-        $eqLogic->setDisplay('advanceWidgetParameterBGTitlemobile-transparent', 1);
+    if ($eqLogic->getConfiguration('widgetTemplate', null) !== null) {
+      if ($eqLogic->getConfiguration('widgetTemplate') != 1) {
+        $eqLogic->setDisplay('widgetTmpl', 0);
       }
-      if ($eqLogic->getConfiguration('widgetTransparent') == 1) {
-        $eqLogic->setDisplay('advanceWidgetParameterBGEnedisdashboard-transparent', 1);
-        $eqLogic->setDisplay('advanceWidgetParameterBGEnedismobile-transparent', 1);
-      }
-      $eqLogic->setConfiguration('widgetBGColor', null);
-      $eqLogic->setConfiguration('widgetTransparent', null);
+      $eqLogic->setConfiguration('widgetTemplate', null);
       $eqLogic->save(true);
     }
     if (is_object($prodMaxPower = $eqLogic->getCmd('info', 'daily_production_max_power'))) {

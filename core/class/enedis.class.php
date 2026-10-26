@@ -27,7 +27,7 @@ class enedis extends eqLogic {
       'BGEnedis' => array(
         'name' => 'Template : background-color',
         'type' => 'color',
-        'default' => '',
+        'default' => '#a3cc28',
         'allow_transparent' => true,
         'allow_displayType' => true
       ),
@@ -269,14 +269,8 @@ class enedis extends eqLogic {
     $this->setCategory('energy', 1);
     $this->setIsEnable(1);
     $this->setIsVisible(1);
-    $this->setConfiguration('widgetTemplate', 1);
-    $this->setDisplay('widgetTmpl', 1);
-    $this->setDisplay('advanceWidgetParameterBGEnedisdashboard-default', 0);
-    $this->setDisplay('advanceWidgetParameterBGEnedismobile-default', 0);
     $this->setDisplay('advanceWidgetParameterBGTitledashboard-default', 0);
     $this->setDisplay('advanceWidgetParameterBGTitlemobile-default', 0);
-    $this->setDisplay('advanceWidgetParameterBGEnedisdashboard', '#a3cc28');
-    $this->setDisplay('advanceWidgetParameterBGEnedismobile', '#a3cc28');
     $this->setDisplay('advanceWidgetParameterBGTitledashboard-transparent', 1);
     $this->setDisplay('advanceWidgetParameterBGTitlemobile-transparent', 1);
   }
@@ -363,10 +357,6 @@ class enedis extends eqLogic {
   }
 
   public function toHtml($_version = 'dashboard') {
-    if ($this->getConfiguration('widgetTemplate') != 1) {
-      return parent::toHtml($_version);
-    }
-
     $replace = $this->preToHtml($_version);
     if (!is_array($replace)) {
       return $replace;
