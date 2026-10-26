@@ -101,7 +101,7 @@ class enedis extends eqLogic {
         $dailyCmd->execCmd();
         if (empty($_startDate) && $dailyCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
           log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Données journalières déjà enregistrées pour le', __FILE__) . ' ' . date('d/m/Y', strtotime('-1 day')));
-        } else if (empty($_toRefresh) || $_toRefresh['daily_' . $measureType]) {
+        } else if (empty($_toRefresh) || isset($_toRefresh['daily_' . $measureType])) {
           $to_refresh['daily_' . $measureType] = true;
           $monthlyCmd = $this->getCmd('info', 'monthly_' . $measureType);
           $yearlyCmd = $this->getCmd('info', 'yearly_' . $measureType);
@@ -145,10 +145,10 @@ class enedis extends eqLogic {
           $loadCmd->execCmd();
           if (empty($_startDate) && $loadCmd->getCollectDate() >= date('Y-m-d')) {
             log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Données horaires déjà enregistrées pour le', __FILE__) . ' ' . date('d/m/Y', strtotime('-1 day')));
-          } else if (empty($_toRefresh) || $_toRefresh[$measureType . '_load_curve']) {
+          } else if (empty($_toRefresh) || isset($_toRefresh[$measureType . '_load_curve'])) {
             $to_refresh[$measureType . '_load_curve'] = true;
 
-            log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données horaires', __FILE__) . ' : ' . $measureType . '?start=' . $start_date . '&end=' . $end_date);
+            log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données horaires', __FILE__) . ' : ' . $measureType . '?start=' . $start_date_load . '&end=' . $end_date_load);
             $data = $this->callEnedis('/metering_data_' . $measureType[0] . 'lc/v5/' . $measureType . '_load_curve?start=' . $start_date_load . '&end=' . $end_date_load . '&usage_point_id=' . $usagePointId);
             if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
               foreach ($data['meter_reading']['interval_reading'] as $value) {
@@ -170,7 +170,7 @@ class enedis extends eqLogic {
           $dailyMaxCmd->execCmd();
           if (empty($_startDate) && $dailyMaxCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
             log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Données de puissance déjà enregistrées pour le', __FILE__) . ' ' . date('d/m/Y', strtotime('-1 day')));
-          } else if (empty($_toRefresh) || $_toRefresh['daily_' . $measureType . '_max_power']) {
+          } else if (empty($_toRefresh) || isset($_toRefresh['daily_' . $measureType . '_max_power'])) {
             $to_refresh['daily_' . $measureType . '_max_power'] = true;
 
             log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données de puissance', __FILE__) . ' : ' . $measureType . '?start=' . $start_date . '&end=' . $end_date);
