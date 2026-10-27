@@ -136,7 +136,7 @@ class enedis extends eqLogic {
               }
             }
           } else if (isset($data['error'])) {
-            log::add(__CLASS__, 'warning', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données journalières', __FILE__) . ' : '  . $data['error'] . ' ' . $data['error_description']);
+            log::add(__CLASS__, 'warning', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données journalières', __FILE__) . ' : '  . $data['error'] . (isset($data['error_description']) ? ' ' . $data['error_description'] : ''));
           }
         }
 
@@ -160,7 +160,7 @@ class enedis extends eqLogic {
                 }
               }
             } else if (isset($data['error'])) {
-              log::add(__CLASS__, 'warning', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données horaires', __FILE__) . ' : ' . $data['error'] . ' ' . $data['error_description']);
+              log::add(__CLASS__, 'warning', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données horaires', __FILE__) . ' : ' . $data['error'] . (isset($data['error_description']) ? ' ' . $data['error_description'] : ''));
             }
           }
         }
@@ -185,7 +185,7 @@ class enedis extends eqLogic {
                 }
               }
             } else if (isset($data['error'])) {
-              log::add(__CLASS__, 'warning', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données de puissance', __FILE__) . ' : ' . $data['error'] . ' ' . $data['error_description']);
+              log::add(__CLASS__, 'warning', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données de puissance', __FILE__) . ' : ' . $data['error'] . (isset($data['error_description']) ? ' ' . $data['error_description'] : ''));
             }
           }
         }
