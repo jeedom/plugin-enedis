@@ -31,7 +31,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       }
       jeeDialog.prompt({
         title: title,
-        message: '<p>{{Intégrer les historiques du 1er janvier de l\'année choisie jusqu\'au 1er janvier}} ' + today.getFullYear() + '</p>{{Choisir l\'année de début}}',
+        message: "<p>{{Intégrer les historiques du 1er janvier de l'année choisie jusqu'au 1er janvier}} " + today.getFullYear() + "</p>{{Choisir l'année de début}}",
         inputType: 'select',
         inputOptions: years,
         callback: function(result) {
@@ -44,7 +44,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     let picker = null
     jeeDialog.prompt({
       title: title,
-      message: '<p>{{Intégrer les historiques horaires jusqu\'à 7 jours après la date choisie}}</p>{{Choisir la date de début}}',
+      message: "<p>{{Intégrer les historiques horaires jusqu'à 7 jours après la date choisie}}</p>{{Choisir la date de début}}",
       inputType: 'date',
       onShown: function(_dialog) {
         picker = flatpickr(_dialog.querySelector('.promptAttr'), {
@@ -69,7 +69,7 @@ function addEnedisHistory(_cmdId, _start) {
   if (_start === null) {
     return
   }
-  jeedomUtils.showAlert({ message: '{{En cours d\'intégration d\'historiques...}}', level: 'warning' })
+  jeedomUtils.showAlert({ message: "{{En cours d'intégration d'historiques...}}", level: 'warning' })
   domUtils.ajax({
     type: 'POST',
     url: 'plugins/enedis/core/ajax/enedis.ajax.php',
