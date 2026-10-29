@@ -26,7 +26,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
     if (_target.getAttribute('data-logicalId').includes('daily')) {
       const years = []
-      for (let year = today.getFullYear() - 1; year >= today.getFullYear() - 3; year--) {
+      for (let year = today.getFullYear() - 1; year >= today.getFullYear() - 2; year--) {
         years.push({ text: year, value: year + '-01-01' })
       }
       jeeDialog.prompt({
