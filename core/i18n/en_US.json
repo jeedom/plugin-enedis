@@ -16,9 +16,7 @@
         "Données journalières déjà enregistrées pour le": "Daily data already recorded for the",
         "Début d'interrogation des serveurs Enedis": "Start of polling of Enedis servers",
         "Enregistrement historique": "Recording history",
-        "Erreur lors de la récupération des données de puissance": "Error retrieving power data",
-        "Erreur lors de la récupération des données horaires": "Error retrieving hourly data",
-        "Erreur lors de la récupération des données journalières": "Error retrieving daily data",
+        "Erreur lors de la récupération des données": "Error retrieving data",
         "Fichier de création de commandes non trouvé": "Commands creation file not found",
         "Fin d'interrogation des serveurs Enedis": "End of polling of Enedis servers",
         "L'identifiant du point de livraison (PDL) doit contenir 14 caractères": "The delivery point identifier (PDL) must contain 14 characters",
@@ -29,6 +27,7 @@
         "Récupération des données de puissance": "Power data retrieval",
         "Récupération des données horaires": "Hourly data retrieval",
         "Récupération des données journalières": "Daily data retrieval",
+        "Réponse inattendue pour": "Unexpected response to",
         "Toutes les données ont été récupérées": "All data has been recorded",
         "Tâche supprimée car équipement non trouvé": "Task deleted because equipment not found"
     },
