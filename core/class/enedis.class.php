@@ -251,7 +251,7 @@ class enedis extends eqLogic {
 
     if ($record) {
       if ($function === 'event') {
-        log::add(__CLASS__, 'debug', $cmd->getHumanName() . ' ' . __('Mise à jour de la valeur', __FILE__) . ' : ' . $date . ' => ' . $value);
+        log::add(__CLASS__, 'debug', $cmd->getHumanName() . ' ' . __('Mise à jour de la valeur', __FILE__) . ' : ' . $date . ' => ' . $formattedValue);
         $cmd->event($value, $date);
       } else {
         log::add(__CLASS__, 'debug', $cmd->getHumanName() . ' ' . __('Enregistrement historique', __FILE__) . ' : ' . $date . ' => ' . $formattedValue);
