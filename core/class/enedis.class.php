@@ -27,7 +27,7 @@ class enedis extends eqLogic {
       'BGEnedis' => array(
         'name' => 'Template : background-color',
         'type' => 'color',
-        'default' => '',
+        'default' => '#a3cc28',
         'allow_transparent' => true,
         'allow_displayType' => true
       ),
@@ -56,7 +56,7 @@ class enedis extends eqLogic {
       self::cleanCrons($options['enedis_id']);
       throw new Exception(__('Tâche supprimée car équipement non trouvé', __FILE__) . ' (ID) : ' . $options['enedis_id']);
     }
-    $options = $eqLogic->cleanArray($options, 'enedis_id');
+    unset($options['enedis_id']);
     sleep(mt_rand(1, 59));
     $eqLogic->refreshData(null, $options);
   }
@@ -86,7 +86,7 @@ class enedis extends eqLogic {
       log::add(__CLASS__, 'debug', $this->getHumanName() . ' *** ' . __("Début d'interrogation des serveurs Enedis", __FILE__) . ' ***');
       $usagePointId = $this->getConfiguration('usage_point_id');
       if (empty($_startDate)) {
-        $start_date = (date('z') > '0') ? date('Y-01-01') : date('Y-01-01', strtotime('-1 year'));
+        $start_date = date('Y-01-01', strtotime('-1 day'));
         $start_date_load = date('Y-m-d', strtotime('-7 days'));
         $end_date = $end_date_load = date('Y-m-d');
       } else {
@@ -101,11 +101,11 @@ class enedis extends eqLogic {
         $dailyCmd->execCmd();
         if (empty($_startDate) && $dailyCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
           log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Données journalières déjà enregistrées pour le', __FILE__) . ' ' . date('d/m/Y', strtotime('-1 day')));
-        } else if (empty($_toRefresh) || $_toRefresh['daily_' . $measureType]) {
+        } else if (empty($_toRefresh) || isset($_toRefresh['daily_' . $measureType])) {
           $to_refresh['daily_' . $measureType] = true;
           $monthlyCmd = $this->getCmd('info', 'monthly_' . $measureType);
           $yearlyCmd = $this->getCmd('info', 'yearly_' . $measureType);
-          $returnMonthValue = $returnYearValue = 0;
+          $currentMonth = $currentYear = '';
 
           log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données journalières', __FILE__) . ' : ' . $measureType . '?start=' . $start_date . '&end=' . $end_date);
           $data = $this->callEnedis('/metering_data_d' . $measureType[0] . '/v5/daily_' . $measureType . '?start=' . $start_date . '&end=' . $end_date . '&usage_point_id=' . $usagePointId);
@@ -113,20 +113,19 @@ class enedis extends eqLogic {
             foreach ($data['meter_reading']['interval_reading'] as $value) {
               $valueTimestamp = strtotime($value['date']);
 
-              if ($value['date'] == date('Y-m-01', $valueTimestamp)) {
-                $returnMonthValue = $value['value'];
-              } else {
-                $returnMonthValue += $value['value'];
+              if (date('Y-m', $valueTimestamp) != $currentMonth) {
+                $currentMonth = date('Y-m', $valueTimestamp);
+                $returnMonthValue = 0;
               }
-
-              if ($value['date'] == date('Y-01-01', $valueTimestamp)) {
-                $returnYearValue = $value['value'];
-              } else {
-                $returnYearValue += $value['value'];
+              if (date('Y', $valueTimestamp) != $currentYear) {
+                $currentYear = date('Y', $valueTimestamp);
+                $returnYearValue = 0;
               }
+              $returnMonthValue += $value['value'];
+              $returnYearValue += $value['value'];
 
               if (empty($_startDate) && date('Y-m-d', $valueTimestamp) >= date('Y-m-d', strtotime('-1 day ' . $end_date))) {
-                $to_refresh = $this->cleanArray($to_refresh, 'daily_' . $measureType);
+                unset($to_refresh['daily_' . $measureType]);
                 $this->recordData($dailyCmd, $value['value'], date('Y-m-d 00:00:00', $valueTimestamp), 'event');
                 $this->recordData($monthlyCmd, $returnMonthValue, date('Y-m-d 00:00:00', $valueTimestamp), 'event');
                 $this->recordData($yearlyCmd, $returnYearValue, date('Y-m-d 00:00:00', $valueTimestamp), 'event');
@@ -137,7 +136,7 @@ class enedis extends eqLogic {
               }
             }
           } else if (isset($data['error'])) {
-            log::add(__CLASS__, 'warning', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données journalières', __FILE__) . ' : '  . $data['error'] . ' ' . $data['error_description']);
+            log::add(__CLASS__, 'warning', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données journalières', __FILE__) . ' : '  . $data['error'] . (isset($data['error_description']) ? ' ' . $data['error_description'] : ''));
           }
         }
 
@@ -146,22 +145,22 @@ class enedis extends eqLogic {
           $loadCmd->execCmd();
           if (empty($_startDate) && $loadCmd->getCollectDate() >= date('Y-m-d')) {
             log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Données horaires déjà enregistrées pour le', __FILE__) . ' ' . date('d/m/Y', strtotime('-1 day')));
-          } else if (empty($_toRefresh) || $_toRefresh[$measureType . '_load_curve']) {
+          } else if (empty($_toRefresh) || isset($_toRefresh[$measureType . '_load_curve'])) {
             $to_refresh[$measureType . '_load_curve'] = true;
 
-            log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données horaires', __FILE__) . ' : ' . $measureType . '?start=' . $start_date . '&end=' . $end_date);
+            log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données horaires', __FILE__) . ' : ' . $measureType . '?start=' . $start_date_load . '&end=' . $end_date_load);
             $data = $this->callEnedis('/metering_data_' . $measureType[0] . 'lc/v5/' . $measureType . '_load_curve?start=' . $start_date_load . '&end=' . $end_date_load . '&usage_point_id=' . $usagePointId);
             if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
               foreach ($data['meter_reading']['interval_reading'] as $value) {
                 if (empty($_startDate) && $value['date'] >= $end_date_load) {
-                  $to_refresh = $this->cleanArray($to_refresh, $measureType . '_load_curve');
+                  unset($to_refresh[$measureType . '_load_curve']);
                   $this->recordData($loadCmd, $value['value'], $value['date'], 'event');
                 } else {
                   $this->recordData($loadCmd, $value['value'], $value['date']);
                 }
               }
             } else if (isset($data['error'])) {
-              log::add(__CLASS__, 'warning', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données horaires', __FILE__) . ' : ' . $data['error'] . ' ' . $data['error_description']);
+              log::add(__CLASS__, 'warning', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données horaires', __FILE__) . ' : ' . $data['error'] . (isset($data['error_description']) ? ' ' . $data['error_description'] : ''));
             }
           }
         }
@@ -171,7 +170,7 @@ class enedis extends eqLogic {
           $dailyMaxCmd->execCmd();
           if (empty($_startDate) && $dailyMaxCmd->getCollectDate() >= date('Y-m-d', strtotime('-1 day'))) {
             log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Données de puissance déjà enregistrées pour le', __FILE__) . ' ' . date('d/m/Y', strtotime('-1 day')));
-          } else if (empty($_toRefresh) || $_toRefresh['daily_' . $measureType . '_max_power']) {
+          } else if (empty($_toRefresh) || isset($_toRefresh['daily_' . $measureType . '_max_power'])) {
             $to_refresh['daily_' . $measureType . '_max_power'] = true;
 
             log::add(__CLASS__, 'debug', $this->getHumanName() . ' ' . __('Récupération des données de puissance', __FILE__) . ' : ' . $measureType . '?start=' . $start_date . '&end=' . $end_date);
@@ -179,14 +178,14 @@ class enedis extends eqLogic {
             if (isset($data['meter_reading']) && isset($data['meter_reading']['interval_reading'])) {
               foreach ($data['meter_reading']['interval_reading'] as $value) {
                 if (empty($_startDate) && $value['date'] >= date('Y-m-d', strtotime('-1 day ' . $end_date))) {
-                  $to_refresh = $this->cleanArray($to_refresh, 'daily_' . $measureType . '_max_power');
+                  unset($to_refresh['daily_' . $measureType . '_max_power']);
                   $this->recordData($dailyMaxCmd, $value['value'], $value['date'], 'event');
                 } else {
                   $this->recordData($dailyMaxCmd, $value['value'], $value['date']);
                 }
               }
             } else if (isset($data['error'])) {
-              log::add(__CLASS__, 'warning', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données de puissance', __FILE__) . ' : ' . $data['error'] . ' ' . $data['error_description']);
+              log::add(__CLASS__, 'warning', $this->getHumanName() . ' ' . __('Erreur lors de la récupération des données de puissance', __FILE__) . ' : ' . $data['error'] . (isset($data['error_description']) ? ' ' . $data['error_description'] : ''));
             }
           }
         }
@@ -223,6 +222,7 @@ class enedis extends eqLogic {
 
   public function recordData($cmd, $value, $date, $function = 'addHistoryValue') {
     $record = false;
+    $formattedValue = $cmd->formatValue($value);
     if (strpos($cmd->getLogicalId(), 'load') !== false) {
       if (date('Gi', strtotime($date)) == 2330) {
         if (!is_object(history::byCmdIdDatetime($cmd->getId(), date('Y-m-d 00:00:00', strtotime('+1 day ' . $date))))) {
@@ -235,8 +235,16 @@ class enedis extends eqLogic {
       } else if (empty($cmd->getHistory($date, date('Y-m-d 23:59:59', strtotime($date))))) {
         $record = true;
       }
-    } else if (empty($cmd->getHistory(date('Y-m-d 00:00:00', strtotime($date)), date('Y-m-d 23:59:59', strtotime($date))))) {
-      $record = true;
+    } else {
+      $day = date('Y-m-d', strtotime($date));
+      $histories = $cmd->getHistory($day . ' 00:00:00', $day . ' 23:59:59');
+      if (empty($histories)) {
+        $record = true;
+      } else if (count($histories) > 1 || $histories[0]->getValue() != $formattedValue) {
+        log::add(__CLASS__, 'debug', $cmd->getHumanName() . ' ' . __("Correction de l'historique", __FILE__) . ' : ' . $day . ' => ' . $histories[0]->getValue() . ' > ' . $formattedValue);
+        history::removes($cmd->getId(), $day . ' 00:00:00', $day . ' 23:59:59');
+        $record = true;
+      }
     }
 
     if ($record) {
@@ -244,23 +252,10 @@ class enedis extends eqLogic {
         log::add(__CLASS__, 'debug', $cmd->getHumanName() . ' ' . __('Mise à jour de la valeur', __FILE__) . ' : ' . $date . ' => ' . $value);
         $cmd->event($value, $date);
       } else {
-        log::add(__CLASS__, 'debug', $cmd->getHumanName() . ' ' . __('Enregistrement historique', __FILE__) . ' : ' . $date . ' => ' . $value);
-        $valueOffset = $cmd->getConfiguration('calculValueOffset', '');
-        if (!empty($valueOffset) && strpos($valueOffset, '#value#') !== false) {
-          $value = jeedom::evaluateExpression(str_replace('#value#', $value, $valueOffset));
-        }
-        $cmd->addHistoryValue($value, $date);
+        log::add(__CLASS__, 'debug', $cmd->getHumanName() . ' ' . __('Enregistrement historique', __FILE__) . ' : ' . $date . ' => ' . $formattedValue);
+        $cmd->addHistoryValue($formattedValue, $date);
       }
     }
-  }
-
-  public function cleanArray($array, $logical) {
-    if (count($array) > 1) {
-      unset($array[$logical]);
-    } else {
-      $array = array();
-    }
-    return $array;
   }
 
   public function preInsert() {
@@ -269,14 +264,8 @@ class enedis extends eqLogic {
     $this->setCategory('energy', 1);
     $this->setIsEnable(1);
     $this->setIsVisible(1);
-    $this->setConfiguration('widgetTemplate', 1);
-    $this->setDisplay('widgetTmpl', 1);
-    $this->setDisplay('advanceWidgetParameterBGEnedisdashboard-default', 0);
-    $this->setDisplay('advanceWidgetParameterBGEnedismobile-default', 0);
     $this->setDisplay('advanceWidgetParameterBGTitledashboard-default', 0);
     $this->setDisplay('advanceWidgetParameterBGTitlemobile-default', 0);
-    $this->setDisplay('advanceWidgetParameterBGEnedisdashboard', '#a3cc28');
-    $this->setDisplay('advanceWidgetParameterBGEnedismobile', '#a3cc28');
     $this->setDisplay('advanceWidgetParameterBGTitledashboard-transparent', 1);
     $this->setDisplay('advanceWidgetParameterBGTitlemobile-transparent', 1);
   }
@@ -363,10 +352,6 @@ class enedis extends eqLogic {
   }
 
   public function toHtml($_version = 'dashboard') {
-    if ($this->getConfiguration('widgetTemplate') != 1) {
-      return parent::toHtml($_version);
-    }
-
     $replace = $this->preToHtml($_version);
     if (!is_array($replace)) {
       return $replace;

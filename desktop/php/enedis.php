@@ -145,13 +145,11 @@ $eqLogics = eqLogic::byType($plugin->getId());
 						</div>
 
 						<div class="col-lg-6">
-							<legend><i class="fas fa-tablet-alt"></i> {{Template de Widget}}</legend>
+							<legend><i class="fas fa-info"></i> {{Informations}}</legend>
 							<div class="form-group">
-								<label class="col-sm-4 control-label">{{Activer}}
-									<sup><i class="fas fa-question-circle tooltips" title="{{Cocher la case pour utiliser le template de widget représentant le compteur Linky}}"></i></sup>
-								</label>
+								<label class="col-sm-4 control-label">{{Description du compteur}}</label>
 								<div class="col-sm-6">
-									<input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="widgetTemplate">
+									<textarea class="form-control eqLogicAttr autogrow" data-l1key="comment"></textarea>
 								</div>
 							</div>
 						</div>

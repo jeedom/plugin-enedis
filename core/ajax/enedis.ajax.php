@@ -28,7 +28,14 @@ try {
 
   if (init('action') == 'addEnedisHistory') {
     $cmd = cmd::byId(init('cmd_id'));
-    $cmd->getEqLogic()->refreshData(init('start'), [$cmd->getLogicalId() => true]);
+    if (!is_object($cmd)) {
+      throw new Exception(__('Commande introuvable', __FILE__) . ' : ' . init('cmd_id'));
+    }
+    $eqLogic = $cmd->getEqLogic();
+    if ($eqLogic->getIsEnable() != 1) {
+      throw new Exception(__("L'équipement doit être activé pour intégrer des historiques", __FILE__));
+    }
+    $eqLogic->refreshData(init('start'), [$cmd->getLogicalId() => true]);
     history::archive();
     ajax::success();
   }
