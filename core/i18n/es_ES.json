@@ -16,9 +16,7 @@
         "Données journalières déjà enregistrées pour le": "Datos diarios ya registrados para el",
         "Début d'interrogation des serveurs Enedis": "Inicio del sondeo de los servidores de Enedis",
         "Enregistrement historique": "Grabación histórica",
-        "Erreur lors de la récupération des données de puissance": "Error al recuperar datos de energía",
-        "Erreur lors de la récupération des données horaires": "Error al recuperar datos por horas",
-        "Erreur lors de la récupération des données journalières": "Error al recuperar datos diarios",
+        "Erreur lors de la récupération des données": "Error al recuperar los datos",
         "Fichier de création de commandes non trouvé": "No se encontró el archivo de creación de pedidos",
         "Fin d'interrogation des serveurs Enedis": "Fin del sondeo de los servidores de Enedis",
         "L'identifiant du point de livraison (PDL) doit contenir 14 caractères": "El identificador del punto de entrega (PDL) debe contener 14 caracteres",
@@ -29,6 +27,7 @@
         "Récupération des données de puissance": "Recuperación de datos de energía",
         "Récupération des données horaires": "Recuperación de datos por hora",
         "Récupération des données journalières": "Recuperación diaria de datos",
+        "Réponse inattendue pour": "Respuesta inesperada para",
         "Toutes les données ont été récupérées": "Todos los datos han sido recuperados",
         "Tâche supprimée car équipement non trouvé": "Tarea eliminada porque no se encontró el equipo"
     },
