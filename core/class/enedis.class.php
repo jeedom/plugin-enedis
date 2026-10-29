@@ -336,6 +336,7 @@ class enedis extends eqLogic {
           ->setTemplate('mobile', 'tile')
           ->setDisplay('showStatsOndashboard', 0)
           ->setDisplay('showStatsOnmobile', 0)
+          ->setDisplay('graphType', $cmd2create['graphType'])
           ->setUnite($cmd2create["unite"])
           ->setOrder($cmd2create["order"])
           ->setIsVisible($cmd2create['isVisible'])
