@@ -16,9 +16,7 @@
         "Données journalières déjà enregistrées pour le": "Bereits erfasste Tagesdaten für die",
         "Début d'interrogation des serveurs Enedis": "Beginn der Abfrage der Enedis-Server",
         "Enregistrement historique": "Historische Aufnahme",
-        "Erreur lors de la récupération des données de puissance": "Fehler beim Abrufen der Leistungsdaten",
-        "Erreur lors de la récupération des données horaires": "Fehler beim Abrufen der Stundendaten",
-        "Erreur lors de la récupération des données journalières": "Fehler beim Abrufen der Tagesdaten",
+        "Erreur lors de la récupération des données": "Fehler beim Abrufen der Daten",
         "Fichier de création de commandes non trouvé": "Auftragserstellungsdatei nicht gefunden",
         "Fin d'interrogation des serveurs Enedis": "Ende der Abfrage der Enedis-Server",
         "L'identifiant du point de livraison (PDL) doit contenir 14 caractères": "Die Lieferpunktkennung (PDL) muss 14 Zeichen enthalten",
@@ -29,6 +27,7 @@
         "Récupération des données de puissance": "Wiederherstellung von Stromdaten",
         "Récupération des données horaires": "Stündlicher Datenabruf",
         "Récupération des données journalières": "Tägliche Datenwiederherstellung",
+        "Réponse inattendue pour": "Unerwartete Antwort auf",
         "Toutes les données ont été récupérées": "Alle Daten wurden wiederhergestellt",
         "Tâche supprimée car équipement non trouvé": "Aufgabe gelöscht, weil Gerät nicht gefunden"
     },

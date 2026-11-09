@@ -16,9 +16,7 @@
         "Données journalières déjà enregistrées pour le": "Données journalières déjà enregistrées pour le",
         "Début d'interrogation des serveurs Enedis": "Début d'interrogation des serveurs Enedis",
         "Enregistrement historique": "Enregistrement historique",
-        "Erreur lors de la récupération des données de puissance": "Erreur lors de la récupération des données de puissance",
-        "Erreur lors de la récupération des données horaires": "Erreur lors de la récupération des données horaires",
-        "Erreur lors de la récupération des données journalières": "Erreur lors de la récupération des données journalières",
+        "Erreur lors de la récupération des données": "Errore durante il recupero dei dati",
         "Fichier de création de commandes non trouvé": "Fichier de création de commandes non trouvé",
         "Fin d'interrogation des serveurs Enedis": "Fin d'interrogation des serveurs Enedis",
         "L'identifiant du point de livraison (PDL) doit contenir 14 caractères": "L'identifiant du point de livraison (PDL) doit contenir 14 caractères",
@@ -29,6 +27,7 @@
         "Récupération des données de puissance": "Récupération des données de puissance",
         "Récupération des données horaires": "Récupération des données horaires",
         "Récupération des données journalières": "Récupération des données journalières",
+        "Réponse inattendue pour": "Risposta inaspettata per",
         "Toutes les données ont été récupérées": "Toutes les données ont été récupérées",
         "Tâche supprimée car équipement non trouvé": "Tâche supprimée car équipement non trouvé"
     },
