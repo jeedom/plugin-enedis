@@ -197,7 +197,23 @@ class enedis extends eqLogic {
     try {
       $url = config::byKey('service::cloud::url') . '/service/enedis2?path=' . urlencode($_path);
       $request_http = new com_http($url);
-      $request_http->setHeader(array('Content-Type: application/json', 'Autorization: ' . sha512(mb_strtolower(config::byKey('market::username')) . ':' . config::byKey('market::password'))));
+      $cloudToken = null;
+      if (is_callable(array('repo_market', 'getCloudToken'))) {
+        try {
+          $cloudToken = repo_market::getCloudToken();
+        } catch (Exception $e) {
+          if ($e->getCode() !== 401) {
+            throw $e;
+          }
+        }
+      }
+      if ($cloudToken) {
+        if (strtolower((string) parse_url($request_http->getUrl(), PHP_URL_SCHEME)) !== 'https') {
+          throw new Exception(__('Le service Cloud doit utiliser HTTPS.', __FILE__));
+        }
+        $request_http->setNoSslCheck(false);
+      }
+      $request_http->setHeader(array('Content-Type: application/json', $cloudToken ? 'Authorization: Bearer ' . $cloudToken : 'Autorization: ' . sha512(mb_strtolower(config::byKey('market::username')) . ':' . config::byKey('market::password'))));
       $result = json_decode($request_http->exec(30, 1), true);
     } catch (exception $e) {
       $result = array('error' => $e);
